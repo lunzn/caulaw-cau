@@ -1,0 +1,115 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-root}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  db-migrate:
+    build:
+      context: .
+      target: migrate
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-root}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-postgres}
+    networks:
+      - internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  school-server:
+    build:
+      context: .
+      target: school-server
+    restart: unless-stopped
+    environment:
+      SCHOOL_SERVER_HOST: 0.0.0.0
+      SCHOOL_SERVER_PORT: 3002
+      SCHOOL_DB_PATH: /data/school.db
+      SEED: "true"
+    volumes:
+      - school_data:/data
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "bun -e \"fetch('http://localhost:3002/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
+      interval: 10s
+      timeout: 10s
+      retries: 6
+      start_period: 20s
+
+  work-server:
+    build:
+      context: .
+      target: work-server
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      WORKER_HOST: 0.0.0.0
+      WORKER_PORT: 3100
+      PI_SKILLS_ROOT: /app/.pi/skills
+      SKILLS_CACHE_DIR: /app/.cache/skills
+      NODE_TLS_REJECT_UNAUTHORIZED: "0"
+      SCHOOL_SERVER_URL: http://school-server:3002
+      DATABASE_URL: postgresql://${POSTGRES_USER:-root}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-postgres}
+      # 手册 PDF 地址，填写后欢迎语自动附上链接，留空则不显示
+      CAU_MANUAL_PDF_URL: ${CAU_MANUAL_PDF_URL:-}
+    volumes:
+      - ~/.wechatbot:/root/.wechatbot
+      - ./packages/work-server/.data:/app/.data
+      - ./packages/work-server/.pi:/app/.pi
+      - skills_cache:/app/.cache
+    networks:
+      - internal
+    depends_on:
+      db-migrate:
+        condition: service_completed_successfully
+
+  gateway:
+    build:
+      context: .
+      target: gateway
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${GATEWAY_PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER:-root}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-postgres}
+      SCHOOL_SERVER_URL: http://school-server:3002
+      WORK_SERVER_URL: http://work-server:3100
+      # 以下三项统一从 PUBLIC_URL 派生，部署时只需在 .env 中设置 PUBLIC_URL
+      BETTER_AUTH_URL: ${PUBLIC_URL:-http://localhost:3000}
+      NEXT_PUBLIC_APP_URL: ${PUBLIC_URL:-http://localhost:3000}
+      BETTER_AUTH_TRUSTED_ORIGINS: ${PUBLIC_URL:-http://localhost:3000}
+    networks:
+      - internal
+    depends_on:
+      db-migrate:
+        condition: service_completed_successfully
+      school-server:
+        condition: service_healthy
+      work-server:
+        condition: service_started
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  school_data:
+  skills_cache:

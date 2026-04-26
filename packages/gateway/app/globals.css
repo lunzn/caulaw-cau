@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 品牌：绿主色、黄辅色。大面积背景偏中性灰，绿集中在主色/环；卡片白底抬高。.impeccable.md */
+:root {
+  --radius: 0.625rem;
+  /* 页底：浅冷灰，避免整屏发绿 */
+  --background: oklch(0.965 0.006 250);
+  --foreground: oklch(0.21 0.018 255);
+  /* 卡片：纯白，与底形成明确块面 */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.018 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.018 255);
+  --primary: oklch(0.42 0.125 149);
+  --primary-foreground: oklch(0.99 0.012 149);
+  --secondary: oklch(0.955 0.012 250);
+  --secondary-foreground: oklch(0.3 0.035 255);
+  --muted: oklch(0.955 0.01 250);
+  --muted-foreground: oklch(0.48 0.028 255);
+  --accent: oklch(0.945 0.07 92);
+  --accent-foreground: oklch(0.3 0.06 88);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.9 0.008 250);
+  --input: oklch(0.915 0.01 250);
+  --ring: oklch(0.52 0.14 150);
+  --ease-cau-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --cau-enter-duration: 320ms;
+  /* 应用内正文行高（中文长文，typeset） */
+  --leading-body: 1.65;
+}
+
+.dark {
+  /* 底：略偏蓝灰，减少「一整张绿幕」感 */
+  --background: oklch(0.155 0.018 265);
+  --foreground: oklch(0.97 0.012 265);
+  /* 卡片：比底明显抬亮一层 */
+  --card: oklch(0.225 0.022 265);
+  --card-foreground: oklch(0.97 0.012 265);
+  --popover: oklch(0.225 0.022 265);
+  --popover-foreground: oklch(0.97 0.012 265);
+  --primary: oklch(0.7 0.13 151);
+  --primary-foreground: oklch(0.14 0.035 152);
+  --secondary: oklch(0.29 0.028 268);
+  --secondary-foreground: oklch(0.95 0.015 265);
+  --muted: oklch(0.29 0.028 268);
+  --muted-foreground: oklch(0.72 0.03 265);
+  --accent: oklch(0.81 0.095 93);
+  --accent-foreground: oklch(0.22 0.06 90);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 11%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.62 0.12 151);
+}
+
+/* 深色模式下浅字略增行高，利于阅读 */
+.dark body {
+  line-height: 1.68;
+}
+
+/* 动效：克制、仅 transform/opacity；与 animate 技能一致 */
+@keyframes cau-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.cau-enter {
+  animation: cau-enter var(--cau-enter-duration) var(--ease-cau-out) both;
+}
+
+.cau-enter-delay-sm {
+  animation-delay: 45ms;
+}
+
+.cau-enter-delay-md {
+  animation-delay: 90ms;
+}
+
+.cau-enter-delay-lg {
+  animation-delay: 135ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cau-enter,
+  .cau-enter-delay-sm,
+  .cau-enter-delay-md,
+  .cau-enter-delay-lg {
+    animation: none !important;
+    animation-delay: 0ms !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-slot="dialog-overlay"],
+  [data-slot="dialog-content"] {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  [data-slot="dialog-content"] {
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", "Consolas",
+    monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  line-height: var(--leading-body);
+  text-rendering: optimizeLegibility;
+}
+
+/* 等宽数据：编号、表达式 */
+.cau-numeric {
+  font-variant-numeric: tabular-nums;
+}

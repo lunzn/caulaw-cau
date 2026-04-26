@@ -1,0 +1,203 @@
+{
+  "success": true,
+  "total": 23,
+  "members": [
+    {
+      "name": "张盼",
+      "rank": "博士后",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://ciee.cau.edu.cn/art/2025/2/20/art_50403_1052845.html",
+      "bio": null
+    },
+    {
+      "name": "李珊",
+      "rank": "讲师",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/ls2/",
+      "bio": null
+    },
+    {
+      "name": "陈英义",
+      "rank": "教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/xxdqxy/cyy/list.htm",
+      "bio": null
+    },
+    {
+      "name": "段青玲",
+      "rank": "教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/dql/list.htm",
+      "bio": null
+    },
+    {
+      "name": "黄岚",
+      "rank": "教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/hl100/",
+      "bio": "信息处理技术与农业物联网；信息应用技术与智能农业；嵌入式系统及应用",
+      "research_areas": "信息处理技术与农业物联网；信息应用技术与智能农业；嵌入式系统及应用",
+      "email": "hlan@cau.edu.cn"
+    },
+    {
+      "name": "李振波",
+      "rank": "教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/lzb/list.htm",
+      "bio": null
+    },
+    {
+      "name": "陈雷",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/cl101/",
+      "bio": null
+    },
+    {
+      "name": "陈昕",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/dzbgswlzx/cx/list.htm",
+      "bio": "农业信息化；涉农电子商务；大数据分析与处理",
+      "research_areas": "农业信息化；涉农电子商务；大数据分析与处理"
+    },
+    {
+      "name": "付学谦",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/fxq_en/list.htm",
+      "bio": null
+    },
+    {
+      "name": "贾璐",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/jl/list.htm",
+      "bio": "图神经网络；协同计算",
+      "research_areas": "图神经网络；协同计算"
+    },
+    {
+      "name": "李想",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/lx_7543/list.htm",
+      "bio": null
+    },
+    {
+      "name": "刘云玲",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/lyl/list.htm",
+      "bio": null
+    },
+    {
+      "name": "刘元杰",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/lyj100/",
+      "bio": null
+    },
+    {
+      "name": "马钦",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/mq/list.htm",
+      "bio": "计算机视觉；人工智能",
+      "research_areas": "计算机视觉；人工智能",
+      "email": "sockline@163.com"
+    },
+    {
+      "name": "陶莎",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/ts/list.htm",
+      "bio": "农产品安全信息管理与智能处理技术；多源数据融合技术",
+      "research_areas": "农产品安全信息管理与智能处理技术；多源数据融合技术",
+      "email": "taos@cau.edu.cn"
+    },
+    {
+      "name": "王晨",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/wc_26397/",
+      "bio": null
+    },
+    {
+      "name": "王敏娟",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/wmj/list.htm",
+      "bio": "作物表型组技术",
+      "research_areas": "作物表型组技术",
+      "email": "minjuan@cau.edu.cn"
+    },
+    {
+      "name": "王庆",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/wq100/",
+      "bio": null
+    },
+    {
+      "name": "王耀君",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/wyj103/",
+      "bio": null
+    },
+    {
+      "name": "杨丽丽",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/yll/list.htm",
+      "bio": null
+    },
+    {
+      "name": "杨颖",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "https://faculty.cau.edu.cn/yy101/",
+      "bio": null
+    },
+    {
+      "name": "叶昕",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/yx/list.htm",
+      "bio": "遥感信息提取与应用",
+      "research_areas": "遥感信息提取与应用",
+      "email": "yexin@cau.edu.cn"
+    },
+    {
+      "name": "赵景博",
+      "rank": "副教授",
+      "department": "计算机工程系",
+      "dept_id": "col50403",
+      "profile_url": "http://faculty.cau.edu.cn/xxdqxy/zjb/list.htm",
+      "bio": null
+    }
+  ],
+  "errors": []
+}

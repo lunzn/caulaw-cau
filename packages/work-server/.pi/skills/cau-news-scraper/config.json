@@ -1,0 +1,100 @@
+{
+  "sites": {
+    "cau_news": {
+      "id": "cau_news",
+      "name": "中国农业大学新闻网",
+      "base_url": "https://news.cau.edu.cn",
+      "scraper": "cau_news",
+      "channels": [
+        {
+          "id": "ttgznew",
+          "name": "头条关注",
+          "url": "https://news.cau.edu.cn/ttgznew/index.htm"
+        },
+        {
+          "id": "zhxwnew",
+          "name": "综合新闻",
+          "url": "https://news.cau.edu.cn/zhxwnew/index.htm"
+        },
+        {
+          "id": "kxyj",
+          "name": "科学研究",
+          "url": "https://news.cau.edu.cn/kxyj/index.htm"
+        },
+        {
+          "id": "rwgs",
+          "name": "人物故事",
+          "url": "https://news.cau.edu.cn/rwgs/index.htm"
+        },
+        {
+          "id": "jcdt",
+          "name": "基层动态",
+          "url": "https://news.cau.edu.cn/jcdt/index.htm"
+        },
+        {
+          "id": "mtndnew",
+          "name": "媒体农大",
+          "url": "https://news.cau.edu.cn/mtndnew/index.htm"
+        }
+      ]
+    },
+    "ciee": {
+      "id": "ciee",
+      "name": "信息与电气工程学院",
+      "base_url": "https://ciee.cau.edu.cn",
+      "scraper": "ciee",
+      "channels": [
+        {
+          "id": "col50389",
+          "name": "新闻动态",
+          "url": "https://ciee.cau.edu.cn/col/col50389/index.html"
+        },
+        {
+          "id": "col50390",
+          "name": "学院公告",
+          "url": "https://ciee.cau.edu.cn/col/col50390/index.html"
+        },
+        {
+          "id": "col50391",
+          "name": "信电号角",
+          "url": "https://ciee.cau.edu.cn/col/col50391/index.html"
+        },
+        {
+          "id": "col50392",
+          "name": "学术科研",
+          "url": "https://ciee.cau.edu.cn/col/col50392/index.html"
+        },
+        {
+          "id": "col50450",
+          "name": "学生园地-通知公告",
+          "url": "https://ciee.cau.edu.cn/col/col50450/index.html"
+        },
+        {
+          "id": "col50451",
+          "name": "学生园地-最新动态",
+          "url": "https://ciee.cau.edu.cn/col/col50451/index.html"
+        }
+      ]
+    },
+    "scc": {
+      "id": "scc",
+      "name": "中国农业大学学生就业服务网",
+      "base_url": "https://scc.cau.edu.cn",
+      "scraper": "scc",
+      "channels": [
+        {
+          "id": "6ebab28e72ba46da99a0f2c372b129d7",
+          "name": "就业公告"
+        },
+        {
+          "id": "db5ae5483e3b4bd387178130b9ebbf94",
+          "name": "学校新闻"
+        },
+        {
+          "id": "3fcc824cecbc42aea3dce3700e5a4839",
+          "name": "通知公告"
+        }
+      ]
+    }
+  }
+}
