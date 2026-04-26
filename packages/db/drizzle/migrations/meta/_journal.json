@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1776485982747,
+      "tag": "0000_colorful_triton",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1745200000000,
+      "tag": "0001_wechat_known_contacts",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@cau-claw/worker-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run elysia.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cau-claw/db": "workspace:*",
+    "@mariozechner/pi-agent-core": "^0.66.1",
+    "@mariozechner/pi-ai": "^0.66.1",
+    "@mariozechner/pi-coding-agent": "^0.66.1",
+    "@sinclair/typebox": "^0.34.49",
+    "@wechatbot/wechatbot": "^2.1.0",
+    "better-auth": "^1.6.2",
+    "croner": "^10.0.1",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "elysia": "^1.4.28",
+    "file-type": "^21.1.1",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/pg": "^8.20.0",
+    "typescript": "^5"
+  }
+}

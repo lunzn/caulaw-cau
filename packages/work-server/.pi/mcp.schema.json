@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Caulaw MCP Config",
+  "type": "object",
+  "required": ["mcpServers"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "mcpServers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "transport": {
+            "type": "string",
+            "enum": ["stdio", "http"]
+          },
+          "command": {
+            "type": "string"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "env": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "cwd": {
+            "type": "string"
+          },
+          "httpEndpoint": {
+            "type": "string"
+          },
+          "bindTool": {
+            "type": "string"
+          }
+        },
+        "anyOf": [
+          {
+            "required": ["command"]
+          },
+          {
+            "required": ["transport", "httpEndpoint"],
+            "properties": {
+              "transport": {
+                "const": "http"
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": { "transport": { "const": "stdio" } }
+            },
+            "then": {
+              "required": ["command"]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

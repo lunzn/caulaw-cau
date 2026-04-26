@@ -1,0 +1,7 @@
+**/.git
+**/.env*.local
+**/.next
+**/node_modules
+**/.data
+**/tsconfig.tsbuildinfo
+**/*.log

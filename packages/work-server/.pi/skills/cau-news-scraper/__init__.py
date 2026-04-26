@@ -1,0 +1,1 @@
+# CAU news scraper package

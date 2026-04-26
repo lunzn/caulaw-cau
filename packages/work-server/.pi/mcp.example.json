@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "shennong-claw-py": {
+      "command": "/path/to/python",
+      "args": ["-m", "shennong_claw_mcp.server"],
+      "cwd": "/path/to/shennong-claw-mcp-py",
+      "lifecycle": "keep-alive",
+      "env": {
+        "SHENNONG_TRANSPORT": "http",
+        "SHENNONG_HTTP_BASE_URL": "https://your-shennong-instance.example.com",
+        "SHENNONG_HTTP_BACKEND": "sensor",
+        "SHENNONG_API_TOKEN": "your_api_token_here"
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "@cau-claw/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./drizzle/schema/index.ts",
+  "types": "./drizzle/schema/index.ts",
+  "exports": {
+    ".": {
+      "types": "./drizzle/schema/index.ts",
+      "default": "./drizzle/schema/index.ts"
+    },
+    "./schema": {
+      "types": "./drizzle/schema/index.ts",
+      "default": "./drizzle/schema/index.ts"
+    },
+    "./schema/*": {
+      "types": "./drizzle/schema/*.ts",
+      "default": "./drizzle/schema/*.ts"
+    },
+    "./drizzle/schema": {
+      "types": "./drizzle/schema/index.ts",
+      "default": "./drizzle/schema/index.ts"
+    }
+  },
+  "scripts": {
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "push": "drizzle-kit push",
+    "auth:generate": "better-auth generate"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.12",
+    "@types/pg": "^8.20.0",
+    "drizzle-kit": "^0.31.10",
+    "pg": "^8.20.0",
+    "typescript": "^5"
+  }
+}

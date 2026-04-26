@@ -1,0 +1,1278 @@
+2026-03-19 14:53:24 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-19 14:53:24 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-19 14:53:24 [info] [VM] Module loaded successfully
+2026-03-19 14:56:20 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-19 14:56:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-19 14:56:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-19 14:56:28 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-19 14:56:28 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-19 14:56:28 [info] rootfs.vhdx not found, downloading...
+2026-03-19 14:56:28 [info] Downloading rootfs.vhdx...
+2026-03-19 15:18:48 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-03-20 10:11:42 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-20 10:11:42 [info] [VM] Module loaded successfully
+2026-03-20 10:11:45 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 10:11:45 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 10:11:45 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 10:11:45 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-20 10:11:45 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-20 10:11:45 [info] rootfs.vhdx not found, downloading...
+2026-03-20 10:11:45 [info] Downloading rootfs.vhdx...
+2026-03-20 10:14:34 [info] rootfs.vhdx.zst checksum validated
+2026-03-20 10:14:34 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-EWDje9\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-20 22:41:44 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-20 22:41:44 [info] [VM] Module loaded successfully
+2026-03-20 22:41:46 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 22:41:46 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 22:41:46 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 22:41:46 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-20 22:41:46 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-20 22:41:46 [info] rootfs.vhdx not found, downloading...
+2026-03-20 22:41:46 [info] Downloading rootfs.vhdx...
+2026-03-20 22:42:03 [info] [warm] Fetching VM hash for version 1.1.7714
+2026-03-20 22:42:04 [info] [warm] VM hash for version 1.1.7714: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-20 22:42:04 [info] [warm] VM SHA matches current version, skipping
+2026-03-20 22:46:15 [info] rootfs.vhdx.zst checksum validated
+2026-03-20 22:46:15 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-CPyMgK\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-20 23:04:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 23:04:05 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-20 23:04:05 [info] [VM] Module loaded successfully
+2026-03-20 23:04:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 23:04:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-20 23:04:05 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-20 23:04:05 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-20 23:04:05 [info] rootfs.vhdx not found, downloading...
+2026-03-20 23:04:05 [info] Downloading rootfs.vhdx...
+2026-03-20 23:04:10 [info] [logout] User navigated to /logout, stopping VM
+2026-03-20 23:04:10 [info] [stopVM] stopping VM gracefully
+2026-03-20 23:04:15 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-20 23:06:35 [info] [downloadVM] Download already in progress, waiting...
+2026-03-20 23:07:21 [info] rootfs.vhdx.zst checksum validated
+2026-03-20 23:07:21 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-Zk9dxQ\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-20 23:07:21 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-Zk9dxQ\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-24 20:16:36 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-24 20:16:36 [info] [VM] Module loaded successfully
+2026-03-24 20:16:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-24 20:16:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-24 20:16:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-24 20:16:38 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-24 20:16:38 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-24 20:16:38 [info] rootfs.vhdx not found, downloading...
+2026-03-24 20:16:38 [info] Downloading rootfs.vhdx...
+2026-03-24 20:16:53 [info] [warm] Fetching VM hash for version 1.1.8359
+2026-03-24 20:16:53 [info] [warm] VM hash for version 1.1.8359: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-24 20:16:53 [info] [warm] VM SHA matches current version, skipping
+2026-03-24 20:19:44 [info] rootfs.vhdx.zst checksum validated
+2026-03-24 20:19:44 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-cQrUqn\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-25 08:10:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 08:10:51 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-25 08:10:51 [info] [VM] Module loaded successfully
+2026-03-25 08:10:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 08:10:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 08:10:51 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-25 08:10:51 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-25 08:10:51 [info] rootfs.vhdx not found, downloading...
+2026-03-25 08:10:51 [info] Downloading rootfs.vhdx...
+2026-03-25 08:11:06 [info] [warm] Fetching VM hash for version 1.1.8629
+2026-03-25 08:11:06 [info] [warm] VM hash for version 1.1.8629: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-25 08:11:06 [info] [warm] VM SHA matches current version, skipping
+2026-03-25 08:11:13 [info] [downloadVM] Download already in progress, waiting...
+2026-03-25 08:11:25 [info] [downloadVM] Download already in progress, waiting...
+2026-03-25 08:13:16 [info] rootfs.vhdx.zst checksum validated
+2026-03-25 08:13:16 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-a1RnkO\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-25 08:13:16 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-a1RnkO\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-25 08:13:16 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-a1RnkO\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-25 09:54:04 [info] [KernelBugMonitor] State reset
+2026-03-25 09:54:04 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-25 09:54:04 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-25 09:54:04 [info] [VM:start] VM instance ID: ec708cb5-5b59-49da-8637-5863d66c15bf
+2026-03-25 09:54:04 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-25 09:54:04 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 09:54:04 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 09:54:04 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-25 09:54:04 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-25 09:54:04 [info] rootfs.vhdx not found, downloading...
+2026-03-25 09:54:04 [info] Downloading rootfs.vhdx...
+2026-03-25 09:54:39 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 09:54:39 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-25 09:54:39 [info] [VM] Module loaded successfully
+2026-03-25 09:54:39 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 09:54:39 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 09:54:39 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-25 09:54:39 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-25 09:54:39 [info] rootfs.vhdx not found, downloading...
+2026-03-25 09:54:39 [info] Downloading rootfs.vhdx...
+2026-03-25 09:55:11 [info] [KernelBugMonitor] State reset
+2026-03-25 09:55:11 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-25 09:55:11 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-25 09:55:11 [info] [VM:start] VM instance ID: 226679b2-29a4-455b-83f5-7374fe701131
+2026-03-25 09:55:11 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-25 09:55:11 [info] [downloadVM] Download already in progress, waiting...
+2026-03-25 13:33:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 13:33:34 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-25 13:33:34 [info] [VM] Module loaded successfully
+2026-03-25 13:33:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 13:33:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 13:33:34 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-25 13:33:34 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-25 13:33:34 [info] rootfs.vhdx not found, downloading...
+2026-03-25 13:33:34 [info] Downloading rootfs.vhdx...
+2026-03-25 13:36:36 [info] rootfs.vhdx.zst checksum validated
+2026-03-25 13:36:36 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-2ZhiWm\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-25 19:04:03 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 19:04:03 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-25 19:04:03 [info] [VM] Module loaded successfully
+2026-03-25 19:04:03 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 19:04:03 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-25 19:04:03 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-25 19:04:03 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-25 19:04:03 [info] rootfs.vhdx not found, downloading...
+2026-03-25 19:04:03 [info] Downloading rootfs.vhdx...
+2026-03-25 19:06:43 [info] rootfs.vhdx.zst checksum validated
+2026-03-25 19:06:43 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-rGIeXv\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-26 01:06:58 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 01:06:58 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-26 01:06:58 [info] [VM] Module loaded successfully
+2026-03-26 01:06:58 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 01:06:58 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 01:06:58 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-26 01:06:58 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-26 01:06:58 [info] rootfs.vhdx not found, downloading...
+2026-03-26 01:06:58 [info] Downloading rootfs.vhdx...
+2026-03-26 01:06:59 [info] [logout] User navigated to /logout, stopping VM
+2026-03-26 01:06:59 [info] [stopVM] stopping VM gracefully
+2026-03-26 01:06:59 [info] [logout] User navigated to /logout, stopping VM
+2026-03-26 01:06:59 [info] [stopVM] stopping VM gracefully
+2026-03-26 01:06:59 [info] [logout] User navigated to /logout, stopping VM
+2026-03-26 01:06:59 [info] [stopVM] stopping VM gracefully
+2026-03-26 01:06:59 [info] [downloadVM] Download already in progress, waiting...
+2026-03-26 01:07:04 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-26 01:07:04 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-26 01:07:04 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-26 01:09:53 [info] rootfs.vhdx.zst checksum validated
+2026-03-26 01:09:53 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-WLajJh\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-26 01:09:53 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-WLajJh\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-26 23:19:30 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:19:30 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-26 23:19:30 [info] [VM] Module loaded successfully
+2026-03-26 23:19:32 [info] [logout] User navigated to /logout, stopping VM
+2026-03-26 23:19:32 [info] [stopVM] stopping VM gracefully
+2026-03-26 23:19:32 [info] [logout] User navigated to /logout, stopping VM
+2026-03-26 23:19:32 [info] [stopVM] stopping VM gracefully
+2026-03-26 23:19:32 [info] [logout] User navigated to /logout, stopping VM
+2026-03-26 23:19:32 [info] [stopVM] stopping VM gracefully
+2026-03-26 23:19:32 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:19:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:19:37 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-26 23:19:37 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-26 23:19:37 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-26 23:20:00 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:20:04 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:20:04 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:20:04 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-26 23:20:04 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-26 23:20:04 [info] rootfs.vhdx not found, downloading...
+2026-03-26 23:20:04 [info] Downloading rootfs.vhdx...
+2026-03-26 23:20:10 [info] [KernelBugMonitor] State reset
+2026-03-26 23:20:10 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:20:10 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-26 23:20:10 [info] [VM:start] VM instance ID: f61343b0-1c47-4dfc-9f2f-ec5bf3f161c1
+2026-03-26 23:20:10 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-26 23:20:10 [info] [downloadVM] Download already in progress, waiting...
+2026-03-26 23:20:10 [info] [KernelBugMonitor] State reset
+2026-03-26 23:20:10 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:20:10 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-26 23:20:10 [info] [VM:start] VM instance ID: f61343b0-1c47-4dfc-9f2f-ec5bf3f161c1
+2026-03-26 23:20:10 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-26 23:20:10 [info] [downloadVM] Download already in progress, waiting...
+2026-03-26 23:20:13 [info] [startVM] VM startup already in progress, waiting...
+2026-03-26 23:20:13 [info] [startVM] VM startup already in progress, waiting...
+2026-03-26 23:20:14 [info] [startVM] VM startup already in progress, waiting...
+2026-03-26 23:20:17 [info] [startVM] VM startup already in progress, waiting...
+2026-03-26 23:20:17 [info] [startVM] VM startup already in progress, waiting...
+2026-03-26 23:20:31 [info] [startVM] VM startup already in progress, waiting...
+2026-03-26 23:20:31 [info] [startVM] VM startup already in progress, waiting...
+2026-03-26 23:20:43 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:20:43 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-26 23:20:43 [info] [VM] Module loaded successfully
+2026-03-26 23:20:43 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:20:43 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:20:43 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-26 23:20:43 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-26 23:20:43 [info] rootfs.vhdx not found, downloading...
+2026-03-26 23:20:43 [info] Downloading rootfs.vhdx...
+2026-03-26 23:20:48 [info] [KernelBugMonitor] State reset
+2026-03-26 23:20:48 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:20:48 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-26 23:20:48 [info] [VM:start] VM instance ID: 6a7cb5e0-3c62-42c9-8892-1987fb37a4ed
+2026-03-26 23:20:48 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-26 23:20:48 [info] [downloadVM] Download already in progress, waiting...
+2026-03-26 23:20:48 [info] [KernelBugMonitor] State reset
+2026-03-26 23:20:48 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:20:48 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-26 23:20:48 [info] [VM:start] VM instance ID: 6a7cb5e0-3c62-42c9-8892-1987fb37a4ed
+2026-03-26 23:20:48 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-26 23:20:48 [info] [downloadVM] Download already in progress, waiting...
+2026-03-26 23:20:48 [info] [KernelBugMonitor] State reset
+2026-03-26 23:20:48 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:20:48 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-26 23:20:48 [info] [VM:start] VM instance ID: 6a7cb5e0-3c62-42c9-8892-1987fb37a4ed
+2026-03-26 23:20:48 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-26 23:20:48 [info] [downloadVM] Download already in progress, waiting...
+2026-03-26 23:20:48 [info] [KernelBugMonitor] State reset
+2026-03-26 23:20:48 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:20:48 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-26 23:20:48 [info] [VM:start] VM instance ID: 6a7cb5e0-3c62-42c9-8892-1987fb37a4ed
+2026-03-26 23:20:48 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-26 23:20:48 [info] [downloadVM] Download already in progress, waiting...
+2026-03-26 23:25:42 [info] rootfs.vhdx.zst checksum validated
+2026-03-26 23:25:42 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-cSlJsw\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-26 23:25:42 [error] [VM:start] Startup failed: Error: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-cSlJsw\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+    at async Object.rename (node:internal/fs/promises:782:10)
+    at async aYr (D:\WindowsApps\Claude_1.1.8629.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:989:20154) {
+  [stack]: [Getter/Setter],
+  [message]: "EXDEV: cross-device link not permitted, rename 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-cSlJsw\\rootfs.vhdx' -> 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'",
+  errno: -4037,
+  code: 'EXDEV',
+  syscall: 'rename',
+  path: 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-cSlJsw\\rootfs.vhdx',
+  dest: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'
+}
+2026-03-26 23:25:42 [error] [VM:start] Startup failed: Error: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-cSlJsw\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+    at async Object.rename (node:internal/fs/promises:782:10)
+    at async aYr (D:\WindowsApps\Claude_1.1.8629.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:989:20154) {
+  [stack]: [Getter/Setter],
+  [message]: "EXDEV: cross-device link not permitted, rename 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-cSlJsw\\rootfs.vhdx' -> 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'",
+  errno: -4037,
+  code: 'EXDEV',
+  syscall: 'rename',
+  path: 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-cSlJsw\\rootfs.vhdx',
+  dest: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'
+}
+2026-03-26 23:25:42 [error] [VM:start] Startup failed: Error: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-cSlJsw\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+    at async Object.rename (node:internal/fs/promises:782:10)
+    at async aYr (D:\WindowsApps\Claude_1.1.8629.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:989:20154) {
+  [stack]: [Getter/Setter],
+  [message]: "EXDEV: cross-device link not permitted, rename 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-cSlJsw\\rootfs.vhdx' -> 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'",
+  errno: -4037,
+  code: 'EXDEV',
+  syscall: 'rename',
+  path: 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-cSlJsw\\rootfs.vhdx',
+  dest: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'
+}
+2026-03-26 23:25:42 [error] [VM:start] Startup failed: Error: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-cSlJsw\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+    at async Object.rename (node:internal/fs/promises:782:10)
+    at async aYr (D:\WindowsApps\Claude_1.1.8629.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:989:20154) {
+  [stack]: [Getter/Setter],
+  [message]: "EXDEV: cross-device link not permitted, rename 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-cSlJsw\\rootfs.vhdx' -> 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'",
+  errno: -4037,
+  code: 'EXDEV',
+  syscall: 'rename',
+  path: 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-cSlJsw\\rootfs.vhdx',
+  dest: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'
+}
+2026-03-26 23:25:42 [info] [VM:start] Auto-reinstalling workspace after startup failure
+2026-03-26 23:25:42 [info] [VM:start] Auto-reinstalling workspace after startup failure
+2026-03-26 23:25:42 [info] [VM:start] Auto-reinstalling workspace after startup failure
+2026-03-26 23:25:42 [info] [VM:start] Auto-reinstalling workspace after startup failure
+2026-03-26 23:25:42 [info] [deleteVMBundle] Deleting reinstall files from C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:25:42 [info] [deleteVMBundle] Deleting reinstall files from C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:25:42 [info] [deleteVMBundle] Deleting reinstall files from C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:25:42 [info] [deleteVMBundle] Deleting reinstall files from C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-26 23:25:42 [info] [deleteVMBundle] Reinstall files deleted (sessiondata.img and rootfs.img.zst preserved)
+2026-03-26 23:25:42 [info] [deleteVMBundle] Reinstall files deleted (sessiondata.img and rootfs.img.zst preserved)
+2026-03-26 23:25:42 [info] [deleteVMBundle] Reinstall files deleted (sessiondata.img and rootfs.img.zst preserved)
+2026-03-26 23:25:42 [info] [deleteVMBundle] Reinstall files deleted (sessiondata.img and rootfs.img.zst preserved)
+2026-03-26 23:25:48 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:25:48 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-26 23:25:48 [info] [VM] Module loaded successfully
+2026-03-26 23:25:48 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:25:48 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:25:48 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-26 23:25:48 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-26 23:25:48 [info] rootfs.vhdx not found, downloading...
+2026-03-26 23:25:48 [info] Downloading rootfs.vhdx...
+2026-03-26 23:26:14 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-03-26 23:31:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:31:34 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-26 23:31:34 [info] [VM] Module loaded successfully
+2026-03-26 23:31:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:31:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-26 23:31:34 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-26 23:31:34 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-26 23:31:34 [info] rootfs.vhdx not found, downloading...
+2026-03-26 23:31:34 [info] Downloading rootfs.vhdx...
+2026-03-26 23:37:04 [info] rootfs.vhdx.zst checksum validated
+2026-03-26 23:37:04 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-gRJ8HR\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-27 10:24:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-27 10:24:33 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-27 10:24:33 [info] [VM] Module loaded successfully
+2026-03-27 10:24:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-27 10:24:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-27 10:24:33 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-27 10:24:33 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-27 10:24:33 [info] rootfs.vhdx not found, downloading...
+2026-03-27 10:24:33 [info] Downloading rootfs.vhdx...
+2026-03-27 10:25:01 [info] [warm] Fetching VM hash for version 1.1.9134
+2026-03-27 10:25:01 [info] [warm] VM hash for version 1.1.9134: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-27 10:25:01 [info] [warm] VM SHA matches current version, skipping
+2026-03-27 10:29:17 [info] rootfs.vhdx.zst checksum validated
+2026-03-27 10:29:17 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-Gon0Xa\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-28 11:27:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 11:27:51 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-28 11:27:51 [info] [VM] Module loaded successfully
+2026-03-28 11:27:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 11:27:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 11:27:51 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-28 11:27:51 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-28 11:27:51 [info] rootfs.vhdx not found, downloading...
+2026-03-28 11:27:51 [info] Downloading rootfs.vhdx...
+2026-03-28 11:28:09 [info] [warm] Fetching VM hash for version 1.1.9310
+2026-03-28 11:28:09 [info] [warm] VM hash for version 1.1.9310: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-28 11:28:09 [info] [warm] VM SHA matches current version, skipping
+2026-03-28 11:30:27 [info] rootfs.vhdx.zst checksum validated
+2026-03-28 11:30:27 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-2ojhaZ\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-28 11:32:34 [info] [KernelBugMonitor] State reset
+2026-03-28 11:32:34 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-28 11:32:34 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-28 11:32:34 [info] [VM:start] VM instance ID: eea26173-ebdc-4204-a2eb-aaacc493c32e
+2026-03-28 11:32:34 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-28 11:32:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 11:32:34 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 11:32:34 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-28 11:32:34 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-28 11:32:34 [info] rootfs.vhdx not found, downloading...
+2026-03-28 11:32:34 [info] Downloading rootfs.vhdx...
+2026-03-28 11:35:11 [info] rootfs.vhdx.zst checksum validated
+2026-03-28 11:35:11 [error] [VM:start] Startup failed: Error: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-2lqnwJ\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+    at async Object.rename (node:internal/fs/promises:782:10)
+    at async Srn (D:\WindowsApps\Claude_1.1.9134.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:1026:10776)
+    at async Promise.all (index 0)
+    at async Drn (D:\WindowsApps\Claude_1.1.9134.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:1029:1634)
+    at async Object.startVM (D:\WindowsApps\Claude_1.1.9134.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:6534:39378)
+    at async D:\WindowsApps\Claude_1.1.9134.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:3:299753
+    at async Session.<anonymous> (node:electron/js2c/browser_init:2:116443) {
+  [stack]: [Getter/Setter],
+  [message]: "EXDEV: cross-device link not permitted, rename 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-2lqnwJ\\rootfs.vhdx' -> 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'",
+  errno: -4037,
+  code: 'EXDEV',
+  syscall: 'rename',
+  path: 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-2lqnwJ\\rootfs.vhdx',
+  dest: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'
+}
+2026-03-28 11:35:11 [info] [VM:start] Skipping auto-reinstall (already attempted once)
+2026-03-28 11:55:48 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 11:55:48 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-28 11:55:48 [info] [VM] Module loaded successfully
+2026-03-28 11:55:48 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 11:55:48 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 11:55:48 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-28 11:55:48 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-28 11:55:48 [info] rootfs.vhdx not found, downloading...
+2026-03-28 11:55:48 [info] Downloading rootfs.vhdx...
+2026-03-28 13:12:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 13:12:35 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-28 13:12:35 [info] [VM] Module loaded successfully
+2026-03-28 13:12:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 13:12:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 13:12:35 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-28 13:12:35 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-28 13:12:35 [info] rootfs.vhdx not found, downloading...
+2026-03-28 13:12:35 [info] Downloading rootfs.vhdx...
+2026-03-28 13:15:13 [info] rootfs.vhdx.zst checksum validated
+2026-03-28 13:15:13 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-t1BR7F\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-28 22:58:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 22:58:55 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-28 22:58:55 [info] [VM] Module loaded successfully
+2026-03-28 22:58:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 22:58:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-28 22:58:55 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-28 22:58:55 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-28 22:58:55 [info] rootfs.vhdx not found, downloading...
+2026-03-28 22:58:55 [info] Downloading rootfs.vhdx...
+2026-03-28 23:04:35 [info] rootfs.vhdx.zst checksum validated
+2026-03-28 23:04:35 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-Rw6Sdm\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-29 13:20:01 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:20:01 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-29 13:20:01 [info] [VM] Module loaded successfully
+2026-03-29 13:20:01 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:20:01 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:20:01 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-29 13:20:01 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-29 13:20:01 [info] rootfs.vhdx not found, downloading...
+2026-03-29 13:20:01 [info] Downloading rootfs.vhdx...
+2026-03-29 13:20:18 [info] [warm] Fetching VM hash for version 1.1.9493
+2026-03-29 13:20:19 [info] [warm] VM hash for version 1.1.9493: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-29 13:20:19 [info] [warm] VM SHA matches current version, skipping
+2026-03-29 13:27:56 [info] rootfs.vhdx.zst checksum validated
+2026-03-29 13:27:56 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-rF1Wyx\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-29 13:47:06 [info] [logout] User navigated to /logout, stopping VM
+2026-03-29 13:47:06 [info] [stopVM] stopping VM gracefully
+2026-03-29 13:47:07 [info] [logout] User navigated to /logout, stopping VM
+2026-03-29 13:47:07 [info] [stopVM] stopping VM gracefully
+2026-03-29 13:47:07 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:47:07 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:47:07 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:47:07 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-29 13:47:07 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-29 13:47:07 [info] rootfs.vhdx not found, downloading...
+2026-03-29 13:47:07 [info] Downloading rootfs.vhdx...
+2026-03-29 13:47:11 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-29 13:47:12 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-29 13:49:50 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:49:50 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-29 13:49:50 [info] [VM] Module loaded successfully
+2026-03-29 13:49:55 [info] [logout] User navigated to /logout, stopping VM
+2026-03-29 13:49:55 [info] [stopVM] stopping VM gracefully
+2026-03-29 13:50:00 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-29 13:50:02 [info] [logout] User navigated to /logout, stopping VM
+2026-03-29 13:50:02 [info] [stopVM] stopping VM gracefully
+2026-03-29 13:50:02 [info] [logout] User navigated to /logout, stopping VM
+2026-03-29 13:50:02 [info] [stopVM] stopping VM gracefully
+2026-03-29 13:50:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:50:06 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 13:50:07 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-29 13:50:07 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-29 14:16:54 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 14:16:54 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-29 14:16:54 [info] [VM] Module loaded successfully
+2026-03-29 14:16:55 [info] [logout] User navigated to /logout, stopping VM
+2026-03-29 14:16:55 [info] [stopVM] stopping VM gracefully
+2026-03-29 14:16:55 [info] [logout] User navigated to /logout, stopping VM
+2026-03-29 14:16:55 [info] [stopVM] stopping VM gracefully
+2026-03-29 14:16:55 [info] [logout] User navigated to /logout, stopping VM
+2026-03-29 14:16:55 [info] [stopVM] stopping VM gracefully
+2026-03-29 14:16:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 14:16:57 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 14:17:00 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-29 14:17:00 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-29 14:17:00 [error] [logout] Failed to stop VM on logout: VM service not running. The service failed to start.
+2026-03-29 14:22:56 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 14:23:00 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 14:23:00 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-29 14:23:00 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-29 14:23:00 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-29 14:23:00 [info] rootfs.vhdx not found, downloading...
+2026-03-29 14:23:00 [info] Downloading rootfs.vhdx...
+2026-03-29 14:23:06 [info] [KernelBugMonitor] State reset
+2026-03-29 14:23:06 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-29 14:23:06 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-29 14:23:06 [info] [VM:start] VM instance ID: 24e3e72f-4b55-4322-93bc-463ce177d11e
+2026-03-29 14:23:06 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-29 14:23:06 [info] [downloadVM] Download already in progress, waiting...
+2026-03-29 14:23:08 [info] [startVM] VM startup already in progress, waiting...
+2026-03-29 14:25:47 [info] rootfs.vhdx.zst checksum validated
+2026-03-29 14:25:47 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-KPLNbU\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-29 14:25:47 [error] [VM:start] Startup failed: Error: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-KPLNbU\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+    at async Object.rename (node:internal/fs/promises:782:10)
+    at async Jun (D:\WindowsApps\Claude_1.1.9493.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:1067:10776) {
+  [stack]: [Getter/Setter],
+  [message]: "EXDEV: cross-device link not permitted, rename 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-KPLNbU\\rootfs.vhdx' -> 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'",
+  errno: -4037,
+  code: 'EXDEV',
+  syscall: 'rename',
+  path: 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-KPLNbU\\rootfs.vhdx',
+  dest: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'
+}
+2026-03-29 14:25:47 [info] [VM:start] Skipping auto-reinstall (already attempted once)
+2026-03-30 10:36:06 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 10:36:06 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-30 10:36:06 [info] [VM] Module loaded successfully
+2026-03-30 10:36:06 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 10:36:06 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 10:36:06 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 10:36:06 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 10:36:06 [info] rootfs.vhdx not found, downloading...
+2026-03-30 10:36:06 [info] Downloading rootfs.vhdx...
+2026-03-30 10:38:38 [info] rootfs.vhdx.zst checksum validated
+2026-03-30 10:38:38 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-tEztWw\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-30 11:09:31 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 11:09:31 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 11:09:31 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 11:09:31 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 11:09:31 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 11:09:31 [info] rootfs.vhdx not found, downloading...
+2026-03-30 11:09:31 [info] Downloading rootfs.vhdx...
+2026-03-30 11:09:41 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_RESET
+2026-03-30 11:42:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 11:42:42 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-30 11:42:42 [info] [VM] Module loaded successfully
+2026-03-30 11:42:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 11:42:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 11:42:42 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 11:42:42 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 11:42:42 [info] rootfs.vhdx not found, downloading...
+2026-03-30 11:42:42 [info] Downloading rootfs.vhdx...
+2026-03-30 11:45:10 [info] rootfs.vhdx.zst checksum validated
+2026-03-30 11:45:10 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-3dHnzY\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-30 16:02:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:02:55 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-30 16:02:55 [info] [VM] Module loaded successfully
+2026-03-30 16:02:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:02:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:02:55 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 16:02:55 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 16:02:55 [info] rootfs.vhdx not found, downloading...
+2026-03-30 16:02:55 [info] Downloading rootfs.vhdx...
+2026-03-30 16:06:17 [info] rootfs.vhdx.zst checksum validated
+2026-03-30 16:06:17 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-lfra3W\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-30 16:11:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:11:38 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-30 16:11:38 [info] [VM] Module loaded successfully
+2026-03-30 16:11:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:11:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:11:38 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 16:11:38 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 16:11:38 [info] rootfs.vhdx not found, downloading...
+2026-03-30 16:11:38 [info] Downloading rootfs.vhdx...
+2026-03-30 16:33:13 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:33:13 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-30 16:33:13 [info] [VM] Module loaded successfully
+2026-03-30 16:33:13 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:33:13 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 16:33:13 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 16:33:13 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 16:33:13 [info] rootfs.vhdx not found, downloading...
+2026-03-30 16:33:13 [info] Downloading rootfs.vhdx...
+2026-03-30 16:36:00 [info] rootfs.vhdx.zst checksum validated
+2026-03-30 16:36:00 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-ZBswKt\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-30 18:05:18 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 18:05:18 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-30 18:05:18 [info] [VM] Module loaded successfully
+2026-03-30 18:05:18 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 18:05:18 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 18:05:18 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 18:05:18 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 18:05:18 [info] rootfs.vhdx not found, downloading...
+2026-03-30 18:05:18 [info] Downloading rootfs.vhdx...
+2026-03-30 18:08:54 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-03-30 20:55:30 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 20:55:30 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-30 20:55:30 [info] [VM] Module loaded successfully
+2026-03-30 20:55:30 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 20:55:30 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 20:55:30 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 20:55:30 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 20:55:30 [info] rootfs.vhdx not found, downloading...
+2026-03-30 20:55:30 [info] Downloading rootfs.vhdx...
+2026-03-30 21:02:14 [info] rootfs.vhdx.zst checksum validated
+2026-03-30 21:02:14 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-hlK0UL\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-30 21:06:28 [info] [KernelBugMonitor] State reset
+2026-03-30 21:06:28 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-30 21:06:28 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-30 21:06:28 [info] [VM:start] VM instance ID: d0047fe3-a796-491b-aba4-ae25a3891ef8
+2026-03-30 21:06:28 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-30 21:06:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 21:06:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 21:06:28 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 21:06:28 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 21:06:28 [info] rootfs.vhdx not found, downloading...
+2026-03-30 21:06:28 [info] Downloading rootfs.vhdx...
+2026-03-30 21:20:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 21:20:05 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-30 21:20:05 [info] [VM] Module loaded successfully
+2026-03-30 21:20:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 21:20:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-30 21:20:05 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-30 21:20:05 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-30 21:20:05 [info] rootfs.vhdx not found, downloading...
+2026-03-30 21:20:05 [info] Downloading rootfs.vhdx...
+2026-03-30 21:24:47 [info] [KernelBugMonitor] State reset
+2026-03-30 21:24:47 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-30 21:24:47 [info] [VM:start] Bundle version: fb30784dadb34104626c8cf6d8f90dd47cd393cc
+2026-03-30 21:24:47 [info] [VM:start] VM instance ID: 3ffdeb0b-90b0-4ca6-b481-18b1031c1752
+2026-03-30 21:24:47 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-30 21:24:47 [info] [downloadVM] Download already in progress, waiting...
+2026-03-30 21:41:03 [info] rootfs.vhdx.zst checksum validated
+2026-03-30 21:41:03 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-UBGp4T\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-03-30 21:41:03 [error] [VM:start] Startup failed: Error: EXDEV: cross-device link not permitted, rename 'C:\Users\LUNZN~1.MY-\AppData\Local\Temp\wvm-UBGp4T\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+    at async Object.rename (node:internal/fs/promises:782:10)
+    at async Jun (D:\WindowsApps\Claude_1.1.9493.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:1067:10776) {
+  [stack]: [Getter/Setter],
+  [message]: "EXDEV: cross-device link not permitted, rename 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-UBGp4T\\rootfs.vhdx' -> 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'",
+  errno: -4037,
+  code: 'EXDEV',
+  syscall: 'rename',
+  path: 'C:\\Users\\LUNZN~1.MY-\\AppData\\Local\\Temp\\wvm-UBGp4T\\rootfs.vhdx',
+  dest: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'
+}
+2026-03-30 21:41:03 [info] [VM:start] Skipping auto-reinstall (already attempted once)
+2026-03-31 09:45:14 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-31 09:45:14 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-31 09:45:14 [info] [VM] Module loaded successfully
+2026-03-31 09:45:14 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-31 09:45:14 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-31 09:45:14 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-31 09:45:14 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-31 09:45:14 [info] rootfs.vhdx not found, downloading...
+2026-03-31 09:45:14 [info] Downloading rootfs.vhdx...
+2026-03-31 09:46:49 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-03-31 09:49:15 [info] [warm] Fetching VM hash for version 1.1.9669
+2026-03-31 09:49:16 [info] [warm] VM hash for version 1.1.9669: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-03-31 09:49:16 [info] [warm] Starting warm download for VM SHA: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d (3 files, arch=x64)
+2026-03-31 09:49:16 [info] [warm] Downloading rootfs.vhdx.zst...
+2026-03-31 09:53:57 [error] [warm] Warm download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-03-31 09:53:57 [error] [warm] Warm download failed (non-fatal): Error: Request error: net::ERR_CONNECTION_CLOSED
+2026-03-31 10:24:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-31 10:24:42 [info] [VM] Loading vmClient (TypeScript) module...
+2026-03-31 10:24:42 [info] [VM] Module loaded successfully
+2026-03-31 10:24:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-31 10:24:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-03-31 10:24:42 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-03-31 10:24:42 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-03-31 10:24:42 [info] rootfs.vhdx not found, downloading...
+2026-03-31 10:24:42 [info] Downloading rootfs.vhdx...
+2026-03-31 10:25:52 [info] [KernelBugMonitor] State reset
+2026-03-31 10:25:52 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-03-31 10:25:52 [info] [VM:start] Bundle version: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-03-31 10:25:52 [info] [VM:start] VM instance ID: 7d4a9ef9-8717-4388-bcf6-4fc951c6ae01
+2026-03-31 10:25:52 [info] [VM:steps] download_and_sdk_prepare started
+2026-03-31 10:25:52 [info] [downloadVM] Download already in progress, waiting...
+2026-03-31 10:26:21 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-03-31 10:26:21 [error] [VM:start] Startup failed: Error: Request error: net::ERR_CONNECTION_CLOSED
+    at ClientRequest.<anonymous> (D:\WindowsApps\Claude_1.1.9669.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:275:56660)
+    at ClientRequest.emit (node:events:520:35)
+    at ClientRequest._die (node:electron/js2c/browser_init:2:135589)
+    at SimpleURLLoaderWrapper.<anonymous> (node:electron/js2c/browser_init:2:134315)
+    at SimpleURLLoaderWrapper.emit (node:events:508:28) {
+  [stack]: [Getter/Setter],
+  [message]: 'Request error: net::ERR_CONNECTION_CLOSED'
+}
+2026-03-31 10:26:21 [info] [VM:start] Skipping auto-reinstall (already attempted once)
+2026-04-01 16:27:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-01 16:27:02 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-01 16:27:02 [info] [VM] Module loaded successfully
+2026-04-01 16:27:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-01 16:27:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-01 16:27:02 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-01 16:27:02 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-01 16:27:02 [info] rootfs.vhdx not found, downloading...
+2026-04-01 16:27:02 [info] Downloading rootfs.vhdx...
+2026-04-01 16:35:06 [info] rootfs.vhdx.zst checksum validated
+2026-04-01 16:35:06 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-WDS5le\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-02 08:28:54 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 08:28:54 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-02 08:28:54 [info] [VM] Module loaded successfully
+2026-04-02 08:28:54 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 08:28:54 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 08:28:54 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-02 08:28:54 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-02 08:28:54 [info] rootfs.vhdx not found, downloading...
+2026-04-02 08:28:54 [info] Downloading rootfs.vhdx...
+2026-04-02 08:30:21 [info] [warm] Fetching VM hash for version 1.2.234
+2026-04-02 08:30:22 [info] [warm] VM hash for version 1.2.234: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-02 08:30:22 [info] [warm] VM SHA matches current version, skipping
+2026-04-02 08:31:08 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 08:31:08 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-02 08:31:08 [info] [VM] Module loaded successfully
+2026-04-02 08:31:08 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 08:31:08 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 08:31:08 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-02 08:31:08 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-02 08:31:08 [info] rootfs.vhdx not found, downloading...
+2026-04-02 08:31:08 [info] Downloading rootfs.vhdx...
+2026-04-02 08:37:24 [info] rootfs.vhdx.zst checksum validated
+2026-04-02 08:37:24 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-iRcfVT\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-02 16:07:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 16:07:51 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-02 16:07:51 [info] [VM] Module loaded successfully
+2026-04-02 16:07:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 16:07:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 16:07:51 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-02 16:07:51 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-02 16:07:51 [info] rootfs.vhdx not found, downloading...
+2026-04-02 16:07:51 [info] Downloading rootfs.vhdx...
+2026-04-02 16:12:30 [info] rootfs.vhdx.zst checksum validated
+2026-04-02 16:12:30 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-p511eP\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-02 22:23:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 22:23:33 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-02 22:23:33 [info] [VM] Module loaded successfully
+2026-04-02 22:23:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 22:23:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-02 22:23:33 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-02 22:23:33 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-02 22:23:33 [info] rootfs.vhdx not found, downloading...
+2026-04-02 22:23:33 [info] Downloading rootfs.vhdx...
+2026-04-02 22:41:29 [info] rootfs.vhdx.zst checksum validated
+2026-04-02 22:41:29 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-nLhvB5\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-03 11:25:26 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 11:25:26 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-03 11:25:26 [info] [VM] Module loaded successfully
+2026-04-03 11:25:26 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 11:25:26 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 11:25:26 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-03 11:25:26 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-03 11:25:26 [info] rootfs.vhdx not found, downloading...
+2026-04-03 11:25:26 [info] Downloading rootfs.vhdx...
+2026-04-03 11:26:19 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-03 11:28:08 [info] [warm] Fetching VM hash for version 1.569.0
+2026-04-03 11:28:09 [info] [warm] VM hash for version 1.569.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-03 11:28:09 [info] [warm] VM SHA matches current version, skipping
+2026-04-03 11:45:16 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-03 11:45:16 [info] [VM] Module loaded successfully
+2026-04-03 11:45:17 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 11:45:17 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 11:45:17 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 11:45:17 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-03 11:45:17 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-03 11:45:17 [info] rootfs.vhdx not found, downloading...
+2026-04-03 11:45:17 [info] Downloading rootfs.vhdx...
+2026-04-03 11:50:08 [info] rootfs.vhdx.zst checksum validated
+2026-04-03 11:50:08 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-PSVY8s\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-03 13:05:25 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-03 13:05:25 [info] [VM] Module loaded successfully
+2026-04-03 13:05:25 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 13:05:25 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 13:05:25 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 13:05:25 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-03 13:05:25 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-03 13:05:25 [info] rootfs.vhdx not found, downloading...
+2026-04-03 13:05:25 [info] Downloading rootfs.vhdx...
+2026-04-03 13:12:02 [info] rootfs.vhdx.zst checksum validated
+2026-04-03 13:12:02 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-8z5aPM\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-03 13:34:16 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-03 13:34:16 [info] [VM] Module loaded successfully
+2026-04-03 13:34:17 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 13:34:17 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 13:34:17 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 13:34:17 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-03 13:34:17 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-03 13:34:17 [info] rootfs.vhdx not found, downloading...
+2026-04-03 13:34:17 [info] Downloading rootfs.vhdx...
+2026-04-03 13:40:43 [info] rootfs.vhdx.zst checksum validated
+2026-04-03 13:40:43 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-0g8oeG\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-03 19:17:58 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-03 19:17:58 [info] [VM] Module loaded successfully
+2026-04-03 19:17:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 19:17:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 19:17:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-03 19:17:59 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-03 19:17:59 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-03 19:17:59 [info] rootfs.vhdx not found, downloading...
+2026-04-03 19:17:59 [info] Downloading rootfs.vhdx...
+2026-04-03 19:22:25 [info] rootfs.vhdx.zst checksum validated
+2026-04-03 19:22:25 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-V3WdUg\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-08 01:31:01 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-08 01:31:01 [info] [VM] Module loaded successfully
+2026-04-08 01:31:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 01:31:03 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 01:31:03 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 01:31:03 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-08 01:31:03 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-08 01:31:03 [info] rootfs.vhdx not found, downloading...
+2026-04-08 01:31:03 [info] Downloading rootfs.vhdx...
+2026-04-08 01:35:50 [info] rootfs.vhdx.zst checksum validated
+2026-04-08 01:35:50 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-WF2FNd\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-08 12:04:49 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-08 12:04:49 [info] [VM] Module loaded successfully
+2026-04-08 12:04:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 12:04:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 12:04:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 12:04:51 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-08 12:04:51 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-08 12:04:51 [info] rootfs.vhdx not found, downloading...
+2026-04-08 12:04:51 [info] Downloading rootfs.vhdx...
+2026-04-08 12:05:35 [info] [warm] Fetching VM hash for version 1.1062.0
+2026-04-08 12:05:36 [info] [warm] VM hash for version 1.1062.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-08 12:05:36 [info] [warm] VM SHA matches current version, skipping
+2026-04-08 12:10:47 [info] rootfs.vhdx.zst checksum validated
+2026-04-08 12:10:47 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-renPWK\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-08 14:25:58 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-08 14:25:58 [info] [VM] Module loaded successfully
+2026-04-08 14:25:58 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 14:25:58 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 14:25:58 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 14:25:58 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-08 14:25:59 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-08 14:25:59 [info] rootfs.vhdx not found, downloading...
+2026-04-08 14:25:59 [info] Downloading rootfs.vhdx...
+2026-04-08 14:37:17 [info] rootfs.vhdx.zst checksum validated
+2026-04-08 14:37:17 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-M66EYM\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-08 15:03:21 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-08 15:03:21 [info] [VM] Module loaded successfully
+2026-04-08 15:03:21 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 15:03:21 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 15:03:21 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 15:03:21 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-08 15:03:21 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-08 15:03:21 [info] rootfs.vhdx not found, downloading...
+2026-04-08 15:03:21 [info] Downloading rootfs.vhdx...
+2026-04-08 15:09:37 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-08 15:09:37 [info] [VM] Module loaded successfully
+2026-04-08 15:09:37 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 15:09:37 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 15:09:37 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-08 15:09:37 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-08 15:09:37 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-08 15:09:37 [info] rootfs.vhdx not found, downloading...
+2026-04-08 15:09:37 [info] Downloading rootfs.vhdx...
+2026-04-08 15:27:04 [info] rootfs.vhdx.zst checksum validated
+2026-04-08 15:27:04 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-O7v5eH\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-09 01:03:54 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-09 01:03:54 [info] [VM] Module loaded successfully
+2026-04-09 01:03:56 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 01:03:56 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 01:03:56 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 01:03:56 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-09 01:03:56 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-09 01:03:56 [info] rootfs.vhdx not found, downloading...
+2026-04-09 01:03:56 [info] Downloading rootfs.vhdx...
+2026-04-09 01:12:42 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-09 01:12:42 [info] [VM] Module loaded successfully
+2026-04-09 01:12:43 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 01:12:43 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 01:12:43 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 01:12:43 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-09 01:12:43 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-09 01:12:43 [info] rootfs.vhdx not found, downloading...
+2026-04-09 01:12:43 [info] Downloading rootfs.vhdx...
+2026-04-09 01:16:44 [info] rootfs.vhdx.zst checksum validated
+2026-04-09 01:16:44 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-m0iEdQ\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-09 11:54:53 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-09 11:54:53 [info] [VM] Module loaded successfully
+2026-04-09 11:55:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 11:55:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 11:55:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-09 11:55:02 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-09 11:55:02 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-09 11:55:02 [info] rootfs.vhdx not found, downloading...
+2026-04-09 11:55:02 [info] Downloading rootfs.vhdx...
+2026-04-09 12:05:57 [info] rootfs.vhdx.zst checksum validated
+2026-04-09 12:05:57 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-xIod0H\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-10 10:04:57 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-10 10:04:57 [info] [VM] Module loaded successfully
+2026-04-10 10:04:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-10 10:04:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-10 10:04:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-10 10:04:59 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-10 10:04:59 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-10 10:04:59 [info] rootfs.vhdx not found, downloading...
+2026-04-10 10:04:59 [info] Downloading rootfs.vhdx...
+2026-04-10 10:05:49 [info] [warm] Fetching VM hash for version 1.1617.0
+2026-04-10 10:05:49 [info] [warm] VM hash for version 1.1617.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-10 10:05:49 [info] [warm] VM SHA matches current version, skipping
+2026-04-10 10:10:12 [info] rootfs.vhdx.zst checksum validated
+2026-04-10 10:10:12 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-VOgY0f\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-10 14:53:36 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-10 14:53:36 [info] [VM] Module loaded successfully
+2026-04-10 14:53:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-10 14:53:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-10 14:53:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-10 14:53:38 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-10 14:53:38 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-10 14:53:38 [info] rootfs.vhdx not found, downloading...
+2026-04-10 14:53:38 [info] Downloading rootfs.vhdx...
+2026-04-10 14:58:23 [info] rootfs.vhdx.zst checksum validated
+2026-04-10 14:58:23 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-HMW6nm\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-12 21:11:18 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-12 21:11:18 [info] [VM] Module loaded successfully
+2026-04-12 21:11:20 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-12 21:11:20 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-12 21:11:20 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-12 21:11:20 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-12 21:11:20 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-12 21:11:20 [info] rootfs.vhdx not found, downloading...
+2026-04-12 21:11:20 [info] Downloading rootfs.vhdx...
+2026-04-12 21:16:50 [info] [KernelBugMonitor] State reset
+2026-04-12 21:16:50 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-04-12 21:16:50 [info] [VM:start] Bundle version: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-12 21:16:50 [info] [VM:start] VM instance ID: 196d92ed-998e-4f6e-9b2b-f4236280d51b
+2026-04-12 21:16:50 [info] [VM:steps] download_and_sdk_prepare started
+2026-04-12 21:16:50 [info] [downloadVM] Download already in progress, waiting...
+2026-04-12 21:18:38 [info] rootfs.vhdx.zst checksum validated
+2026-04-12 21:18:38 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-ORaFHh\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-12 21:18:38 [error] [VM:start] Startup failed: Error: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-ORaFHh\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+    at async Object.rename (node:internal/fs/promises:782:10)
+    at async d1n (D:\WindowsApps\Claude_1.1617.0.0_x64__pzs8sxrjxfjjc\app\resources\app.asar\.vite\build\index.js:1756:11026) {
+  [stack]: [Getter/Setter],
+  [message]: "EXDEV: cross-device link not permitted, rename 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\.wvm-tmp-ORaFHh\\rootfs.vhdx' -> 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'",
+  errno: -4037,
+  code: 'EXDEV',
+  syscall: 'rename',
+  path: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\.wvm-tmp-ORaFHh\\rootfs.vhdx',
+  dest: 'C:\\Users\\lunzn.MY-LAPTOP\\AppData\\Roaming\\Claude\\vm_bundles\\claudevm.bundle\\rootfs.vhdx'
+}
+2026-04-12 21:18:38 [info] [VM:start] Skipping auto-reinstall (already attempted once)
+2026-04-13 12:16:35 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-13 12:16:35 [info] [VM] Module loaded successfully
+2026-04-13 12:16:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 12:16:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 12:16:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 12:16:35 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-13 12:16:35 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-13 12:16:35 [info] rootfs.vhdx not found, downloading...
+2026-04-13 12:16:35 [info] Downloading rootfs.vhdx...
+2026-04-13 12:26:28 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-13 15:51:03 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-13 15:51:03 [info] [VM] Module loaded successfully
+2026-04-13 15:51:03 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 15:51:03 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 15:51:03 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 15:51:03 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-13 15:51:03 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-13 15:51:03 [info] rootfs.vhdx not found, downloading...
+2026-04-13 15:51:03 [info] Downloading rootfs.vhdx...
+2026-04-13 15:53:18 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-13 23:21:09 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-13 23:21:09 [info] [VM] Module loaded successfully
+2026-04-13 23:21:09 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:21:09 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:21:09 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:21:09 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-13 23:21:09 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-13 23:21:09 [info] rootfs.vhdx not found, downloading...
+2026-04-13 23:21:09 [info] Downloading rootfs.vhdx...
+2026-04-13 23:22:37 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-13 23:31:59 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-13 23:31:59 [info] [VM] Module loaded successfully
+2026-04-13 23:31:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:31:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:31:59 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:31:59 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-13 23:31:59 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-13 23:31:59 [info] rootfs.vhdx not found, downloading...
+2026-04-13 23:31:59 [info] Downloading rootfs.vhdx...
+2026-04-13 23:35:34 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-13 23:35:53 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-13 23:35:53 [info] [VM] Module loaded successfully
+2026-04-13 23:35:53 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:35:53 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:35:53 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-13 23:35:53 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-13 23:35:53 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-13 23:35:53 [info] rootfs.vhdx not found, downloading...
+2026-04-13 23:35:53 [info] Downloading rootfs.vhdx...
+2026-04-13 23:39:21 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-14 00:03:25 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-14 00:03:25 [info] [VM] Module loaded successfully
+2026-04-14 00:03:36 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 00:03:36 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 00:03:36 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 00:03:36 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-14 00:03:36 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-14 00:03:36 [info] rootfs.vhdx not found, downloading...
+2026-04-14 00:03:36 [info] Downloading rootfs.vhdx...
+2026-04-14 00:04:17 [info] [KernelBugMonitor] State reset
+2026-04-14 00:04:17 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-04-14 00:04:17 [info] [VM:start] Bundle version: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-14 00:04:17 [info] [VM:start] VM instance ID: 8ff17079-0c75-4b1c-a862-9a760967e084
+2026-04-14 00:04:17 [info] [VM:steps] download_and_sdk_prepare started
+2026-04-14 00:04:17 [info] [downloadVM] Download already in progress, waiting...
+2026-04-14 00:14:37 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-14 00:14:37 [info] [VM] Module loaded successfully
+2026-04-14 00:14:37 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 00:14:37 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 00:14:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 00:14:38 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-14 00:14:38 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-14 00:14:38 [info] rootfs.vhdx not found, downloading...
+2026-04-14 00:14:38 [info] Downloading rootfs.vhdx...
+2026-04-14 00:22:20 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-14 10:27:42 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-14 10:27:42 [info] [VM] Module loaded successfully
+2026-04-14 10:27:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 10:27:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 10:27:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 10:27:42 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-14 10:27:42 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-14 10:27:42 [info] rootfs.vhdx not found, downloading...
+2026-04-14 10:27:42 [info] Downloading rootfs.vhdx...
+2026-04-14 10:40:04 [info] [KernelBugMonitor] State reset
+2026-04-14 10:40:04 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-04-14 10:40:04 [info] [VM:start] Bundle version: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-14 10:40:04 [info] [VM:start] VM instance ID: c0c316d3-5722-48b0-ad7d-175115c1393f
+2026-04-14 10:40:04 [info] [VM:steps] download_and_sdk_prepare started
+2026-04-14 10:40:04 [info] [downloadVM] Download already in progress, waiting...
+2026-04-14 10:41:21 [info] [startVM] VM startup already in progress, waiting...
+2026-04-14 10:41:30 [info] [startVM] VM startup already in progress, waiting...
+2026-04-14 23:34:31 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-14 23:34:31 [info] [VM] Module loaded successfully
+2026-04-14 23:34:31 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 23:34:31 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 23:34:31 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-14 23:34:31 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-14 23:34:31 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-14 23:34:31 [info] rootfs.vhdx not found, downloading...
+2026-04-14 23:34:31 [info] Downloading rootfs.vhdx...
+2026-04-14 23:43:46 [info] [warm] Fetching VM hash for version 1.2278.0
+2026-04-14 23:43:47 [info] [warm] VM hash for version 1.2278.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-14 23:43:47 [info] [warm] VM SHA matches current version, skipping
+2026-04-14 23:48:56 [info] rootfs.vhdx.zst checksum validated
+2026-04-14 23:48:56 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-G1DrGX\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-15 00:15:32 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-15 00:15:32 [info] [VM] Module loaded successfully
+2026-04-15 00:15:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 00:15:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 00:15:42 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 00:15:42 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-15 00:15:42 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-15 00:15:42 [info] rootfs.vhdx not found, downloading...
+2026-04-15 00:15:42 [info] Downloading rootfs.vhdx...
+2026-04-15 00:22:05 [info] rootfs.vhdx.zst checksum validated
+2026-04-15 00:22:05 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-9rjd77\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-15 10:25:15 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-15 10:25:15 [info] [VM] Module loaded successfully
+2026-04-15 10:25:15 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 10:25:15 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 10:25:15 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 10:25:15 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-15 10:25:15 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-15 10:25:15 [info] rootfs.vhdx not found, downloading...
+2026-04-15 10:25:15 [info] Downloading rootfs.vhdx...
+2026-04-15 10:25:55 [info] [KernelBugMonitor] State reset
+2026-04-15 10:25:55 [info] [VM:start] Beginning startup, bundlePath=C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle
+2026-04-15 10:25:55 [info] [VM:start] Bundle version: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-15 10:25:55 [info] [VM:start] VM instance ID: d5e7ff2c-c66b-40f5-966e-ee575eb5416f
+2026-04-15 10:25:55 [info] [VM:steps] download_and_sdk_prepare started
+2026-04-15 10:25:55 [info] [downloadVM] Download already in progress, waiting...
+2026-04-15 10:26:23 [info] [warm] Fetching VM hash for version 1.2581.0
+2026-04-15 10:26:24 [info] [warm] VM hash for version 1.2581.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-15 10:26:24 [info] [warm] VM SHA matches current version, skipping
+2026-04-15 10:27:28 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-15 10:27:28 [info] [VM] Module loaded successfully
+2026-04-15 10:27:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 10:27:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 10:27:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 10:27:28 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-15 10:27:28 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-15 10:27:28 [info] rootfs.vhdx not found, downloading...
+2026-04-15 10:27:28 [info] Downloading rootfs.vhdx...
+2026-04-15 10:33:48 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-15 19:16:51 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-15 19:16:51 [info] [VM] Module loaded successfully
+2026-04-15 19:16:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 19:16:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 19:16:51 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-15 19:16:51 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-15 19:16:51 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-15 19:16:51 [info] rootfs.vhdx not found, downloading...
+2026-04-15 19:16:51 [info] Downloading rootfs.vhdx...
+2026-04-15 19:27:04 [info] rootfs.vhdx.zst checksum validated
+2026-04-15 19:27:04 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-9pPUpn\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-16 14:34:05 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-16 14:34:05 [info] [VM] Module loaded successfully
+2026-04-16 14:34:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-16 14:34:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-16 14:34:05 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-16 14:34:05 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-16 14:34:05 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-16 14:34:05 [info] rootfs.vhdx not found, downloading...
+2026-04-16 14:34:05 [info] Downloading rootfs.vhdx...
+2026-04-16 14:34:44 [info] [warm] Fetching VM hash for version 1.2773.0
+2026-04-16 14:34:45 [info] [warm] VM hash for version 1.2773.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-16 14:34:45 [info] [warm] VM SHA matches current version, skipping
+2026-04-16 14:44:35 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-16 14:44:35 [info] [VM] Module loaded successfully
+2026-04-16 14:44:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-16 14:44:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-16 14:44:36 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-16 14:44:36 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-16 14:44:36 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-16 14:44:36 [info] rootfs.vhdx not found, downloading...
+2026-04-16 14:44:36 [info] Downloading rootfs.vhdx...
+2026-04-16 14:51:52 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-17 00:06:23 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-17 00:06:23 [info] [VM] Module loaded successfully
+2026-04-17 00:06:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 00:06:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 00:06:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 00:06:35 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-17 00:06:35 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-17 00:06:35 [info] rootfs.vhdx not found, downloading...
+2026-04-17 00:06:35 [info] Downloading rootfs.vhdx...
+2026-04-17 00:07:32 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-17 10:07:12 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-17 10:07:12 [info] [VM] Module loaded successfully
+2026-04-17 10:07:12 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 10:07:12 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 10:07:13 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 10:07:13 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-17 10:07:13 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-17 10:07:13 [info] rootfs.vhdx not found, downloading...
+2026-04-17 10:07:13 [info] Downloading rootfs.vhdx...
+2026-04-17 10:08:21 [info] [downloadVM] Download already in progress, waiting...
+2026-04-17 10:08:45 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-17 10:08:45 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-17 10:17:18 [info] [warm] Fetching VM hash for version 1.3109.0
+2026-04-17 10:17:19 [info] [warm] VM hash for version 1.3109.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-17 10:17:19 [info] [warm] VM SHA matches current version, skipping
+2026-04-17 11:32:32 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-17 11:32:32 [info] [VM] Module loaded successfully
+2026-04-17 11:32:32 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 11:32:32 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 11:32:32 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 11:32:32 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-17 11:32:32 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-17 11:32:32 [info] rootfs.vhdx not found, downloading...
+2026-04-17 11:32:32 [info] Downloading rootfs.vhdx...
+2026-04-17 16:31:13 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-17 16:31:13 [info] [VM] Module loaded successfully
+2026-04-17 16:31:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 16:31:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 16:31:35 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 16:31:35 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-17 16:31:35 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-17 16:31:35 [info] rootfs.vhdx not found, downloading...
+2026-04-17 16:31:35 [info] Downloading rootfs.vhdx...
+2026-04-17 16:33:22 [error] [download] VM download failed: Request error: net::ERR_CONNECTION_CLOSED
+2026-04-17 18:13:07 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-17 18:13:07 [info] [VM] Module loaded successfully
+2026-04-17 18:13:07 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 18:13:07 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 18:13:07 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 18:13:07 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-17 18:13:07 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-17 18:13:07 [info] rootfs.vhdx not found, downloading...
+2026-04-17 18:13:07 [info] Downloading rootfs.vhdx...
+2026-04-17 18:41:21 [info] rootfs.vhdx.zst checksum validated
+2026-04-17 18:41:21 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-CQpqJ3\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-17 18:54:53 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-17 18:54:53 [info] [VM] Module loaded successfully
+2026-04-17 18:54:53 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 18:54:53 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 18:54:53 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-17 18:54:53 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-17 18:54:53 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-17 18:54:53 [info] rootfs.vhdx not found, downloading...
+2026-04-17 18:54:53 [info] Downloading rootfs.vhdx...
+2026-04-17 19:10:03 [info] rootfs.vhdx.zst checksum validated
+2026-04-17 19:10:03 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-1s63mX\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-20 10:30:36 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-20 10:30:36 [info] [VM] Module loaded successfully
+2026-04-20 10:30:38 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-20 10:30:39 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-20 10:30:39 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-20 10:30:39 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-20 10:30:39 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-20 10:30:39 [info] rootfs.vhdx not found, downloading...
+2026-04-20 10:30:39 [info] Downloading rootfs.vhdx...
+2026-04-20 10:39:31 [info] rootfs.vhdx.zst checksum validated
+2026-04-20 10:39:31 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-KTILuq\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-21 10:14:28 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-21 10:14:28 [info] [VM] Module loaded successfully
+2026-04-21 10:14:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 10:14:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 10:14:28 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 10:14:28 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-21 10:14:28 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-21 10:14:28 [info] rootfs.vhdx not found, downloading...
+2026-04-21 10:14:28 [info] Downloading rootfs.vhdx...
+2026-04-21 10:15:32 [info] [warm] Fetching VM hash for version 1.3561.0
+2026-04-21 10:15:33 [info] [warm] VM hash for version 1.3561.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-21 10:15:33 [info] [warm] VM SHA matches current version, skipping
+2026-04-21 10:18:02 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-21 10:18:02 [info] [VM] Module loaded successfully
+2026-04-21 10:18:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 10:18:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 10:18:02 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 10:18:02 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-21 10:18:02 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-21 10:18:02 [info] rootfs.vhdx not found, downloading...
+2026-04-21 10:18:02 [info] Downloading rootfs.vhdx...
+2026-04-21 10:42:23 [info] rootfs.vhdx.zst checksum validated
+2026-04-21 10:42:23 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-W2C8Gy\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-21 16:39:08 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-21 16:39:08 [info] [VM] Module loaded successfully
+2026-04-21 16:39:08 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 16:39:08 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 16:39:08 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 16:39:08 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-21 16:39:08 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-21 16:39:08 [info] rootfs.vhdx not found, downloading...
+2026-04-21 16:39:08 [info] Downloading rootfs.vhdx...
+2026-04-21 16:39:47 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-21 16:39:47 [info] [VM] Module loaded successfully
+2026-04-21 16:39:47 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 16:39:47 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 16:39:47 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 16:39:47 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-21 16:39:47 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-21 16:39:47 [info] rootfs.vhdx not found, downloading...
+2026-04-21 16:39:47 [info] Downloading rootfs.vhdx...
+2026-04-21 17:02:13 [info] rootfs.vhdx.zst checksum validated
+2026-04-21 17:02:13 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-MDc6RP\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-21 17:12:46 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-21 17:12:46 [info] [VM] Module loaded successfully
+2026-04-21 17:12:46 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 17:12:46 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 17:12:46 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 17:12:46 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-21 17:12:46 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-21 17:12:46 [info] rootfs.vhdx not found, downloading...
+2026-04-21 17:12:46 [info] Downloading rootfs.vhdx...
+2026-04-21 17:20:18 [info] rootfs.vhdx.zst checksum validated
+2026-04-21 17:20:18 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-SMEZUS\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-21 19:46:55 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-21 19:46:55 [info] [VM] Module loaded successfully
+2026-04-21 19:46:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:46:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:46:55 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:46:55 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-21 19:46:55 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-21 19:46:55 [info] rootfs.vhdx not found, downloading...
+2026-04-21 19:46:55 [info] Downloading rootfs.vhdx...
+2026-04-21 19:47:27 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-21 19:47:27 [info] [VM] Module loaded successfully
+2026-04-21 19:47:27 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:47:27 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:47:27 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:47:27 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-21 19:47:27 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-21 19:47:27 [info] rootfs.vhdx not found, downloading...
+2026-04-21 19:47:27 [info] Downloading rootfs.vhdx...
+2026-04-21 19:47:49 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-21 19:47:49 [info] [VM] Module loaded successfully
+2026-04-21 19:47:49 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:47:49 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:47:49 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-21 19:47:49 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-21 19:47:49 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-21 19:47:49 [info] rootfs.vhdx not found, downloading...
+2026-04-21 19:47:49 [info] Downloading rootfs.vhdx...
+2026-04-21 19:54:52 [info] rootfs.vhdx.zst checksum validated
+2026-04-21 19:54:52 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-qNPYml\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-22 01:17:41 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-22 01:17:41 [info] [VM] Module loaded successfully
+2026-04-22 01:17:41 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 01:17:41 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 01:17:41 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 01:17:41 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-22 01:17:41 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-22 01:17:41 [info] rootfs.vhdx not found, downloading...
+2026-04-22 01:17:41 [info] Downloading rootfs.vhdx...
+2026-04-22 01:18:21 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-22 01:18:21 [info] [VM] Module loaded successfully
+2026-04-22 01:18:21 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 01:18:21 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 01:18:22 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 01:18:22 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-22 01:18:22 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-22 01:18:22 [info] rootfs.vhdx not found, downloading...
+2026-04-22 01:18:22 [info] Downloading rootfs.vhdx...
+2026-04-22 01:21:48 [info] rootfs.vhdx.zst checksum validated
+2026-04-22 01:21:48 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-Xjrz3a\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-22 10:01:28 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-22 10:01:28 [info] [VM] Module loaded successfully
+2026-04-22 10:01:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 10:01:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 10:01:33 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 10:01:33 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-22 10:01:33 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-22 10:01:33 [info] rootfs.vhdx not found, downloading...
+2026-04-22 10:01:33 [info] Downloading rootfs.vhdx...
+2026-04-22 10:02:39 [info] [warm] Fetching VM hash for version 1.3883.0
+2026-04-22 10:02:40 [info] [warm] VM hash for version 1.3883.0: 5680b11bcdab215cccf07e0c0bd1bd9213b0c25d
+2026-04-22 10:02:40 [info] [warm] VM SHA matches current version, skipping
+2026-04-22 10:04:31 [info] rootfs.vhdx.zst checksum validated
+2026-04-22 10:04:31 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-fSU7V0\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
+2026-04-22 10:05:30 [info] [VM] Loading vmClient (TypeScript) module...
+2026-04-22 10:05:30 [info] [VM] Module loaded successfully
+2026-04-22 10:05:30 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 10:05:30 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 10:05:30 [info] [Bundle:status] rootfs.vhdx missing
+2026-04-22 10:05:30 [info] [warm] No warm file found for rootfs.vhdx at current version
+2026-04-22 10:05:30 [info] [cache] No cached compressed file for rootfs.vhdx
+2026-04-22 10:05:30 [info] rootfs.vhdx not found, downloading...
+2026-04-22 10:05:30 [info] Downloading rootfs.vhdx...
+2026-04-22 10:08:20 [info] rootfs.vhdx.zst checksum validated
+2026-04-22 10:08:20 [error] [download] VM download failed: EXDEV: cross-device link not permitted, rename 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\.wvm-tmp-8BZptv\rootfs.vhdx' -> 'C:\Users\lunzn.MY-LAPTOP\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx'
