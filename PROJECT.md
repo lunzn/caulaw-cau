@@ -372,6 +372,57 @@ docker image prune -f                   # 清理未使用镜像
 
 ---
 
+### 5.9 当前生产服务器更新流程
+
+> 当前生产部署路径：`~/caulaw-new`  
+> 仓库：`https://github.com/lunzn/caulaw-cau`（public）
+
+**⚠️ 服务器 git 有错误的镜像重写配置**（会把 `https://github.com/` 重写成 `https://ghfast.top/https://github.com/`，导致 403）。每次 git 操作需要加 `-c` 参数绕开：
+
+```bash
+# 标准更新流程（每次改代码后执行）
+cd ~/caulaw-new
+
+# 拉取最新代码（绕过 ghfast.top 错误重写）
+git -c url."https://ghfast.top/https://github.com/".insteadOf="https://github.com/" pull
+
+# 重新构建并重启（只重建有变化的服务）
+docker compose up -d --build
+```
+
+**按改动类型选择最小构建范围**：
+
+```bash
+# 只改了 TypeScript（work-server、gateway、school-server）
+docker compose up -d --build work-server    # Agent 行为 / DEFAULT_SYSTEM
+docker compose up -d --build gateway        # 前端 UI
+docker compose up -d --build school-server  # 教务 API
+
+# 只改了 Skill（.pi/skills/ 下的 .md 或 .py）
+# 无需重建，约 60s 内自动生效；要立即生效：
+docker compose restart work-server
+
+# 改了数据库 Schema（packages/db/drizzle/schema/）
+docker compose up -d --build db-migrate work-server gateway
+```
+
+**永久修复 git 镜像问题**（执行一次即可）：
+
+```bash
+git config --global --unset url."https://ghfast.top/https://github.com/".insteadOf
+# 之后可直接用 git pull，无需 -c 参数
+```
+
+**验证更新是否生效**：
+
+```bash
+docker compose ps                          # 确认所有容器状态
+docker compose logs work-server --tail=20  # 看 Bot 是否上线
+docker compose exec gateway env | grep BETTER_AUTH_URL  # 确认配置正确
+```
+
+---
+
 ## 6. Docker 部署补充说明
 
 ### 6.1 Dockerfile 各 Stage
