@@ -120,7 +120,7 @@ export function seedDatabase(): void {
       schedule: "周二 14:00-16:00", location: "第一教学楼501", course_type: "graduate" },
     { id: "G002", name: "最优化理论与方法",               code: "GM002", teacher: "T007", credit: 3,
       schedule: "周一 8:00-10:00  周四 19:00-21:00", location: "第一教学楼502", course_type: "graduate" },
-    { id: "G003", name: "统计机器学习理论",               code: "GM003", teacher: "T005", credit: 3,
+    { id: "G003", name: "统计机器学习理论",               code: "GM003", teacher: "T008", credit: 3,
       schedule: "周一 19:00-21:00  周三 19:00-21:00", location: "第三教学楼501", course_type: "graduate" },
     { id: "G004", name: "随机过程与马尔可夫链",           code: "GM004", teacher: "T008", credit: 2,
       schedule: "周三 14:00-16:00", location: "第三教学楼502", course_type: "graduate" },
@@ -618,6 +618,80 @@ export function seedDatabase(): void {
     pCount++;
   }
   console.log(`T009 论文: ${pCount} 篇`);
+
+  // ── T001-T008 其余教师论文（每人 5-6 篇，各含 ≥1 篇港澳合作）────────────────
+  type OtherPaper = { teacher_id: string; title: string; journal: string; year: number; authors: string; keywords: string; region: string; cited: number };
+  const otherPapers: OtherPaper[] = [
+    // T001 张志远 — 智能控制,机器人系统,强化学习
+    { teacher_id:"T001", title:"基于深度强化学习的工业机器人自适应控制方法",              journal:"自动化学报",          year:2024, authors:"张志远,李强,王明",     keywords:"深度强化学习,工业机器人,自适应控制", region:"国内",                        cited:47 },
+    { teacher_id:"T001", title:"多智能体协同控制在智能制造中的应用",                      journal:"控制与决策",          year:2023, authors:"张志远,陈磊",          keywords:"多智能体,协同控制,智能制造",          region:"国内",                        cited:33 },
+    { teacher_id:"T001", title:"Adaptive Reinforcement Learning for Robotic Arm Control in Unstructured Environments", journal:"IEEE Transactions on Industrial Electronics", year:2023, authors:"Zhang Z., Li Q., Chan W.K.", keywords:"reinforcement learning,robotic arm,adaptive control", region:"港澳（香港城市大学合作）", cited:68 },
+    { teacher_id:"T001", title:"面向农业采摘的柔性机器人力觉感知与控制",                  journal:"机器人",              year:2022, authors:"张志远,孙辉,刘洋",     keywords:"柔性机器人,力觉感知,采摘",           region:"国内",                        cited:28 },
+    { teacher_id:"T001", title:"强化学习在移动机器人路径规划中的研究进展",                journal:"控制理论与应用",      year:2022, authors:"张志远,王博",          keywords:"强化学习,移动机器人,路径规划",        region:"国内",                        cited:54 },
+    { teacher_id:"T001", title:"多模态传感融合的机器人抓取策略研究",                      journal:"信息与控制",          year:2021, authors:"张志远,陈明,高飞",     keywords:"多模态,传感融合,机器人抓取",          region:"国内",                        cited:31 },
+
+    // T002 李敏华 — 嵌入式系统,物联网,边缘计算
+    { teacher_id:"T002", title:"基于异构边缘计算架构的物联网实时推断优化",                journal:"计算机学报",          year:2024, authors:"李敏华,张宇,孙强",     keywords:"边缘计算,物联网,实时推断",           region:"国内",                        cited:39 },
+    { teacher_id:"T002", title:"Lightweight Neural Network Deployment on Resource-Constrained IoT Devices", journal:"IEEE Internet of Things Journal", year:2024, authors:"Li M., Cheung K.L., Zhang Y.", keywords:"IoT,edge inference,lightweight model", region:"港澳（澳门大学合作）",           cited:72 },
+    { teacher_id:"T002", title:"面向智慧农业的低功耗传感器网络协议设计",                  journal:"电子学报",            year:2023, authors:"李敏华,王涛,陈鑫",     keywords:"低功耗,传感网络,智慧农业",           region:"国内",                        cited:26 },
+    { teacher_id:"T002", title:"嵌入式FPGA在农业图像处理加速中的应用",                    journal:"计算机工程与应用",    year:2022, authors:"李敏华,刘旭",          keywords:"FPGA,嵌入式,图像处理加速",           region:"国内",                        cited:19 },
+    { teacher_id:"T002", title:"Edge-Cloud Collaborative Framework for Smart Greenhouse Monitoring", journal:"IEEE Access",   year:2023, authors:"Li M., Wong T.Y., Sun Q.", keywords:"edge-cloud,greenhouse,IoT", region:"港澳（香港大学合作）",           cited:51 },
+    { teacher_id:"T002", title:"物联网终端安全启动与可信执行环境研究",                    journal:"信息安全学报",        year:2021, authors:"李敏华,赵磊,周强",     keywords:"物联网安全,可信执行环境,嵌入式",      region:"国内",                        cited:22 },
+
+    // T003 王建国 — 程序设计,软件工程,系统开发
+    { teacher_id:"T003", title:"面向大规模分布式系统的微服务架构演化方法",                journal:"软件学报",            year:2024, authors:"王建国,李敏,张博",     keywords:"微服务,分布式系统,架构演化",          region:"国内",                        cited:43 },
+    { teacher_id:"T003", title:"基于形式化方法的关键系统软件需求验证框架",                journal:"计算机学报",          year:2023, authors:"王建国,陈刚",          keywords:"形式化方法,需求验证,关键系统",        region:"国内",                        cited:29 },
+    { teacher_id:"T003", title:"Automated Code Review Using Large Language Models: A Case Study", journal:"Journal of Systems and Software", year:2024, authors:"Wang J., Lam P.Y., Li M.", keywords:"LLM,code review,software engineering", region:"港澳（香港科技大学合作）",   cited:88 },
+    { teacher_id:"T003", title:"DevSecOps实践：持续集成安全门禁机制研究",                journal:"计算机研究与发展",    year:2022, authors:"王建国,刘旭,孙强",     keywords:"DevSecOps,CI/CD,安全门禁",           region:"国内",                        cited:18 },
+    { teacher_id:"T003", title:"Collaborative Software Development Practices in Remote Teams", journal:"Information and Software Technology", year:2023, authors:"Wang J., Chan C.H., Zhang B.", keywords:"remote development,collaboration,agile", region:"港澳（澳门科技大学合作）", cited:35 },
+    { teacher_id:"T003", title:"面向农业管理信息系统的领域模型设计方法",                  journal:"农业机械学报",        year:2021, authors:"王建国,赵华,郑磊",     keywords:"农业信息系统,领域建模,系统设计",      region:"国内",                        cited:14 },
+
+    // T004 赵明远 — 数值分析,优化算法,数学建模
+    { teacher_id:"T004", title:"基于深度展开网络的迭代优化算法加速研究",                  journal:"计算数学",            year:2024, authors:"赵明远,张志,刘强",     keywords:"深度展开,迭代优化,算法加速",          region:"国内",                        cited:52 },
+    { teacher_id:"T004", title:"大规模稀疏线性方程组的并行预处理方法",                    journal:"数值计算与计算机应用",year:2023, authors:"赵明远,王涛",          keywords:"稀疏线性系统,并行预处理,数值计算",    region:"国内",                        cited:31 },
+    { teacher_id:"T004", title:"Convergence Analysis of Stochastic Gradient Descent Variants in Non-Convex Settings", journal:"Mathematics of Computation", year:2023, authors:"Zhao M., Li W., Wu G.", keywords:"SGD,convergence,non-convex optimization", region:"港澳（香港中文大学合作）", cited:97 },
+    { teacher_id:"T004", title:"农业系统多目标优化模型与求解策略",                        journal:"中国农业科学",        year:2022, authors:"赵明远,陈浩,孙飞",     keywords:"多目标优化,农业系统,模型求解",        region:"国内",                        cited:24 },
+    { teacher_id:"T004", title:"Numerical Methods for Partial Differential Equations in Agricultural Diffusion Models", journal:"Applied Mathematics and Computation", year:2022, authors:"Zhao M., Chan T.F., Liu Y.", keywords:"PDE,numerical methods,agricultural model", region:"港澳（香港理工大学合作）", cited:61 },
+    { teacher_id:"T004", title:"自适应步长梯度法在大规模机器学习中的应用",                journal:"应用数学学报",        year:2021, authors:"赵明远,李磊,张强",     keywords:"自适应步长,梯度法,机器学习",          region:"国内",                        cited:38 },
+
+    // T005 刘芳芳 — 计算机视觉,图像处理,模式识别
+    { teacher_id:"T005", title:"面向遥感图像的小目标检测与分割方法",                      journal:"遥感学报",            year:2024, authors:"刘芳芳,陈博,李晨",     keywords:"遥感,小目标检测,图像分割",           region:"国内",                        cited:41 },
+    { teacher_id:"T005", title:"基于Diffusion Model的医学图像增强研究",                   journal:"模式识别与人工智能",  year:2024, authors:"刘芳芳,王磊",          keywords:"扩散模型,医学图像,图像增强",          region:"国内",                        cited:56 },
+    { teacher_id:"T005", title:"Multi-Scale Feature Fusion for Agricultural Pest Recognition", journal:"Computers and Electronics in Agriculture", year:2023, authors:"Liu F., Zhang W., Leung K.H.", keywords:"multi-scale,pest recognition,CNN", region:"港澳（香港城市大学合作）", cited:73 },
+    { teacher_id:"T005", title:"视频目标跟踪中的遮挡处理策略综述",                        journal:"计算机学报",          year:2022, authors:"刘芳芳,赵鑫,孙宇",     keywords:"视频跟踪,遮挡处理,综述",             region:"国内",                        cited:47 },
+    { teacher_id:"T005", title:"三维点云语义分割在农业场景中的应用",                      journal:"中国图象图形学报",    year:2022, authors:"刘芳芳,陈力,高明",     keywords:"点云,语义分割,农业场景",             region:"国内",                        cited:29 },
+
+    // T006 陈伟达 — 计算机网络,分布式系统,云计算
+    { teacher_id:"T006", title:"面向农业物联网的低延迟边缘网络调度策略",                  journal:"通信学报",            year:2024, authors:"陈伟达,李磊,张博",     keywords:"物联网,边缘网络,低延迟调度",          region:"国内",                        cited:35 },
+    { teacher_id:"T006", title:"分布式存储系统的数据一致性协议优化",                      journal:"计算机研究与发展",    year:2023, authors:"陈伟达,孙强,刘涛",     keywords:"分布式存储,一致性协议,优化",          region:"国内",                        cited:28 },
+    { teacher_id:"T006", title:"Cloud-Edge Resource Orchestration for Time-Sensitive Agricultural Applications", journal:"IEEE Transactions on Cloud Computing", year:2023, authors:"Chen W., Ng M.K., Li L.", keywords:"cloud-edge,resource orchestration,latency", region:"港澳（香港大学合作）", cited:59 },
+    { teacher_id:"T006", title:"区块链在农产品溯源中的可信存储机制研究",                  journal:"软件学报",            year:2022, authors:"陈伟达,赵磊,王明",     keywords:"区块链,溯源,可信存储",               region:"国内",                        cited:42 },
+    { teacher_id:"T006", title:"基于SDN的校园网络流量优化与安全管理",                     journal:"计算机工程",          year:2021, authors:"陈伟达,刘旭",          keywords:"SDN,校园网,流量优化",               region:"国内",                        cited:17 },
+
+    // T007 周海涛 — 深度学习,具身智能,机器人控制,强化学习
+    { teacher_id:"T007", title:"具身大模型在农业操作任务中的迁移能力评估",                journal:"自动化学报",          year:2024, authors:"周海涛,陈博,李晨",     keywords:"具身大模型,农业操作,迁移学习",        region:"国内",                        cited:63 },
+    { teacher_id:"T007", title:"基于Transformer的机器人运动规划方法",                     journal:"机器人",              year:2024, authors:"周海涛,王磊,刘强",     keywords:"Transformer,机器人,运动规划",         region:"国内",                        cited:44 },
+    { teacher_id:"T007", title:"Embodied Language Grounding for Agricultural Task Completion", journal:"IEEE Robotics and Automation Letters", year:2024, authors:"Zhou H., Chan T.L., Li C.", keywords:"embodied AI,language grounding,agriculture", region:"港澳（香港科技大学合作）", cited:91 },
+    { teacher_id:"T007", title:"深度强化学习在连续动作空间机器人控制中的稳定性分析",      journal:"控制与决策",          year:2023, authors:"周海涛,孙飞,赵宇",     keywords:"深度强化学习,连续动作空间,稳定性",    region:"国内",                        cited:37 },
+    { teacher_id:"T007", title:"Multi-Task Reinforcement Learning for Agro-Robotic Systems", journal:"Neural Networks",   year:2023, authors:"Zhou H., Wu G., Zhang Y.", keywords:"multi-task RL,agricultural robot,deep learning", region:"港澳（澳门大学合作）", cited:55 },
+    { teacher_id:"T007", title:"视觉-语言-动作三模态融合的具身导航框架",                  journal:"软件学报",            year:2022, authors:"周海涛,林晓东,陈明",   keywords:"多模态融合,具身导航,视觉语言",        region:"国内",                        cited:48 },
+
+    // T008 吴国平 — 随机过程,统计学习,数据分析
+    { teacher_id:"T008", title:"高维时间序列的因果推断与变点检测方法",                    journal:"应用数学学报",        year:2024, authors:"吴国平,刘明,张磊",     keywords:"高维时间序列,因果推断,变点检测",      region:"国内",                        cited:45 },
+    { teacher_id:"T008", title:"非参数贝叶斯方法在农业产量预测中的应用",                  journal:"中国农业科学",        year:2023, authors:"吴国平,陈浩,李晨",     keywords:"非参数贝叶斯,产量预测,统计学习",      region:"国内",                        cited:32 },
+    { teacher_id:"T008", title:"Bayesian Nonparametric Methods for High-Dimensional Crop Data Analysis", journal:"The Annals of Applied Statistics", year:2023, authors:"Wu G., Zhao M., Lam K.W.", keywords:"Bayesian,high-dimensional,crop data", region:"港澳（香港中文大学合作）", cited:84 },
+    { teacher_id:"T008", title:"基于马尔可夫链蒙特卡洛的复杂系统参数估计",                journal:"数理统计与管理",      year:2022, authors:"吴国平,孙强",          keywords:"MCMC,参数估计,复杂系统",             region:"国内",                        cited:27 },
+    { teacher_id:"T008", title:"Spectral Methods for Hidden Markov Models in Agricultural Monitoring", journal:"Journal of the Royal Statistical Society", year:2022, authors:"Wu G., Chan H.Y., Liu Y.", keywords:"spectral methods,HMM,agricultural monitoring", region:"港澳（香港理工大学合作）", cited:67 },
+    { teacher_id:"T008", title:"随机微分方程在农作物生长模型中的建模与分析",              journal:"生物数学学报",        year:2021, authors:"吴国平,赵明远,张博",   keywords:"随机微分方程,生长模型,农作物",        region:"国内",                        cited:21 },
+
+  ];
+  let otherPCount = 0;
+  for (const p of otherPapers) {
+    db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+      [id(), p.teacher_id, p.title, p.journal, p.year, p.authors, p.keywords, p.region, p.cited]);
+    otherPCount++;
+  }
+  console.log(`T001-T008 论文: ${otherPCount} 篇（每位含 ≥1 篇港澳合作）`);
 
   // ── T009 知识产权（发明专利18 + 实用新型5 + 软件著作权13 = 36）────────────
   type PatentRow = { title: string; type: string; cert: string | null; year: number; region: string; keywords: string; status: string };
