@@ -260,7 +260,7 @@ const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能
   ▌本人课程表
   teacher:T009 → 直接用上方 T009 缓存中的课表回答
   其他 teacherId → 调用 school-http skill：
-    curl "${SCHOOL_SERVER_URL:-http://school-server:3002}/api/courses/by-teacher/{teacherId}"
+    curl "$SCHOOL_SERVER_URL/api/courses/by-teacher/{teacherId}"
     返回字段：name（课程名）、schedule（时间）、location（地点），整理后告知用户
 
   ▌课题申报

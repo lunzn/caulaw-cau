@@ -26,26 +26,37 @@ export function seedDatabase(): void {
     "cafeteria_transactions","cafeteria_menu","cafeterias",
     "bus_schedules","bus_stops","bus_routes",
     "campus_cards","repair_tickets","submissions","assignments",
-    "course_students","courses","students","teachers",
+    "course_students","courses","students",
     "library_reservations","library_seats","library_books",
-    "teacher_papers","teacher_patents","open_projects",
+    "teacher_papers","teacher_patents","open_projects","teachers",
   ];
   for (const t of tables) db.run(`DELETE FROM ${t}`);
   console.log("已清空数据");
 
   // ── 教师 ──────────────────────────────────────────────────────────────────
+  // T001-T005 为演示账号（T001/T005 均为林晓东，T005 = 原T009账号迁移）
   const teachers = [
-    { id: "T001", name: "张志远", email: "zhangzy@cau.edu.cn", department: "信息与电气工程学院", title: "教授",  campus: "东校区", research_areas: "智能控制,机器人系统,强化学习", office: "信电楼312" },
-    { id: "T002", name: "李敏华", email: "limh@cau.edu.cn",    department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "嵌入式系统,物联网,边缘计算", office: "信电楼315" },
-    { id: "T003", name: "王建国", email: "wangjg@cau.edu.cn",  department: "信息与电气工程学院", title: "讲师",  campus: "东校区", research_areas: "程序设计,软件工程,系统开发", office: "信电楼218" },
-    { id: "T004", name: "赵明远", email: "zhaomy@cau.edu.cn",  department: "理学院",            title: "教授",  campus: "东校区", research_areas: "数值分析,优化算法,数学建模", office: "理学院205" },
-    { id: "T005", name: "刘芳芳", email: "liuff@cau.edu.cn",   department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "计算机视觉,图像处理,模式识别", office: "信电楼214" },
+    // ── 演示账号 T001-T005 ─────────────────────────────────────────────────
+    { id: "T001", name: "林晓东", email: "linxd1@cau.edu.cn",  department: "信息与电气工程学院计算机工程系", title: "教授",
+      campus: "东校区", research_areas: "计算机视觉,智慧农业,具身智能,农业机器人", office: "信电楼216" },
+    { id: "T002", name: "陈静怡", email: "chenjy@cau.edu.cn",  department: "经济管理学院农业经济系", title: "教授",
+      campus: "西校区", research_areas: "农业大数据分析,数字农业经济,乡村振兴政策评估,农村金融科技", office: "经管楼408" },
+    { id: "T003", name: "黄建国", email: "huangjg@cau.edu.cn", department: "农学院作物学系", title: "副教授",
+      campus: "西校区", research_areas: "作物分子育种,基因组编辑,精准育种技术", office: "农学楼305" },
+    { id: "T004", name: "刘兰馨", email: "liulx@cau.edu.cn",   department: "资源与环境学院土地资源管理系", title: "副教授",
+      campus: "西校区", research_areas: "农业碳汇与碳减排,土壤有机碳,农业环境风险评估", office: "资环楼218" },
+    { id: "T005", name: "林晓东", email: "linxd@cau.edu.cn",   department: "信息与电气工程学院计算机工程系", title: "教授",
+      campus: "东校区", research_areas: "计算机视觉,智慧农业,具身智能,农业机器人", office: "信电楼216" },
+    // ── 普通教师 T006-T008 ─────────────────────────────────────────────────
     { id: "T006", name: "陈伟达", email: "chenwd@cau.edu.cn",  department: "信息与电气工程学院", title: "讲师",  campus: "东校区", research_areas: "计算机网络,分布式系统,云计算", office: "信电楼220" },
     { id: "T007", name: "周海涛", email: "zhouht@cau.edu.cn",  department: "信息与电气工程学院", title: "教授",  campus: "东校区", research_areas: "深度学习,具身智能,机器人控制,强化学习", office: "信电楼310" },
     { id: "T008", name: "吴国平", email: "wugp@cau.edu.cn",    department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "随机过程,统计学习,数据分析", office: "信电楼316" },
-    // 演示教师账号
-    { id: "T009", name: "林晓东", email: "linxd@cau.edu.cn",   department: "信息与电气工程学院计算机工程系", title: "教授",
-      campus: "东校区", research_areas: "计算机视觉,智慧农业,具身智能,农业机器人", office: "信电楼216" },
+    // ── 其他教师（用于本科课程教学）──────────────────────────────────────────
+    { id: "T901", name: "张志远", email: "zhangzy@cau.edu.cn", department: "信息与电气工程学院", title: "教授",  campus: "东校区", research_areas: "智能控制,机器人系统,强化学习", office: "信电楼312" },
+    { id: "T902", name: "李敏华", email: "limh@cau.edu.cn",    department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "嵌入式系统,物联网,边缘计算", office: "信电楼315" },
+    { id: "T903", name: "王建国", email: "wangjg@cau.edu.cn",  department: "信息与电气工程学院", title: "讲师",  campus: "东校区", research_areas: "程序设计,软件工程,系统开发", office: "信电楼218" },
+    { id: "T904", name: "赵明远", email: "zhaomy@cau.edu.cn",  department: "理学院",            title: "教授",  campus: "东校区", research_areas: "数值分析,优化算法,数学建模", office: "理学院205" },
+    { id: "T905", name: "刘芳芳", email: "liuff@cau.edu.cn",   department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "计算机视觉,图像处理,模式识别", office: "信电楼214" },
   ];
   for (const t of teachers) {
     db.run(`INSERT INTO teachers (id,name,email,department,title,campus,research_areas,office) VALUES (?,?,?,?,?,?,?,?)`,
@@ -82,41 +93,41 @@ export function seedDatabase(): void {
   const ugCourses = [
     // ── 大一（grade 1）─────────────────────────────────────────────────────
     // 周一/三/五 上午 + 周二/四 各有课，存在多课并排和空闲日
-    { id: "C001", name: "高等数学A(一)",              code: "MATH1001", teacher: "T004", credit: 3,
+    { id: "C001", name: "高等数学A(一)",              code: "MATH1001", teacher: "T904", credit: 3,
       schedule: "周一 8:00-10:00  周三 8:00-10:00  周五 8:00-10:00", location: "第一教学楼101", course_type: "undergraduate" },
-    { id: "C002", name: "大学英语（综合训练）",        code: "ENG1001",  teacher: "T003", credit: 3,
+    { id: "C002", name: "大学英语（综合训练）",        code: "ENG1001",  teacher: "T903", credit: 3,
       schedule: "周二 10:10-12:00  周四 14:00-16:00", location: "第二教学楼203", course_type: "undergraduate" },
-    { id: "C003", name: "大学物理（力学与热学）",      code: "PHY1001",  teacher: "T004", credit: 3,
+    { id: "C003", name: "大学物理（力学与热学）",      code: "PHY1001",  teacher: "T904", credit: 3,
       schedule: "周二 8:00-10:00  周四 8:00-10:00", location: "第一教学楼102", course_type: "undergraduate" },
     { id: "C004", name: "习近平新时代中国特色社会主义思想概论", code: "IDE1001", teacher: "T006", credit: 3,
       schedule: "周五 14:00-16:00", location: "第三教学楼301", course_type: "undergraduate" },
     // ── 大二（grade 2）─────────────────────────────────────────────────────
-    { id: "C005", name: "线性代数与空间解析几何",      code: "MATH2001", teacher: "T004", credit: 3,
+    { id: "C005", name: "线性代数与空间解析几何",      code: "MATH2001", teacher: "T904", credit: 3,
       schedule: "周一 10:10-12:00  周三 10:10-12:00", location: "第一教学楼201", course_type: "undergraduate" },
-    { id: "C006", name: "程序设计基础（C/C++）",       code: "CS2001",   teacher: "T003", credit: 3,
+    { id: "C006", name: "程序设计基础（C/C++）",       code: "CS2001",   teacher: "T903", credit: 3,
       schedule: "周二 14:00-18:00  周五 14:00-16:00", location: "第二教学楼机房A", course_type: "undergraduate" },
-    { id: "C007", name: "电路分析基础",                code: "EE2001",   teacher: "T002", credit: 3,
+    { id: "C007", name: "电路分析基础",                code: "EE2001",   teacher: "T902", credit: 3,
       schedule: "周一 14:00-16:00  周三 14:00-16:00", location: "第一教学楼301", course_type: "undergraduate" },
-    { id: "C008", name: "信号与线性系统",              code: "EE2002",   teacher: "T001", credit: 3,
+    { id: "C008", name: "信号与线性系统",              code: "EE2002",   teacher: "T901", credit: 3,
       schedule: "周四 10:10-12:00", location: "第二教学楼302", course_type: "undergraduate" },
     // ── 大三（grade 3）─────────────────────────────────────────────────────
-    { id: "C009", name: "数据结构与算法分析",          code: "CS3001",   teacher: "T001", credit: 3,
+    { id: "C009", name: "数据结构与算法分析",          code: "CS3001",   teacher: "T901", credit: 3,
       schedule: "周一 8:00-10:00  周三 8:00-12:00", location: "第三教学楼401", course_type: "undergraduate" },
     { id: "C010", name: "计算机网络原理",              code: "CS3002",   teacher: "T006", credit: 3,
       schedule: "周二 10:10-12:00  周四 10:10-12:00", location: "第三教学楼402", course_type: "undergraduate" },
-    { id: "C011", name: "数字图像处理与机器视觉",      code: "CS3003",   teacher: "T005", credit: 3,
+    { id: "C011", name: "数字图像处理与机器视觉",      code: "CS3003",   teacher: "T905", credit: 3,
       schedule: "周三 16:10-18:00  周五 14:00-18:00", location: "第三教学楼403", course_type: "undergraduate" },
-    { id: "C012", name: "操作系统原理与实践",          code: "CS3004",   teacher: "T002", credit: 3,
+    { id: "C012", name: "操作系统原理与实践",          code: "CS3004",   teacher: "T902", credit: 3,
       schedule: "周四 8:00-10:00", location: "第三教学楼404", course_type: "undergraduate" },
     // ── 大四（grade 4）─────────────────────────────────────────────────────
-    { id: "C013", name: "软件工程方法与实践",          code: "CS4001",   teacher: "T005", credit: 3,
+    { id: "C013", name: "软件工程方法与实践",          code: "CS4001",   teacher: "T905", credit: 3,
       schedule: "周二 8:00-10:00  周四 8:00-10:00", location: "第二教学楼401", course_type: "undergraduate" },
-    { id: "C014", name: "嵌入式系统与物联网设计",      code: "EE4001",   teacher: "T002", credit: 3,
+    { id: "C014", name: "嵌入式系统与物联网设计",      code: "EE4001",   teacher: "T902", credit: 3,
       schedule: "周一 16:10-18:00  周三 14:00-18:00", location: "第二教学楼实验室B", course_type: "undergraduate" },
   ];
   // ── 研究生课程（白天+晚间，学分 2-4，按周一→周五排列）──────────────────────
   const gradCourses = [
-    { id: "G001", name: "数值分析与科学计算",            code: "GM001", teacher: "T004", credit: 3,
+    { id: "G001", name: "数值分析与科学计算",            code: "GM001", teacher: "T904", credit: 3,
       schedule: "周二 14:00-16:00", location: "第一教学楼501", course_type: "graduate" },
     { id: "G002", name: "最优化理论与方法",               code: "GM002", teacher: "T007", credit: 3,
       schedule: "周一 8:00-10:00  周四 19:00-21:00", location: "第一教学楼502", course_type: "graduate" },
@@ -126,13 +137,37 @@ export function seedDatabase(): void {
       schedule: "周三 14:00-16:00", location: "第三教学楼502", course_type: "graduate" },
     { id: "G005", name: "深度学习理论与工程实践",         code: "GM005", teacher: "T007", credit: 3,
       schedule: "周五 14:00-18:00", location: "第三教学楼503", course_type: "graduate" },
-    // T009 林晓东 教师演示课程（东校区，周一/二/三）
-    { id: "GT01", name: "计算机视觉与图像识别",  code: "CS6001", teacher: "T009", credit: 3,
+    // T005 林晓东 演示课程（东校区，原T009账号迁移，周一/二/三）
+    { id: "GT01", name: "计算机视觉与图像识别",  code: "CS6001", teacher: "T005", credit: 3,
       schedule: "周一 10:00-12:00", location: "信电楼201", course_type: "graduate" },
-    { id: "GT02", name: "智慧农业与机器感知",    code: "CS6002", teacher: "T009", credit: 3,
+    { id: "GT02", name: "智慧农业与机器感知",    code: "CS6002", teacher: "T005", credit: 3,
       schedule: "周二 08:00-10:00", location: "信电楼201", course_type: "graduate" },
-    { id: "GT03", name: "具身智能与机器人系统",  code: "CS6003", teacher: "T009", credit: 3,
+    { id: "GT03", name: "具身智能与机器人系统",  code: "CS6003", teacher: "T005", credit: 3,
       schedule: "周三 14:00-16:00", location: "信电楼201", course_type: "graduate" },
+    // T001 林晓东 演示课程（东校区，周一/二/三，独立账号）
+    { id: "GT11", name: "计算机视觉与图像识别",  code: "CS6011", teacher: "T001", credit: 3,
+      schedule: "周一 10:00-12:00", location: "信电楼201", course_type: "graduate" },
+    { id: "GT12", name: "智慧农业与机器感知",    code: "CS6012", teacher: "T001", credit: 3,
+      schedule: "周二 08:00-10:00", location: "信电楼201", course_type: "graduate" },
+    { id: "GT13", name: "具身智能与机器人系统",  code: "CS6013", teacher: "T001", credit: 3,
+      schedule: "周三 14:00-16:00", location: "信电楼201", course_type: "graduate" },
+    // T002 陈静怡 演示课程（西校区，经管楼）
+    { id: "GT04", name: "农业经济学前沿专题",   code: "EM6001", teacher: "T002", credit: 3,
+      schedule: "周二 10:00-12:00", location: "经管楼108", course_type: "graduate" },
+    { id: "GT05", name: "数字农业与大数据管理",  code: "EM6002", teacher: "T002", credit: 3,
+      schedule: "周四 14:00-16:00", location: "经管楼203", course_type: "graduate" },
+    { id: "GT06", name: "发展经济学",           code: "EM6003", teacher: "T002", credit: 3,
+      schedule: "周五 10:00-12:00", location: "经管楼108", course_type: "graduate" },
+    // T003 黄建国 演示课程（西校区，农学楼）
+    { id: "GT07", name: "分子生物学前沿",       code: "AG6001", teacher: "T003", credit: 3,
+      schedule: "周一 14:00-16:00", location: "农学楼201", course_type: "graduate" },
+    { id: "GT08", name: "作物遗传改良实验",     code: "AG6002", teacher: "T003", credit: 2,
+      schedule: "周三 14:00-18:00", location: "农学楼实验室B", course_type: "graduate" },
+    // T004 刘兰馨 演示课程（西校区，资环楼）
+    { id: "GT09", name: "农业生态与环境管理",   code: "RE6001", teacher: "T004", credit: 3,
+      schedule: "周二 14:00-16:00", location: "资环楼101", course_type: "graduate" },
+    { id: "GT10", name: "资源环境经济学前沿",   code: "RE6002", teacher: "T004", credit: 3,
+      schedule: "周四 10:00-12:00", location: "资环楼201", course_type: "graduate" },
   ];
 
   const allCourses = [...ugCourses, ...gradCourses];
@@ -554,8 +589,9 @@ export function seedDatabase(): void {
   }
   console.log(`报修工单: ${repairs.length} 条`);
 
-  // ── 教师 T009 林晓东 科研数据 ─────────────────────────────────────────────
-  const T009 = "T009";
+  // ── 演示教师 林晓东 科研数据（T001 + T005 共用同一套论文/专利数据）─────────────
+  // T005 = 原T009账号迁移；T001 = 新的独立演示账号（同一教师的第二账号）
+  const T009 = "T005"; // T009 已迁移为 T005
 
   // 特色论文（关键演示用）
   type PaperRow = { title: string; journal: string; year: number; authors: string; keywords: string; region: string; cited: number };
@@ -746,7 +782,170 @@ export function seedDatabase(): void {
       cnt++; ipCount++;
     }
   }
-  console.log(`T009 知识产权: ${ipCount} 项（发明专利 ${keyPatents.filter(p=>p.type==="发明专利").length}+${18-keyPatents.filter(p=>p.type==="发明专利").length}，实用新型 5，软著 13）`);
+  console.log(`T005(原T009) 知识产权: ${ipCount} 项`);
+
+  // ── T001 林晓东（新账号）— 复用相同论文/专利数据 ───────────────────────────
+  // 同一教师的两个演示账号，共享数据
+  {
+    const T001 = "T001";
+    for (const p of keyPapers) {
+      db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T001, p.title, p.journal, p.year, p.authors, p.keywords, p.region, p.cited]);
+    }
+    let t1p = keyPapers.length;
+    while (t1p < 86) {
+      const tmpl = genericTitleTemplates[t1p % genericTitleTemplates.length];
+      const title = tmpl.replace("{A}", pickR(fillerA)).replace("{B}", pickR(fillerB));
+      const yr = 2020 + (t1p % 6);
+      const region = t1p % 11 === 0 ? "港澳" : (t1p % 7 === 0 ? "国际" : "国内");
+      db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T001, title, pickR(genericJournals), yr, `林晓东,${pickR(["张伟","李明","王芳","陈强","刘洋"])}`, "计算机视觉,智慧农业", region, Math.floor(10 + Math.random() * 60)]);
+      t1p++;
+    }
+    for (const p of keyPatents) {
+      db.run(`INSERT INTO teacher_patents (id,teacher_id,title,type,cert_number,year,region,keywords,status) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T001, p.title, p.type, p.cert, p.year, p.region, p.keywords, p.status]);
+    }
+    let t1ip = keyPatents.length;
+    for (const spec of ipFillSpec) {
+      let cnt = spec.current;
+      while (cnt < spec.target) {
+        const title = spec.type === "发明专利"
+          ? `基于${pickI(ipNouns)}的农业${pickI(ipVerbs)}方法及系统`
+          : spec.type === "实用新型" ? `一种${pickI(ipNouns)}农业辅助装置`
+          : `智慧农业${pickI(ipNouns)}${pickI(ipVerbs)}管理系统`;
+        db.run(`INSERT INTO teacher_patents (id,teacher_id,title,type,cert_number,year,region,keywords,status) VALUES (?,?,?,?,?,?,?,?,?)`,
+          [id(), T001, title, spec.type, null, 2020 + (cnt % 5), "国内", "智慧农业,计算机视觉", "有效"]);
+        cnt++; t1ip++;
+      }
+    }
+    console.log(`T001(林晓东新账号) 论文: ${t1p} 篇, 知识产权: ${t1ip} 项`);
+  }
+
+  // ── T002 陈静怡 科研数据 ─────────────────────────────────────────────────
+  {
+    const T002 = "T002";
+    const t002Papers = [
+      { title: "数字农业技术采纳的影响因素：来自农户面板数据的实证", journal: "World Development", year: 2024, authors: "陈静怡,刘宇,Wang Y.", keywords: "数字农业,技术采纳,农户", region: "SSCI", cited: 167 },
+      { title: "Agricultural Big Data Analytics and Farm Productivity", journal: "Food Policy", year: 2023, authors: "Chen J., Zhang W., Li H.", keywords: "big data,farm productivity,agriculture", region: "SSCI", cited: 142 },
+      { title: "乡村振兴政策效果评估：基于双重差分模型", journal: "管理世界", year: 2023, authors: "陈静怡,王海涛,赵磊", keywords: "乡村振兴,政策评估,双重差分", region: "CSSCI", cited: 98 },
+      { title: "Digital Finance and Rural Inclusive Growth in China", journal: "Agricultural Economics", year: 2022, authors: "Chen J., Liu F., Sun M.", keywords: "digital finance,rural,inclusive growth", region: "SSCI", cited: 115 },
+      { title: "土地流转、规模经营与农户收入", journal: "中国农村经济", year: 2022, authors: "陈静怡,孙明,张浩", keywords: "土地流转,规模经营,农户收入", region: "CSSCI", cited: 89 },
+      { title: "Platform Economy and Agricultural Supply Chain Transformation", journal: "Journal of Rural Studies", year: 2023, authors: "Chen J., Wu B., Zhao C.", keywords: "platform economy,supply chain,agriculture", region: "SSCI", cited: 76 },
+      { title: "农业数据要素市场化定价机制研究", journal: "农业经济问题", year: 2024, authors: "陈静怡,周明,刘磊", keywords: "数据要素,市场化,定价机制", region: "CSSCI", cited: 54 },
+      { title: "小农户与现代农业融合路径：基于大数据分析", journal: "中国农业科学", year: 2021, authors: "陈静怡,赵阳,王浩", keywords: "小农户,现代农业,大数据", region: "CSSCI", cited: 67 },
+      { title: "Carbon Neutrality Policy and Agricultural Transformation in China", journal: "Ecological Economics", year: 2024, authors: "Chen J., Li W., Zhang S.", keywords: "carbon neutrality,agricultural policy,China", region: "SSCI", cited: 83 },
+      { title: "精准扶贫政策的长期效果评估", journal: "《管理科学》", year: 2022, authors: "陈静怡,王强,陈磊", keywords: "精准扶贫,政策评估,长期效果", region: "CSSCI", cited: 72 },
+      // 港澳合作论文
+      { title: "Digital Finance Inclusion and Rural Household Welfare: Evidence from China", journal: "Agricultural Economics", year: 2024, authors: "Chen J., Li W., Hong Kong Univ. of S&T collab.", keywords: "digital finance,rural welfare,inclusion", region: "港澳（香港科技大学合作）", cited: 93 },
+      { title: "Agricultural Carbon Market Development and Rural Income in China", journal: "World Development", year: 2023, authors: "Chen J., Zhang S., HKU collab.", keywords: "carbon market,rural income,agriculture", region: "港澳（香港大学合作）", cited: 78 },
+      { title: "Smallholder Integration into Digital Supply Chains: A Cross-Regional Study", journal: "Food Policy", year: 2022, authors: "Chen J., Wu B., CUHK collab.", keywords: "smallholder,digital supply chain,cross-regional", region: "港澳（香港中文大学合作）", cited: 65 },
+      { title: "数字普惠金融与农业全要素生产率增长：来自粤港澳大湾区的证据", journal: "管理世界", year: 2024, authors: "陈静怡,刘海,City U collab.", keywords: "数字金融,全要素生产率,大湾区", region: "港澳（香港城市大学合作）", cited: 56 },
+    ];
+    for (const p of t002Papers) {
+      db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T002, p.title, p.journal, p.year, p.authors, p.keywords, p.region, p.cited]);
+    }
+    let t2p = t002Papers.length;
+    const ecJournals = ["Agricultural Economics","Food Policy","World Development","中国农村经济","农业经济问题","管理世界","经济研究","Ecological Economics"];
+    const ecA = ["机器学习","区块链","知识图谱","大数据","人工智能","遥感","物联网"];
+    const ecB = ["农业价值链","市场效率","农业保险","农民收入","粮食安全","食品安全","农村金融"];
+    while (t2p < 82) {
+      const yr = 2018 + (t2p % 7);
+      const region = t2p % 8 === 0 ? "SSCI" : "CSSCI";
+      db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T002, `${pickR(ecA)}视角下的${pickR(ecB)}研究`, pickR(ecJournals), yr, `陈静怡,${pickR(["王明","李华","张磊","孙强","刘芳"])}`, "农业经济,数字技术", region, Math.floor(15 + Math.random() * 70)]);
+      t2p++;
+    }
+    // T002 专利
+    const t002Patents = [
+      { title: "一种基于大数据的农产品价格预测系统及方法", type: "发明专利", cert: "ZL202310445678.2", year: 2023, region: "国内", keywords: "大数据,价格预测,农产品", status: "有效" },
+      { title: "农村数字金融风险智能评估装置及方法", type: "发明专利", cert: "ZL202210334567.8", year: 2022, region: "国内", keywords: "数字金融,风险评估,农村", status: "有效" },
+      { title: "乡村振兴政策效果自动评估软件平台", type: "软件著作权", cert: "软著登字第2022SR789012号", year: 2022, region: "国内", keywords: "政策评估,乡村振兴,软件", status: "有效" },
+      { title: "农业大数据分析与可视化系统", type: "软件著作权", cert: "软著登字第2023SR890123号", year: 2023, region: "国内", keywords: "大数据,可视化,农业", status: "有效" },
+      { title: "数字普惠金融农户信用评分模型", type: "软件著作权", cert: "软著登字第2021SR901234号", year: 2021, region: "国内", keywords: "数字金融,信用评分,农户", status: "有效" },
+    ];
+    for (const p of t002Patents) {
+      db.run(`INSERT INTO teacher_patents (id,teacher_id,title,type,cert_number,year,region,keywords,status) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T002, p.title, p.type, p.cert, p.year, p.region, p.keywords, p.status]);
+    }
+    console.log(`T002(陈静怡) 论文: ${t2p} 篇, 知识产权: ${t002Patents.length} 项`);
+  }
+
+  // ── T003 黄建国 科研数据 ─────────────────────────────────────────────────
+  {
+    const T003 = "T003";
+    const t003Papers = [
+      { title: "CRISPR/Cas9介导的小麦耐旱基因编辑及表型分析", journal: "Plant Cell", year: 2024, authors: "黄建国,张磊,Liu W.", keywords: "CRISPR,小麦,基因编辑,耐旱", region: "SCI", cited: 76 },
+      { title: "高通量基因型鉴定加速水稻品种选育", journal: "Nature Plants", year: 2023, authors: "Huang J., Wang X., Li F.", keywords: "高通量,基因型鉴定,水稻育种", region: "SCI", cited: 112 },
+      { title: "北方小麦高产广适新品种农大189培育与推广", journal: "作物学报", year: 2022, authors: "黄建国,孙强,赵磊", keywords: "小麦,新品种培育,高产", region: "CSCD", cited: 54 },
+      { title: "基因组选择在作物分子育种中的应用进展", journal: "Plant Journal", year: 2023, authors: "Huang J., Chen Y., Sun L.", keywords: "基因组选择,分子育种,作物", region: "SCI", cited: 67 },
+      { title: "玉米抗逆性QTL定位与分子标记开发", journal: "中国农业科学", year: 2021, authors: "黄建国,李明,王浩", keywords: "QTL定位,玉米,抗逆性", region: "CSCD", cited: 43 },
+    ];
+    for (const p of t003Papers) {
+      db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T003, p.title, p.journal, p.year, p.authors, p.keywords, p.region, p.cited]);
+    }
+    let t3p = t003Papers.length;
+    const bioJ = ["Plant Cell","Plant Journal","Theoretical and Applied Genetics","作物学报","中国农业科学","植物学报","遗传"];
+    const bioA = ["CRISPR","QTL","GWAS","表观遗传","单细胞测序","多组学","蛋白质组"];
+    const bioB = ["抗病性","耐旱性","高产性状","品质改良","氮素利用","光合效率","根系发育"];
+    while (t3p < 48) {
+      const yr = 2017 + (t3p % 8);
+      const region = t3p % 4 === 0 ? "SCI" : "CSCD";
+      db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T003, `${pickR(bioA)}在${pickR(bioB)}中的应用研究`, pickR(bioJ), yr, `黄建国,${pickR(["张宇","李磊","王芳","陈浩","刘强"])}`, "分子育种,作物基因组", region, Math.floor(12 + Math.random() * 50)]);
+      t3p++;
+    }
+    const t003Patents = [
+      { title: "一种小麦耐旱基因TaDREB3的功能及其应用", type: "发明专利", cert: "ZL202310556789.3", year: 2023, region: "国内", keywords: "基因功能,耐旱,小麦", status: "有效" },
+      { title: "玉米高产QTL分子标记辅助选择育种方法", type: "发明专利", cert: "ZL202210667890.4", year: 2022, region: "国内", keywords: "分子标记,QTL,育种", status: "有效" },
+      { title: "农大189小麦品种（植物新品种权）", type: "发明专利", cert: "CNA20213456", year: 2021, region: "国内", keywords: "新品种,小麦,育种", status: "有效" },
+      { title: "作物基因组大数据分析软件平台", type: "软件著作权", cert: "软著登字第2022SR234890号", year: 2022, region: "国内", keywords: "基因组,大数据分析,软件", status: "有效" },
+    ];
+    for (const p of t003Patents) {
+      db.run(`INSERT INTO teacher_patents (id,teacher_id,title,type,cert_number,year,region,keywords,status) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T003, p.title, p.type, p.cert, p.year, p.region, p.keywords, p.status]);
+    }
+    console.log(`T003(黄建国) 论文: ${t3p} 篇, 知识产权: ${t003Patents.length} 项`);
+  }
+
+  // ── T004 刘兰馨 科研数据 ─────────────────────────────────────────────────
+  {
+    const T004 = "T004";
+    const t004Papers = [
+      { title: "华北农田土壤有机碳固存机制及影响因素", journal: "Geoderma", year: 2024, authors: "刘兰馨,张明,Li W.", keywords: "土壤有机碳,固存,华北农田", region: "SCI", cited: 61 },
+      { title: "稻田甲烷减排的耕作管理路径", journal: "Science of the Total Environment", year: 2023, authors: "Liu L., Wang H., Chen B.", keywords: "甲烷减排,稻田,耕作管理", region: "SCI", cited: 89 },
+      { title: "农业碳汇核算方法与区域差异", journal: "中国农业科学", year: 2022, authors: "刘兰馨,孙磊,王浩", keywords: "碳汇核算,农业,区域差异", region: "CSCD", cited: 43 },
+      { title: "黑土地土壤碳氮耦合及微生物机制", journal: "Soil Biology and Biochemistry", year: 2023, authors: "Liu L., Zhang Y., Sun X.", keywords: "黑土,碳氮耦合,微生物", region: "SCI", cited: 71 },
+      { title: "保护性耕作对土壤碳汇的影响：Meta分析", journal: "Agriculture Ecosystems and Environment", year: 2021, authors: "刘兰馨,李磊,张伟", keywords: "保护性耕作,碳汇,Meta分析", region: "SCI", cited: 55 },
+    ];
+    for (const p of t004Papers) {
+      db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T004, p.title, p.journal, p.year, p.authors, p.keywords, p.region, p.cited]);
+    }
+    let t4p = t004Papers.length;
+    const envJ = ["Geoderma","Soil Biology and Biochemistry","Agriculture Ecosystems and Environment","Science of the Total Environment","中国农业科学","土壤学报","生态学报"];
+    const envA = ["生物炭","秸秆还田","有机肥","微生物群落","土壤酶活性","氮循环","磷循环"];
+    const envB = ["温室气体排放","碳固存","土壤肥力","有机质积累","养分利用","土壤结构","生物多样性"];
+    while (t4p < 37) {
+      const yr = 2016 + (t4p % 9);
+      const region = t4p % 3 === 0 ? "SCI" : "CSCD";
+      db.run(`INSERT INTO teacher_papers (id,teacher_id,title,journal,year,authors,keywords,region,citation_count) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T004, `${pickR(envA)}对农田${pickR(envB)}的影响研究`, pickR(envJ), yr, `刘兰馨,${pickR(["张磊","王芳","李强","陈明","孙浩"])}`, "土壤碳汇,农业环境", region, Math.floor(10 + Math.random() * 45)]);
+      t4p++;
+    }
+    const t004Patents = [
+      { title: "一种农田土壤碳汇快速评估方法及系统", type: "发明专利", cert: "ZL202310778901.5", year: 2023, region: "国内", keywords: "碳汇评估,土壤,农田", status: "有效" },
+      { title: "生物炭增碳固氮装置及施用方法", type: "发明专利", cert: "ZL202210889012.6", year: 2022, region: "国内", keywords: "生物炭,增碳固氮,施用", status: "有效" },
+      { title: "农业碳足迹计算与管理软件系统", type: "软件著作权", cert: "软著登字第2023SR012345号", year: 2023, region: "国内", keywords: "碳足迹,农业,管理软件", status: "有效" },
+    ];
+    for (const p of t004Patents) {
+      db.run(`INSERT INTO teacher_patents (id,teacher_id,title,type,cert_number,year,region,keywords,status) VALUES (?,?,?,?,?,?,?,?,?)`,
+        [id(), T004, p.title, p.type, p.cert, p.year, p.region, p.keywords, p.status]);
+    }
+    console.log(`T004(刘兰馨) 论文: ${t4p} 篇, 知识产权: ${t004Patents.length} 项`);
+  }
 
   // ── 开放课题/项目申报 ─────────────────────────────────────────────────────
   const openProjectsData = [
