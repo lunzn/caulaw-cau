@@ -41,6 +41,7 @@ import {
 import {
   type PendingSubmissionFile,
   SchoolWorkflowService,
+  loadUserSchoolIdentity,
 } from "@/lib/agent/school-workflow";
 import {
   appendSessionEndMarker,
@@ -101,7 +102,7 @@ const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能
   6 → 立即查询校医院各科室今日出诊安排
   7 → 立即查询用户校园卡余额和最近10条消费记录
   8 → 回复"请问您想查询哪位老师的信息？可以发姓名，或者告诉我院系名称。"
-  9 → 调用 cau-news-scraper（服务端每25分钟预热缓存，通常2-3秒即返回），展示农大新闻+信电学院公告各5条；列表用 --no-fetch-content，用户要读正文再加 --fetch-content
+  9 → 调用 cau-news-scraper（服务端每25分钟预热缓存，通常2-3秒即返回），展示农大新闻+信电学院公告各10条；列表用 --no-fetch-content，用户要读正文再加 --fetch-content
 
   【S20253082026 静态缓存数据 - 直接使用，无需再调 API】
   以下数据已于演示前预加载（演示日期：2026-04-27 周一 / 2026-04-28 周二）。
@@ -759,7 +760,9 @@ export class AgentService {
     void recordContact(userId, msg.userId);
 
     // 快速模式匹配：课程表/食堂/校医院/班车 → 直接发图，2s 内完成，不走 AI
-    if (msg.type === "text" && await quickImageReply(bot, msg, raw)) {
+    // 教师身份需提前加载，以便跳过课程表图片（教师用文字课表）
+    const identity = await loadUserSchoolIdentity(userId);
+    if (msg.type === "text" && await quickImageReply(bot, msg, raw, identity)) {
       return;
     }
 
