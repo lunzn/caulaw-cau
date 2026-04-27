@@ -5,7 +5,7 @@ import { LoginView } from "./login-view";
 
 export default async function Home() {
   const s = await auth.api.getSession({ headers: await headers() });
-  if (s?.user) redirect("/dashboard");
+  if (s?.user) redirect("/dashboard?autostart=1");
 
   return <LoginView />;
 }
