@@ -57,9 +57,6 @@ export function seedDatabase(): void {
     { id: "T903", name: "王建国", email: "wangjg@cau.edu.cn",  department: "信息与电气工程学院", title: "讲师",  campus: "东校区", research_areas: "程序设计,软件工程,系统开发", office: "信电楼218" },
     { id: "T904", name: "赵明远", email: "zhaomy@cau.edu.cn",  department: "理学院",            title: "教授",  campus: "东校区", research_areas: "数值分析,优化算法,数学建模", office: "理学院205" },
     { id: "T905", name: "刘芳芳", email: "liuff@cau.edu.cn",   department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "计算机视觉,图像处理,模式识别", office: "信电楼214" },
-    // ── 知名教授（用于新闻/公告查询演示）────────────────────────────────────
-    { id: "T910", name: "林万龙", email: "linwl@cau.edu.cn",   department: "经济管理学院",       title: "教授",  campus: "西校区", research_areas: "农业经济,农村发展,农业政策,乡村振兴", office: "经管楼302" },
-    { id: "T911", name: "任金政", email: "renjz@cau.edu.cn",   department: "动物医学院",         title: "教授",  campus: "西校区", research_areas: "兽医学,动物疫病,人兽共患病,食品安全", office: "动医楼301" },
   ];
   for (const t of teachers) {
     db.run(`INSERT INTO teachers (id,name,email,department,title,campus,research_areas,office) VALUES (?,?,?,?,?,?,?,?)`,
