@@ -1,7 +1,7 @@
 # CAU-CLAW 项目全景文档
 
 > 本文档为新对话/新协作者提供完整的项目认知，读完后对项目的理解应与原开发对话等同。  
-> 最后更新：2026-04-26
+> 最后更新：2026-04-27
 
 ---
 
@@ -22,6 +22,7 @@
 13. [关键设计决策与坑](#13-关键设计决策与坑)
 14. [常见改动指引](#14-常见改动指引)
 15. [环境变量速查](#15-环境变量速查)
+16. [最近功能更新](#16-最近功能更新)
 
 ---
 
@@ -890,3 +891,147 @@ OPENAI_API_KEY=                        # sk-...
 | `SCHOOL_DB_PATH` | school-server | /data/school.db | SQLite 路径 |
 | `SEED` | school-server | false | `true` 时自动生成种子数据 |
 | `NODE_TLS_REJECT_UNAUTHORIZED` | work-server | — | 设为 "0" 可绕过 TLS 验证（开发用） |
+
+---
+
+## 16. 最近功能更新
+
+> 更新日期：2026-04-27
+
+### 16.1 登录页 Logo 替换 & 教师ID字段
+
+**改动文件**：`packages/gateway/app/login-view.tsx`、`packages/gateway/public/logo.png`
+
+- 绑定页顶部文字标题（"CAU-CLAW / 农业大学一站式平台"）改为 `logo.png` 图片展示。
+- 身份选择改为受控组件（useState）：选"教师"时，"校园卡号"字段（标签 + placeholder + 错误提示）自动切换为"教师ID"；选"学生"时恢复"校园卡号"。
+
+**Docker 更新命令**：
+
+```bash
+docker compose up -d --build gateway
+```
+
+---
+
+### 16.2 快速信息图片回复（模式匹配，不走 AI）
+
+**改动文件**：
+
+| 文件 | 说明 |
+|------|------|
+| `packages/work-server/lib/agent/quick-image-reply.ts` | 新增模块：模式匹配 → 发图 |
+| `packages/work-server/modules/agent/service.ts` | 在 handleWechatMessage 中接入 |
+| `packages/work-server/assets/cafeteria-hours.png` | 食堂营业时间卡片 |
+| `packages/work-server/assets/clinic-hours.png` | 校医院出诊时间卡片 |
+| `packages/work-server/assets/bus-schedule.png` | 东西校区班车时刻卡片 |
+| `packages/work-server/assets/course-schedule.png` | 学生课程表卡片（S20253082026） |
+| `Dockerfile` | work-server stage 新增 `COPY packages/work-server/assets/ ./assets/` |
+
+**工作原理**：
+
+```
+用户发消息 → handleWechatMessage
+  → quickImageReply()：正则匹配关键词
+      匹配到 → bot.reply(msg, { image: preloadedBuffer }) → return（不走 AI）
+      未匹配 → 继续走 Agent → AI 处理
+```
+
+匹配规则：
+
+| 触发关键词 | 输出图片 |
+|-----------|---------|
+| 课程/课表/上课/今天课/这周课 | `course-schedule.png` |
+| 食堂/吃饭/营业/几点饭 | `cafeteria-hours.png` |
+| 校医院/门诊/出诊/看病时间 | `clinic-hours.png` |
+| 班车/校车/发车/去西校区/去东校区 | `bus-schedule.png` |
+
+图片在进程启动时首次命中后预加载进内存（`IMAGE_CACHE`），保证后续 < 2s 响应。
+
+**Docker 更新命令**（TypeScript 改动需重编译）：
+
+```bash
+docker compose up -d --build work-server
+```
+
+**重新生成图片**（图片内容需要修改时）：
+
+```bash
+# 安装依赖（只需一次）
+bun install --cwd scripts
+
+# 重新生成所有图片
+bun run scripts/gen-info-images.ts
+
+# 然后重新构建 work-server
+docker compose up -d --build work-server
+```
+
+---
+
+### 16.3 FAQ：`user_school_bindings` 和 `wechat_known_contacts` 表说明
+
+这两张表是**本项目既有 Schema 的一部分**，与 2026-04-27 的改动无关。
+
+| 表名 | 用途 | 来源迁移 |
+|------|------|---------|
+| `user_school_bindings` | 记录用户 ↔ 教务身份绑定（role、school_id）；绑定页提交时写入，Agent 读取以注入系统上下文 | `0000_colorful_triton.sql` |
+| `wechat_known_contacts` | 记录 Bot 已发过欢迎语的联系人（bot_user_id + contact_user_id），防止重复发欢迎语 | `0001_wechat_known_contacts.sql` |
+
+**为什么本地开发时会缺少？**
+
+本地 `cau-claw-postgres` 容器是在项目早期创建的，当时 `user_school_bindings` 等表尚未添加或 `db-migrate` 未完整运行。该容器被停止后不会自动跟进新迁移。**生产环境通过 `db-migrate` 服务在每次 `docker compose up --build` 时自动应用所有迁移**，不存在此问题。
+
+本地开发如遇缺表，手动补全：
+
+```bash
+# 将迁移文件复制进容器并执行
+docker cp packages/db/drizzle/migrations/0000_colorful_triton.sql <容器名>:/tmp/m0.sql
+docker cp packages/db/drizzle/migrations/0001_wechat_known_contacts.sql <容器名>:/tmp/m1.sql
+docker exec <容器名> psql -U postgres -f /tmp/m0.sql
+docker exec <容器名> psql -U postgres -f /tmp/m1.sql
+```
+
+（已存在的表会报 `already exists` 错误，忽略即可，新表会正常创建。）
+
+---
+
+### 16.4 正确的 Docker 启动流程（每次改动后）
+
+> 项目**只支持 Docker 部署**，不支持本地裸跑（缺少 PostgreSQL、Python 环境等）。
+
+**标准更新流程**（在生产服务器 `~/caulaw-new` 执行）：
+
+```bash
+cd ~/caulaw-new
+
+# 1. 拉最新代码（绕过 ghfast.top 镜像问题，见 §5.9）
+git -c url."https://ghfast.top/https://github.com/".insteadOf="https://github.com/" pull
+
+# 2. 按改动范围选择重建目标
+docker compose up -d --build gateway        # 改了前端（login-view.tsx 等）
+docker compose up -d --build work-server    # 改了 TS 后端或 assets/
+docker compose up -d --build school-server  # 改了教务仿真 API
+docker compose up -d --build               # 全量重建（不确定时用这个）
+```
+
+**本次改动（2026-04-27）需要执行**：
+
+```bash
+# gateway：登录页 logo + 教师ID字段
+docker compose up -d --build gateway
+
+# work-server：快速图片回复 + 编译了新的 TypeScript 模块
+docker compose up -d --build work-server
+```
+
+**验证改动是否生效**：
+
+```bash
+# 1. 确认容器正常运行
+docker compose ps
+
+# 2. 打开浏览器访问，确认登录页显示 logo 图片（不再是文字标题）
+#    并确认选教师后标签变为"教师ID"
+
+# 3. 在微信发"食堂"，应在 2s 内收到食堂营业时间图片（不再等 AI 回复）
+```
