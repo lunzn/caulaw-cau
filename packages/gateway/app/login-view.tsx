@@ -179,10 +179,10 @@ export function LoginView() {
           <Image
             src="/logo.png"
             alt="CAU-CLAW 中国农业大学一站式智能助手平台"
-            width={440}
-            height={120}
+            width={1698}
+            height={926}
             priority
-            className="h-auto w-full max-w-sm"
+            className="h-auto w-full max-w-xs"
           />
         </div>
 
