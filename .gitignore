@@ -45,6 +45,15 @@ packages/work-server/.pi/cache/
 packages/work-server/.pi/skills/**/__pycache__/
 packages/work-server/.pi/skills/*/__pycache__/
 
+# Claude Code worktrees（工具自动生成，不提交）
+.claude/
+
+# 参观资料（爬取的原始 HTML，仅供本地参考，不提交）
+参观资料/
+
+# 临时 / 本地素材
+cauclaw.png
+
 # vercel
 .vercel
 
