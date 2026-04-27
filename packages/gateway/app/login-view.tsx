@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
@@ -64,6 +65,7 @@ async function ensureSignedIn(
 export function LoginView() {
   const router = useRouter();
   const [busy, setBusy] = useState<null | "bind" | "unbind">(null);
+  const [role, setRole] = useState<"student" | "teacher">("student");
   const locked = busy !== null;
 
   async function onBind(e: React.FormEvent<HTMLFormElement>) {
@@ -74,7 +76,7 @@ export function LoginView() {
     const phone = String(fd.get("phone") ?? "").trim();
     const password = String(fd.get("password") ?? "");
 
-    if (!schoolId) { toast.error("请填写校园卡号"); return; }
+    if (!schoolId) { toast.error(role === "teacher" ? "请填写教师ID" : "请填写校园卡号"); return; }
     if (phone.length < 2) { toast.error("手机号格式不正确"); return; }
     if (password.length < 6) { toast.error("密码至少 6 位"); return; }
 
@@ -157,7 +159,8 @@ export function LoginView() {
       <select
         id="role"
         name="role"
-        defaultValue="student"
+        value={role}
+        onChange={(e) => setRole(e.target.value as "student" | "teacher")}
         disabled={locked}
         className="border-input ring-offset-background focus-visible:ring-ring/50 flex h-9 w-full rounded-md border bg-background px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
       >
@@ -166,16 +169,21 @@ export function LoginView() {
       </select>
     </Field>
   );
+  const schoolIdLabel = role === "teacher" ? "教师ID" : "校园卡号";
+  const schoolIdPlaceholder = role === "teacher" ? "输入你的教师ID（如 T009）" : "输入你的校园卡号";
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 sm:p-8">
       <main className="flex w-full max-w-md flex-col items-center gap-6">
-        <div className="cau-enter flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            <span className="text-primary">CAU</span>
-            <span className="text-muted-foreground">-CLAW</span>
-          </h1>
-          <p className="text-muted-foreground text-sm">农业大学一站式平台</p>
+        <div className="cau-enter flex items-center justify-center">
+          <Image
+            src="/logo.png"
+            alt="CAU-CLAW 中国农业大学一站式智能助手平台"
+            width={1698}
+            height={926}
+            priority
+            className="h-auto w-full max-w-xs"
+          />
         </div>
 
         <Card className="cau-enter cau-enter-delay-sm w-full">
@@ -195,11 +203,11 @@ export function LoginView() {
                   <FieldGroup>
                     {roleSelect}
                     <Field>
-                      <FieldLabel htmlFor="bind-schoolId">校园卡号</FieldLabel>
+                      <FieldLabel htmlFor="bind-schoolId">{schoolIdLabel}</FieldLabel>
                       <Input
                         id="bind-schoolId"
                         name="schoolId"
-                        placeholder="输入你的校园卡号"
+                        placeholder={schoolIdPlaceholder}
                         required
                         disabled={locked}
                       />
