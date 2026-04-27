@@ -38,6 +38,22 @@ export async function PUT(request: Request) {
     return Response.json({ error: "schoolId 不能为空" }, { status: 400 });
   }
 
+  // 格式与 role 一致性校验：T 开头必须是教师，S/Y 开头必须是学生
+  const isTeacherId = /^T\d+$/i.test(schoolId);
+  const isStudentId = /^[SY]\d+$/i.test(schoolId);
+  if (isTeacherId && role !== "teacher") {
+    return Response.json(
+      { error: "教师ID（T 开头）请选择「教师」身份" },
+      { status: 400 },
+    );
+  }
+  if (isStudentId && role !== "student") {
+    return Response.json(
+      { error: "校园卡号（S/Y 开头）请选择「学生」身份" },
+      { status: 400 },
+    );
+  }
+
   try {
     const identity = await bindUserSchoolIdentity({
       userId: session.userId,
