@@ -55,6 +55,7 @@ import path from "node:path";
 import { recordContact } from "@/lib/wechat-contacts";
 import { quickImageReply } from "@/lib/agent/quick-image-reply";
 import { quickNewsReply } from "@/lib/agent/quick-news-reply";
+import { quickProfessorReply } from "@/lib/agent/quick-professor-reply";
 
 const model = createOpenAICompatModel();
 
@@ -799,6 +800,11 @@ export class AgentService {
 
     // 快速新闻回复：农大新闻/头条/就业 → 直接读缓存，不走 AI
     if (msg.type === "text" && await quickNewsReply(bot, msg, raw)) {
+      return;
+    }
+
+    // 快速教授档案回复：林万龙/任金政等 → 直接输出静态卡片，不走 AI
+    if (msg.type === "text" && await quickProfessorReply(bot, msg, raw)) {
       return;
     }
 
