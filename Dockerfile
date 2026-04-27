@@ -66,5 +66,6 @@ RUN pip3 install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghu
 COPY --from=work-server-builder /app/work-server ./work-server
 COPY packages/work-server/package.json ./package.json
 COPY packages/work-server/.pi/ ./.pi/
+COPY packages/work-server/assets/ ./assets/
 EXPOSE 3100
 CMD ["./work-server"]
