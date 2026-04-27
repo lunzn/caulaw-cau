@@ -1,48 +1,53 @@
 /**
  * 服务端新闻缓存预热器
  *
- * 在服务启动时及每隔 25 分钟调用 cau-news-scraper，把结果写入磁盘缓存
- * （SKILLS_CACHE_DIR = <project>/.cache/skills，缓存 TTL 30 分钟）。
+ * 启动时及每隔 25 分钟：
+ *   1. 爬取农大头条(ttgznew) + 综合新闻(zhxwnew)
+ *   2. 爬取就业服务网就业公告(scc)
+ *   3. 把结果写入 .cache/news-snapshot.json，供 quick-news-reply.ts 直接读取
  *
- * 这样当用户问"最新新闻"时，agent 调用同一个 scraper 脚本，会直接命中
- * 缓存返回结果，延迟从 30-60 秒降至 < 3 秒。
+ * 缓存目录与 _cache.py 一致（SKILLS_CACHE_DIR），agent bash 调用 scraper 时也能命中。
  */
 import { Cron } from "croner";
 import path from "node:path";
-import { existsSync, mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 
 const PROJECT_ROOT = path.resolve(process.cwd());
 const SKILLS_ROOT  = path.resolve(PROJECT_ROOT, ".pi", "skills");
-const CACHE_DIR    = path.resolve(PROJECT_ROOT, ".cache", "skills");
+export const CACHE_DIR     = path.resolve(PROJECT_ROOT, ".cache", "skills");
+export const SNAPSHOT_PATH = path.resolve(PROJECT_ROOT, ".cache", "news-snapshot.json");
 const SCRAPER      = path.resolve(SKILLS_ROOT, "cau-news-scraper", "main.py");
 
-/** 确保缓存目录存在（Python _cache.py 也会自建，这里只是提前保障） */
-function ensureCacheDir(): void {
-  if (!existsSync(CACHE_DIR)) {
-    mkdirSync(CACHE_DIR, { recursive: true });
-  }
+export type NewsItem = {
+  title: string;
+  url: string;
+  date: string;
+  source: string;
+  source_name: string;
+  channel: string;
+  channel_name: string;
+  summary: string | null;
+};
+
+export type NewsSnapshot = {
+  updated_at: string;
+  /** 农大综合新闻 (zhxwnew) */
+  cau_news: NewsItem[];
+  /** 农大头条 (ttgznew) */
+  cau_headline: NewsItem[];
+  /** 就业公告 (scc) */
+  employment: NewsItem[];
+};
+
+function ensureDirs(): void {
+  mkdirSync(CACHE_DIR, { recursive: true });
+  mkdirSync(path.dirname(SNAPSHOT_PATH), { recursive: true });
 }
 
-/**
- * 执行一次预热：
- *   1. 抓取 CAU 新闻 + 信电学院公告（不抓正文，速度快）
- * 用同样的参数运行，所以 agent 查询时 run_key 完全命中。
- */
-async function warmOnce(): Promise<void> {
-  ensureCacheDir();
-
-  const tag = new Date().toISOString().slice(0, 16);
-  console.log(`[news-warmer] ${tag} warming...`);
-  const t0 = Date.now();
-
+async function runScraper(args: string[]): Promise<{ items: NewsItem[]; ok: boolean }> {
   try {
     const proc = Bun.spawn(
-      [
-        "python3", SCRAPER,
-        "--sites", "cau_news", "ciee",
-        "--no-fetch-content",
-        "--limit", "10",
-      ],
+      ["python3", SCRAPER, ...args],
       {
         env: {
           ...process.env,
@@ -54,35 +59,74 @@ async function warmOnce(): Promise<void> {
         cwd: path.resolve(SKILLS_ROOT, "cau-news-scraper"),
       },
     );
-
-    const exitCode = await proc.exited;
-    const ms = Date.now() - t0;
-
-    if (exitCode === 0) {
-      console.log(`[news-warmer] done in ${ms}ms`);
-    } else {
-      const errText = await new Response(proc.stderr).text();
-      console.warn(`[news-warmer] exit ${exitCode} in ${ms}ms: ${errText.slice(0, 300)}`);
+    const [exitCode, stdout] = await Promise.all([
+      proc.exited,
+      new Response(proc.stdout).text(),
+    ]);
+    if (exitCode !== 0) {
+      const err = await new Response(proc.stderr).text();
+      console.warn("[news-warmer] scraper exit", exitCode, err.slice(0, 200));
+      return { items: [], ok: false };
     }
+    const result = JSON.parse(stdout) as { items?: NewsItem[] };
+    return { items: result.items ?? [], ok: true };
   } catch (e) {
-    console.error("[news-warmer] spawn error:", e);
+    console.error("[news-warmer] scraper spawn error:", e);
+    return { items: [], ok: false };
   }
 }
 
-/**
- * 启动预热服务：
- * - 立即执行一次（不阻塞启动流程）
- * - 之后每 25 分钟执行一次（低于 30 分钟的 TTL，保持缓存始终有效）
- */
+async function warmOnce(): Promise<void> {
+  ensureDirs();
+  const tag = new Date().toISOString().slice(0, 16);
+  console.log(`[news-warmer] ${tag} warming...`);
+  const t0 = Date.now();
+
+  // 并行爬取：农大新闻（头条+综合）和就业公告
+  const [cauResult, sccResult] = await Promise.all([
+    runScraper([
+      "--sites", "cau_news",
+      "--channels", "ttgznew", "zhxwnew",
+      "--limit", "10",
+      "--no-fetch-content",
+    ]),
+    runScraper([
+      "--sites", "scc",
+      "--channels", "6ebab28e72ba46da99a0f2c372b129d7",
+      "--limit", "20",
+      "--no-fetch-content",
+    ]),
+  ]);
+
+  const allCau = cauResult.items;
+  const snapshot: NewsSnapshot = {
+    updated_at: new Date().toISOString(),
+    cau_headline: allCau.filter((i) => i.channel === "ttgznew").slice(0, 10),
+    cau_news:     allCau.filter((i) => i.channel === "zhxwnew").slice(0, 10),
+    employment:   sccResult.items.slice(0, 20),
+  };
+
+  try {
+    writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2), "utf-8");
+  } catch (e) {
+    console.error("[news-warmer] write snapshot failed:", e);
+  }
+
+  const ms = Date.now() - t0;
+  const ok = cauResult.ok || sccResult.ok;
+  console.log(
+    `[news-warmer] done in ${ms}ms — cau:${allCau.length} scc:${sccResult.items.length}${ok ? "" : " (all failed)"}`,
+  );
+}
+
 export function startNewsWarmup(): void {
-  // 异步立即预热，不阻塞服务启动
   warmOnce().catch((e) => console.error("[news-warmer] initial warm failed:", e));
 
   new Cron(
     "*/25 * * * *",
-    { protect: true },   // 若上一次还未完成则跳过本次
+    { protect: true },
     () => warmOnce().catch((e) => console.error("[news-warmer] scheduled warm failed:", e)),
   );
 
-  console.log("[news-warmer] scheduled every 25 min (cache TTL=30 min)");
+  console.log("[news-warmer] scheduled every 25 min");
 }
