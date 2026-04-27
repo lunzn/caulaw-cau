@@ -11,7 +11,7 @@ import type { WeChatBot, IncomingMessage } from "@wechatbot/wechatbot";
 import { SNAPSHOT_PATH, type NewsSnapshot, type NewsItem } from "@/lib/news-warmer";
 
 const CAU_NEWS_RE    = /农大新闻|综合新闻|学校新闻|最新新闻|cau news/i;
-const HEADLINE_RE    = /头条|农大头条/i;
+const HEADLINE_RE    = /头条|农大头条|学校公告|官网公告|新闻公告|公告通知|最新公告/i;
 const EMPLOYMENT_RE  = /就业|招聘|求职|就业公告|offer|实习/i;
 
 function loadSnapshot(): NewsSnapshot | null {
@@ -24,7 +24,7 @@ function loadSnapshot(): NewsSnapshot | null {
   }
 }
 
-function formatItems(items: NewsItem[], title: string, limit = 5): string {
+function formatItems(items: NewsItem[], title: string, limit = 10): string {
   if (items.length === 0) {
     return `${title}\n\n暂无数据，缓存可能尚未预热，请稍后再试。`;
   }
@@ -65,13 +65,13 @@ export async function quickNewsReply(
 
   if (isHeadline) {
     const items = snap?.cau_headline ?? [];
-    reply = formatItems(items, `【农大头条】最新 5 条${age}`);
+    reply = formatItems(items, `【农大头条】最新 10 条${age}`);
   } else if (isCauNews) {
     const items = snap?.cau_news ?? [];
-    reply = formatItems(items, `【农大综合新闻】最新 5 条${age}`);
+    reply = formatItems(items, `【农大综合新闻】最新 10 条${age}`);
   } else {
     const items = snap?.employment ?? [];
-    reply = formatItems(items, `【就业公告】最新 5 条${age}`);
+    reply = formatItems(items, `【就业公告】最新 10 条${age}`);
   }
 
   await bot.reply(msg, reply);
