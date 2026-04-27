@@ -52,6 +52,7 @@ import {
 } from "@/lib/wechat-jsonl-session";
 import path from "node:path";
 import { recordContact } from "@/lib/wechat-contacts";
+import { quickImageReply } from "@/lib/agent/quick-image-reply";
 
 const model = createOpenAICompatModel();
 
@@ -748,6 +749,11 @@ export class AgentService {
     }
 
     void recordContact(userId, msg.userId);
+
+    // 快速模式匹配：课程表/食堂/校医院/班车 → 直接发图，2s 内完成，不走 AI
+    if (msg.type === "text" && await quickImageReply(bot, msg, raw)) {
+      return;
+    }
 
     if (await this.schoolWorkflow.maybeHandleTextCommand(userId, bot, msg, raw)) {
       return;
