@@ -480,6 +480,52 @@ docker compose start work-server
 
 ## 7. 本地开发
 
+### 7.1 本地 Docker（推荐，最接近生产环境）
+
+```bash
+# 1. 复制并填写环境变量（只需改一次）
+cp .env.example .env
+# 必须填写：POSTGRES_PASSWORD、BETTER_AUTH_SECRET、OPENAI_API_*
+# 本地开发时 PUBLIC_URL 保持默认 http://localhost:3000 即可
+
+# 生成 BETTER_AUTH_SECRET（任选其一）：
+#   PowerShell: [Convert]::ToBase64String((1..32 | % { [byte](Get-Random -Max 256) }))
+#   openssl:    openssl rand -base64 32
+
+# 2. 首次构建并启动（约 5-10 分钟，含镜像拉取）
+docker compose up -d --build
+
+# 3. 确认状态
+docker compose ps
+# 期望：postgres Healthy, school-server Healthy, work-server Up, gateway Up
+# db-migrate 显示 Exited(0) 是正常的（一次性迁移任务）
+
+# 4. 访问
+# http://localhost:3000
+```
+
+**后续改动重启**：
+
+```bash
+# 改了 gateway（前端 UI）
+docker compose up -d --build gateway
+
+# 改了 work-server（TypeScript 后端 / assets/）
+docker compose up -d --build work-server
+
+# 改了 .pi/skills/（Skill SKILL.md 或 .py）
+docker compose restart work-server   # 或等 60s 自动生效
+
+# 停止（数据不丢失）
+docker compose down
+
+# 查看日志
+docker compose logs -f work-server   # Bot / Agent 日志
+docker compose logs -f gateway       # Web 控制台日志
+```
+
+### 7.2 裸机开发（不推荐，缺失 Python 运行环境）
+
 ```bash
 bun install
 cp .env.example packages/gateway/.env.local
