@@ -103,7 +103,6 @@ export function LoginView() {
 
       toast.success("绑定成功");
       router.push("/dashboard?autostart=1");
-      router.refresh();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "操作失败，请重试");
     } finally {
