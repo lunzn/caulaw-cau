@@ -100,8 +100,9 @@ export async function quickImageReply(
   if (isComplexQuery(text)) return false;
 
   for (const rule of RULES) {
-    // 教师身份不发课程表图片（教师课表是文字，在 service.ts 已注入指令）
-    if (rule.asset === "course-schedule.png" && identity?.role === "teacher") {
+    // 课程表图片只发给明确绑定为学生的用户；
+    // 教师或未绑定用户（identity 为 null）均跳过，交 AI 输出文字课表。
+    if (rule.asset === "course-schedule.png" && identity?.role !== "student") {
       continue;
     }
 
