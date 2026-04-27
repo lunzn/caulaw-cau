@@ -1060,7 +1060,7 @@ docker compose up -d --build school-server  # 改了教务仿真 API
 docker compose up -d --build               # 全量重建（不确定时用这个）
 ```
 
-**本次改动（2026-04-27）需要执行**：
+**本次改动（2026-04-27 早）需要执行**：
 
 ```bash
 # gateway：登录页 logo + 教师ID字段
@@ -1080,4 +1080,100 @@ docker compose ps
 #    并确认选教师后标签变为"教师ID"
 
 # 3. 在微信发"食堂"，应在 2s 内收到食堂营业时间图片（不再等 AI 回复）
+```
+
+---
+
+## §17 2026-04-28 改动汇总
+
+### 17.1 Bug 修复
+
+#### 17.1.1 登录后 QR 码不自动出现（`login-view.tsx`）
+
+**问题**：`onBind` 函数在 `router.push("/dashboard?autostart=1")` 后紧接调用 `router.refresh()`，导致服务端组件重新执行，检测到已登录用户后调用 `redirect("/dashboard")`（不含 `?autostart=1`），覆盖了前面的导航，Dashboard 无法触发自动扫码。
+
+**修复**：删除 `onBind` 末尾的 `router.refresh()` 调用。
+
+**文件**：`packages/gateway/app/login-view.tsx`
+
+---
+
+#### 17.1.2 教师发"课程表"收到图片而非文字（`service.ts` + `quick-image-reply.ts`）
+
+**问题**：`handleWechatMessage` 调用 `quickImageReply(bot, msg, raw)` 时未传入 `identity` 参数，导致 `quick-image-reply.ts` 内的教师身份守卫（`identity?.role === "teacher"`）永远不触发，教师仍然会收到学生课程表图片。
+
+**修复**：在调用 `quickImageReply` 前先 `await loadUserSchoolIdentity(userId)`，将结果作为第四个参数传入。
+
+**文件**：`packages/work-server/modules/agent/service.ts`
+
+---
+
+#### 17.1.3 新闻/公告/就业只输出 5 条（`quick-news-reply.ts`）
+
+**问题**：`formatItems` 默认 `limit = 5`。
+
+**修复**：改为 `limit = 10`，同步更新标题文字"最新 5 条" → "最新 10 条"。
+
+**文件**：`packages/work-server/lib/agent/quick-news-reply.ts`
+
+---
+
+### 17.2 功能增强
+
+#### 17.2.1 公告关键词扩展（`quick-news-reply.ts`）
+
+`HEADLINE_RE` 新增：`学校公告|官网公告|新闻公告|公告通知|最新公告`，用户发"公告"类词汇也能触发快速新闻回复。
+
+---
+
+#### 17.2.2 知名教授快速档案（`quick-professor-reply.ts` · 新文件）
+
+新增 `packages/work-server/lib/agent/quick-professor-reply.ts`，模式与 `quickNewsReply` / `quickImageReply` 一致：
+
+- 消息文本中检测到教授姓名 → **直接返回静态卡片，< 200ms，不经过 AI**
+- 复杂决策查询（含"导师/推荐/适合/比较"等词且长度 > 15）→ 跳过，交 AI 处理
+
+当前收录：
+
+| 教授 | 职务 | 院系 |
+|------|------|------|
+| 林万龙 | 中国农业大学副校长 | 经济管理学院·农业经济系 |
+| 任金政 | 经济管理学院副院长 | 经济管理学院·会计系 |
+
+档案数据来源：官网抓取 HTML（`参观资料/`，本地保留，不入 git）。
+
+挂载位置（`service.ts`）：
+
+```typescript
+// 快速教授档案回复：林万龙/任金政等 → 直接输出静态卡片，不走 AI
+if (msg.type === "text" && await quickProfessorReply(bot, msg, raw)) {
+  return;
+}
+```
+
+---
+
+#### 17.2.3 DEFAULT_SYSTEM 静态缓存（`service.ts`）
+
+在 `DEFAULT_SYSTEM` 末尾新增「知名教授静态档案」块，作为 AI 回答的兜底知识（当 `quickProfessorReply` 跳过复杂查询时，AI 可从此处直接引用，无需调 API）。
+
+包含：电话、邮箱、研究方向、代表性科研项目、论文数量与收录情况、获奖荣誉、工作经历。
+
+---
+
+### 17.3 更新后 Docker 命令
+
+```bash
+# 本次只涉及 work-server（TypeScript 改动）
+docker compose up -d --build work-server
+
+# school-server 种子数据修正（G001→T904, G003→T008; T002/T003/T004 补港澳论文; 移除 T910/T911）
+docker compose up -d --build school-server
+```
+
+**验证**：
+```bash
+# 教师发"课程表" → 应收到文字课表，而非图片
+# 任意用户发"林万龙" → 应在 1s 内收到静态卡片（无 AI 等待）
+# 任意用户发"公告" → 应在 1s 内收到最新 10 条头条新闻
 ```
