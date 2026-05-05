@@ -50,15 +50,10 @@ type Rule = {
   fallbackText: string;
 };
 
+// 课程表是个人数据（每人不同、按周过滤），必须由 AI 实时查询 school-server，
+// 不能使用静态图片，因此此处不设规则，直接交由 AI 处理。
+
 const RULES: Rule[] = [
-  {
-    // 课程表：仅匹配明确课程表查询，不含泛化的"上课"（避免与校医院冲突）
-    patterns: [
-      /课[程表]|课表|这周.*课|本周.*课|我的课|今天.*课|明天.*课/,
-    ],
-    asset: "course-schedule.png",
-    fallbackText: "课程表图片暂时无法加载，请稍后重试。",
-  },
   {
     patterns: [
       /食堂|吃饭|开饭|营业|几点.*饭|饭.*几点|饮食|伙食/,

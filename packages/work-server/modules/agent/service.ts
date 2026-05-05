@@ -799,8 +799,8 @@ export class AgentService {
 
     void recordContact(userId, msg.userId);
 
-    // 快速模式匹配：课程表/食堂/校医院/班车 → 直接发图，2s 内完成，不走 AI
-    // 教师身份需提前加载，以便跳过课程表图片（教师用文字课表）
+    // 快速模式匹配：食堂/校医院/班车 → 直接发图，2s 内完成，不走 AI
+    // 课程表不在此处处理（个人数据，由 AI 查询 school-server 实时返回）
     const identity = await loadUserSchoolIdentity(userId);
     if (msg.type === "text" && await quickImageReply(bot, msg, raw, identity)) {
       return;
