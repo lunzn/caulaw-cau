@@ -171,11 +171,16 @@ export function DashboardView({
     if (searchParams.get("autostart") !== "1") return;
     if (botLoading) return; // 等待初始状态加载完成
     const status = bot?.status ?? "idle";
-    if (status !== "idle") return; // 已在连接中或已上线，不重复触发
     autoStartFiredRef.current = true;
     // 清除 URL 参数，避免刷新重复触发
     router.replace("/dashboard");
-    void startBot();
+    if (status === "idle") {
+      void startBot();
+    } else if (status === "waiting_scan" && bot?.qrUrl) {
+      // Bot 已在等待扫码（例如上次未完成），直接弹出二维码
+      tryOpenQrTab(bot.qrUrl);
+    }
+    // online / error：已有状态，无需重复触发
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [botLoading, bot?.status, searchParams]);
 
@@ -197,8 +202,6 @@ export function DashboardView({
   /** 本页打开的微信登录标签，便于登录结束或流程结束时 close */
   const qrLoginTabRef = useRef<Window | null>(null);
 
-  const autoOpenedTabForUrl = useRef<string | undefined>(undefined);
-
   function openQrTab(url: string): Window | null {
     try {
       qrLoginTabRef.current?.close();
@@ -219,22 +222,13 @@ export function DashboardView({
     return w;
   }
 
-  useEffect(() => {
-    if (bot?.status !== "waiting_scan" || !bot.qrUrl) return;
-    if (isQrImageUrl(bot.qrUrl)) return;
-    if (autoOpenedTabForUrl.current === bot.qrUrl) return;
-    autoOpenedTabForUrl.current = bot.qrUrl;
-    const w = openQrTab(bot.qrUrl);
+  function tryOpenQrTab(url: string): void {
+    if (isQrImageUrl(url)) return;
+    const w = openQrTab(url);
     if (!w || w.closed) {
       toast.message("新标签页可能被浏览器拦截，请在弹窗内点击「在新标签页打开」");
     }
-  }, [bot?.status, bot?.qrUrl]);
-
-  useEffect(() => {
-    if (bot?.status !== "waiting_scan") {
-      autoOpenedTabForUrl.current = undefined;
-    }
-  }, [bot?.status]);
+  }
 
   /** 二维码阶段结束（含登录成功、出错、断开）时关闭自动打开的标签 */
   useEffect(() => {
@@ -283,7 +277,10 @@ export function DashboardView({
       while (Date.now() < deadline) {
         const b = await fetchBotStatus();
         if (!b) break;
-        if (b.status === "waiting_scan" && b.qrUrl) return;
+        if (b.status === "waiting_scan" && b.qrUrl) {
+          tryOpenQrTab(b.qrUrl);
+          return;
+        }
         if (b.status === "online" || b.status === "error") return;
         await new Promise((r) => setTimeout(r, intervalMs));
       }
