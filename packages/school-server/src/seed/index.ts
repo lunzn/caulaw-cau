@@ -57,6 +57,37 @@ export function seedDatabase(): void {
     { id: "T903", name: "王建国", email: "wangjg@cau.edu.cn",  department: "信息与电气工程学院", title: "讲师",  campus: "东校区", research_areas: "程序设计,软件工程,系统开发", office: "信电楼218" },
     { id: "T904", name: "赵明远", email: "zhaomy@cau.edu.cn",  department: "理学院",            title: "教授",  campus: "东校区", research_areas: "数值分析,优化算法,数学建模", office: "理学院205" },
     { id: "T905", name: "刘芳芳", email: "liuff@cau.edu.cn",   department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "计算机视觉,图像处理,模式识别", office: "信电楼214" },
+    // ── 2025-2026春季本科课程教师 T950-T979 ──────────────────────────────────
+    { id: "T950", name: "王晨",   email: "wangc@cau.edu.cn",    department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "计算机图形学,三维重建,渲染技术", office: "信电楼225" },
+    { id: "T951", name: "黄岚",   email: "huangl@cau.edu.cn",   department: "信息与电气工程学院", title: "教授",   campus: "东校区", research_areas: "计算机组成原理,体系结构,数字电路", office: "信电楼218" },
+    { id: "T952", name: "王庆",   email: "wangq@cau.edu.cn",    department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "数据库系统,数据工程,分布式存储", office: "信电楼326" },
+    { id: "T953", name: "陈雷",   email: "chenl@cau.edu.cn",    department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "数据库系统,SQL优化,大数据", office: "信电楼328" },
+    { id: "T954", name: "杨颖",   email: "yangy@cau.edu.cn",    department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "离散数学,图论,组合数学", office: "信电楼122" },
+    { id: "T955", name: "彭波",   email: "pengb@cau.edu.cn",    department: "信息与电气工程学院", title: "教授",   campus: "东校区", research_areas: "算法设计,计算复杂性,组合优化", office: "信电楼318" },
+    { id: "T956", name: "陶莎",   email: "taos@cau.edu.cn",     department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "Python程序设计,数据科学,机器学习应用", office: "信电楼226" },
+    { id: "T957", name: "程新荣", email: "chengxr@cau.edu.cn",  department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "Python程序设计,软件开发,算法", office: "信电楼228" },
+    { id: "T958", name: "付学谦", email: "fuxq@cau.edu.cn",     department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "统计机器学习,贝叶斯推断,数据挖掘", office: "信电楼321" },
+    { id: "T959", name: "史银雪", email: "shiyx@cau.edu.cn",    department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "编译原理,程序分析,编程语言理论", office: "信电楼219" },
+    { id: "T960", name: "刘武根", email: "liuwg@cau.edu.cn",    department: "马克思主义学院",     title: "教授",   campus: "东校区", research_areas: "中国特色社会主义理论,思想政治教育", office: "人文楼215" },
+    { id: "T961", name: "张玲玲", email: "zhangll@cau.edu.cn",  department: "马克思主义学院",     title: "副教授", campus: "东校区", research_areas: "思想政治教育,马克思主义理论", office: "人文楼218" },
+    { id: "T962", name: "张亚东", email: "zhangyd@cau.edu.cn",  department: "马克思主义学院",     title: "副教授", campus: "东校区", research_areas: "思想政治教育,党史党建", office: "人文楼220" },
+    { id: "T963", name: "张银",   email: "zhangyin@cau.edu.cn", department: "马克思主义学院",     title: "副教授", campus: "东校区", research_areas: "形势与政策,时事政治", office: "人文楼212" },
+    { id: "T964", name: "卢兆彤", email: "luzt@cau.edu.cn",     department: "马克思主义学院",     title: "副研究员", campus: "东校区", research_areas: "社会科学,形势与政策", office: "人文楼214" },
+    { id: "T965", name: "傅成",   email: "fucheng@cau.edu.cn",  department: "信息与电气工程学院", title: "教授",   campus: "东校区", research_areas: "离散数学,组合数学,图论算法", office: "信电楼124" },
+    { id: "T966", name: "王帅",   email: "wangshuai@cau.edu.cn",department: "体育部",             title: "讲师",   campus: "东校区", research_areas: "羽毛球,球类运动", office: "体育部办公楼" },
+    { id: "T967", name: "张晖",   email: "zangh@cau.edu.cn",    department: "体育部",             title: "副教授", campus: "东校区", research_areas: "田径,运动训练", office: "体育部办公楼" },
+    { id: "T968", name: "郭大海", email: "guodh@cau.edu.cn",    department: "体育部",             title: "副教授", campus: "东校区", research_areas: "网球,体育教学", office: "体育部办公楼" },
+    { id: "T969", name: "李世豪", email: "lish@cau.edu.cn",     department: "体育部",             title: "讲师",   campus: "东校区", research_areas: "轮滑,冰雪运动", office: "体育部办公楼" },
+    { id: "T970", name: "张旗",   email: "zhangqi@cau.edu.cn",  department: "体育部",             title: "副教授", campus: "东校区", research_areas: "武术,民族传统体育", office: "体育部办公楼" },
+    { id: "T971", name: "许晶",   email: "xujing@cau.edu.cn",   department: "体育部",             title: "副教授", campus: "东校区", research_areas: "体质健康,田径", office: "体育部办公楼" },
+    { id: "T972", name: "刘文浩", email: "liuwh@cau.edu.cn",    department: "体育部",             title: "副教授", campus: "东校区", research_areas: "乒乓球,球类运动教学", office: "体育部办公楼" },
+    { id: "T973", name: "贺忠亮", email: "hezl@cau.edu.cn",     department: "体育部",             title: "讲师",   campus: "东校区", research_areas: "民族传统体育,花炮", office: "体育部办公楼" },
+    { id: "T974", name: "庄立勇", email: "zhuangly@cau.edu.cn", department: "外语学院",           title: "讲师",   campus: "东校区", research_areas: "英语语音学,英语教学", office: "语言楼315" },
+    { id: "T975", name: "乔杰",   email: "qiaoj@cau.edu.cn",    department: "外语学院",           title: "讲师",   campus: "东校区", research_areas: "英语读写,英语教学", office: "语言楼318" },
+    { id: "T976", name: "侯玉峰", email: "houyf@cau.edu.cn",    department: "人文与发展学院",     title: "副教授", campus: "东校区", research_areas: "摄影艺术,美学,视觉传播", office: "人文楼312" },
+    { id: "T977", name: "刘子瑜", email: "liuzy@cau.edu.cn",    department: "图书馆",             title: "副研究馆员", campus: "东校区", research_areas: "学术写作,沟通表达,信息素养", office: "图书馆315" },
+    { id: "T978", name: "王耀君", email: "wangyj@cau.edu.cn",   department: "信息与电气工程学院", title: "副教授", campus: "东校区", research_areas: "编译原理,程序语言,虚拟机设计", office: "信电楼221" },
+    { id: "T979", name: "李珊",   email: "lishan@cau.edu.cn",   department: "信息与电气工程学院", title: "讲师",   campus: "东校区", research_areas: "编译原理,静态分析", office: "信电楼215" },
   ];
   for (const t of teachers) {
     db.run(`INSERT INTO teachers (id,name,email,department,title,campus,research_areas,office) VALUES (?,?,?,?,?,?,?,?)`,
@@ -79,12 +110,24 @@ export function seedDatabase(): void {
     { id: "Y20241082002", student_number: "Y20241082002", name: "孙昊然", email: "sunhr@cau.edu.cn",   type: "undergraduate", major: "电子信息工程",    grade: 1, campus: "东校区", dorm: "东2-102" },
     { id: "Y20231082003", student_number: "Y20231082003", name: "周文静", email: "zhouwj@cau.edu.cn",  type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-203" },
     { id: "Y20221082004", student_number: "Y20221082004", name: "郑浩宇", email: "zhenghy@cau.edu.cn", type: "undergraduate", major: "电子信息工程",    grade: 3, campus: "东校区", dorm: "东1-205" },
+    // ── 2025-2026春季内测用户（10位大二本科生，计算机科学与技术）──────────────
+    // 姓名已脱敏为"姓+同学"，学号为真实学号（无前缀格式）
+    { id: "2024308250107", student_number: "2024308250107", name: "周同学", email: "2024308250107@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-101" },
+    { id: "2024307150818", student_number: "2024307150818", name: "张同学", email: "2024307150818@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-102" },
+    { id: "2024308250121", student_number: "2024308250121", name: "郭同学", email: "2024308250121@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-103" },
+    { id: "2024308250214", student_number: "2024308250214", name: "王同学", email: "2024308250214@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-104" },
+    { id: "2024308250127", student_number: "2024308250127", name: "张同学", email: "2024308250127@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-105" },
+    { id: "2024311320225", student_number: "2024311320225", name: "王同学", email: "2024311320225@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-106" },
+    { id: "2024304010214", student_number: "2024304010214", name: "吕同学", email: "2024304010214@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-107" },
+    { id: "2024308250106", student_number: "2024308250106", name: "成同学", email: "2024308250106@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-108" },
+    { id: "2024308250217", student_number: "2024308250217", name: "李同学", email: "2024308250217@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-109" },
+    { id: "2024308250219", student_number: "2024308250219", name: "熊同学", email: "2024308250219@cau.edu.cn", type: "undergraduate", major: "计算机科学与技术", grade: 2, campus: "东校区", dorm: "东3-110" },
   ];
   for (const s of students) {
     db.run(`INSERT INTO students (id,name,email,student_number,type,major,grade,campus,dorm) VALUES (?,?,?,?,?,?,?,?,?)`,
       [s.id, s.name, s.email, s.student_number, s.type, s.major, s.grade, s.campus, s.dorm]);
   }
-  console.log(`学生: ${students.length} 人（本科 6 人，研究生 4 人）`);
+  console.log(`学生: ${students.length} 人（含10位内测大二学生）`);
 
   // ── 课程 ──────────────────────────────────────────────────────────────────
   // 时间槽：8:00-10:00 / 10:10-12:00 / 14:00-16:00 / 16:10-18:00 / 19:00-21:00 / 21:10-23:00
@@ -170,10 +213,120 @@ export function seedDatabase(): void {
       schedule: "周四 10:00-12:00", location: "资环楼201", course_type: "graduate" },
   ];
 
+  // ── 2025-2026春季本科课程（大二计算机，NB 前缀）────────────────────────────
+  // 学期：2026年3月2日（第1周周一）至约7月
+  // 校历周次说明：第1周=2026-03-02，第10周=2026-05-04（今天）
+  const sem2 = "2025-2026春季";
+  const springUgCourses = [
+    // 公共专业课
+    { id: "NB01", name: "计算机图形学",              code: "24308936", teacher: "T950", credit: 2,
+      schedule: "周一 08:00-09:50（第1-12周）  周四 16:10-18:00（第1-12周）",
+      location: "信电楼-125", course_type: "undergraduate" },
+    { id: "NB02", name: "计算机组成原理（03班）",    code: "33308059-03", teacher: "T951", credit: 4,
+      schedule: "周一/周三 10:10-12:00（第2-9周）  周三 14:00-18:00实验（第4-11周）",
+      location: "信电楼-108（实验：信电楼-实验室）", course_type: "undergraduate" },
+    { id: "NB03", name: "计算机组成原理（02班）",    code: "33308059-02", teacher: "T959", credit: 4,
+      schedule: "周一/周三 10:10-12:00（第2-9周）  周一 19:00-22:30实验（第2-9周）",
+      location: "信电楼-131（实验：信电楼-实验室）", course_type: "undergraduate" },
+    { id: "NB04", name: "数据库原理与实践",          code: "23308956-02", teacher: "T952", credit: 3,
+      schedule: "周四 10:10-12:00（第1-16周）  周二 16:10-18:00（第1-16周）",
+      location: "信电楼-125", course_type: "undergraduate" },
+    { id: "NB05", name: "离散数学II（02班）",        code: "23308940-02", teacher: "T954", credit: 3,
+      schedule: "周五 10:10-12:00（第1-16周）",
+      location: "信电楼-125", course_type: "undergraduate" },
+    { id: "NB06", name: "离散数学II（03班）",        code: "23308940-03", teacher: "T954", credit: 3,
+      schedule: "周二 10:10-12:00（第1-16周）",
+      location: "信电楼-125", course_type: "undergraduate" },
+    { id: "NB07", name: "离散数学II（01班）",        code: "23308940-01", teacher: "T965", credit: 3,
+      schedule: "周五 10:10-12:00（第1-16周）",
+      location: "信电楼-102", course_type: "undergraduate" },
+    // 政治公共课
+    { id: "NB08", name: "形势与政策（98班）",        code: "52213001-98", teacher: "T963", credit: 1,
+      schedule: "周一 14:00-15:50（第13-16周）",
+      location: "三教-405", course_type: "undergraduate" },
+    { id: "NB09", name: "形势与政策（65班）",        code: "52213001-65", teacher: "T963", credit: 1,
+      schedule: "周四 14:00-15:50（第13-16周）",
+      location: "三教-212", course_type: "undergraduate" },
+    { id: "NB10", name: "毛泽东思想和中国特色社会主义理论体系概论（76班）", code: "52313018-76", teacher: "T960", credit: 3,
+      schedule: "周二 14:00-15:50（第1-12周）  周四 14:00-15:50（第1-12周）",
+      location: "二教-221", course_type: "undergraduate" },
+    { id: "NB11", name: "毛泽东思想和中国特色社会主义理论体系概论（25班）", code: "52313018-25", teacher: "T961", credit: 3,
+      schedule: "周二 08:00-09:50（第1-12周）  周四 14:00-15:50（第1-12周）",
+      location: "三教-522", course_type: "undergraduate" },
+    { id: "NB12", name: "毛泽东思想和中国特色社会主义理论体系概论（49班）", code: "52313018-49", teacher: "T961", credit: 3,
+      schedule: "周二 14:00-15:50（第1-12周）  周四 16:10-18:00（第1-12周）",
+      location: "三教-305", course_type: "undergraduate" },
+    { id: "NB13", name: "毛泽东思想和中国特色社会主义理论体系概论（44班）", code: "52313018-44", teacher: "T962", credit: 3,
+      schedule: "周二 08:00-09:50（第1-12周）  周四 14:00-15:50（第1-12周）",
+      location: "三教-504", course_type: "undergraduate" },
+    // 专业课
+    { id: "NB14", name: "算法设计与分析（02班）",    code: "24308945-02", teacher: "T955", credit: 3,
+      schedule: "周五 14:00-15:50（第1-12周）  周五 16:10-18:00（第1-12周）",
+      location: "信电楼-125（上机：计算中心-301-2）", course_type: "undergraduate" },
+    { id: "NB15", name: "算法设计与分析（01班）",    code: "24308945-01", teacher: "T955", credit: 3,
+      schedule: "周一 14:00-15:50（第1-12周）  周一 16:10-18:00（第1-12周）",
+      location: "信电楼-109（上机：计算中心-201）", course_type: "undergraduate" },
+    { id: "NB16", name: "Python程序设计（88班）",    code: "24308006-88", teacher: "T956", credit: 2,
+      schedule: "周一 19:00-22:30（第1-8周）",
+      location: "计算中心-301-2", course_type: "undergraduate" },
+    { id: "NB17", name: "Python程序设计（85班）",    code: "24308006-85", teacher: "T957", credit: 2,
+      schedule: "周一 19:00-22:30（第1-8周）",
+      location: "计算中心-303", course_type: "undergraduate" },
+    { id: "NB18", name: "统计机器学习",              code: "34308081-85", teacher: "T958", credit: 3,
+      schedule: "周三 08:00-09:50（第1-4周）  周一 14:00-15:50（第1-4周）  周一 14:00-18:00实验（第5-6周）",
+      location: "信电楼-125（实验：信电楼-实验室）", course_type: "undergraduate" },
+    { id: "NB19", name: "编译原理",                  code: "33308905-01", teacher: "T959", credit: 4,
+      schedule: "周五 08:00-09:50（第1-16周）  周四 10:10-12:00（第1-16周）",
+      location: "信电楼-125（上机：计算中心-303）", course_type: "undergraduate" },
+    // 体育类
+    { id: "NB20", name: "羽毛球俱乐部",              code: "632316012-02", teacher: "T966", credit: 1,
+      schedule: "周一 16:10-18:00（第1-17周）",
+      location: "奥运馆主馆-羽毛球场地", course_type: "undergraduate" },
+    { id: "NB21", name: "田径俱乐部",                code: "632316015-01", teacher: "T967", credit: 1,
+      schedule: "周六 14:00-15:50（第1-17周）",
+      location: "体育场地-田径场南侧", course_type: "undergraduate" },
+    { id: "NB22", name: "网球俱乐部",                code: "632316011-01", teacher: "T968", credit: 1,
+      schedule: "周一 19:00-20:50（第1-17周）",
+      location: "1号学生公寓北侧网球场", course_type: "undergraduate" },
+    { id: "NB23", name: "轮滑基础",                  code: "52316022-01", teacher: "T969", credit: 1,
+      schedule: "周一 08:00-09:50（第1-17周）",
+      location: "1号公寓北侧-篮球场03", course_type: "undergraduate" },
+    { id: "NB24", name: "体质健康标准达标课程",      code: "22316025-22", teacher: "T971", credit: 1,
+      schedule: "周五 08:00-09:50（第1-8周）",
+      location: "体育场地-田径场南侧", course_type: "undergraduate" },
+    { id: "NB25", name: "武术散手",                  code: "12316039-02", teacher: "T970", credit: 1,
+      schedule: "周一 14:00-15:50（第1-17周）",
+      location: "奥运副馆-B016", course_type: "undergraduate" },
+    { id: "NB26", name: "乒乓球基础",                code: "12316009-02", teacher: "T972", credit: 1,
+      schedule: "周一 16:10-18:00（第1-17周）",
+      location: "奥运副馆-乒乓球场地", course_type: "undergraduate" },
+    { id: "NB27", name: "花炮",                      code: "12316059-01", teacher: "T973", credit: 1,
+      schedule: "周二 10:10-12:00（第1-17周）",
+      location: "体育场地-田径场南侧", course_type: "undergraduate" },
+    // 语言类
+    { id: "NB28", name: "英语语音",                  code: "52312007-03", teacher: "T974", credit: 2,
+      schedule: "周二 14:00-15:50（第1-16周）",
+      location: "二教-316", course_type: "undergraduate" },
+    { id: "NB29", name: "英语读写（高）",             code: "52312003-09", teacher: "T975", credit: 2,
+      schedule: "周二 10:10-12:00（第1-16周）",
+      location: "一教-219", course_type: "undergraduate" },
+    { id: "NB30", name: "沟通与写作",                code: "51223002-04", teacher: "T977", credit: 2,
+      schedule: "周六 08:00-12:00（第2-10、12、14周）",
+      location: "一教-205", course_type: "undergraduate" },
+    // 艺术类
+    { id: "NB31", name: "初级摄影——美学赏析与实践",  code: "51312021-91", teacher: "T976", credit: 1,
+      schedule: "周四 19:00-21:50（第2-3、5-12周）",
+      location: "一教-214", course_type: "undergraduate" },
+  ];
+
   const allCourses = [...ugCourses, ...gradCourses];
   for (const c of allCourses) {
     db.run(`INSERT INTO courses (id,name,code,teacher_id,semester,credit,schedule,location,course_type) VALUES (?,?,?,?,?,?,?,?,?)`,
       [c.id, c.name, c.code, c.teacher, sem, c.credit, c.schedule, c.location, c.course_type]);
+  }
+  for (const c of springUgCourses) {
+    db.run(`INSERT INTO courses (id,name,code,teacher_id,semester,credit,schedule,location,course_type) VALUES (?,?,?,?,?,?,?,?,?)`,
+      [c.id, c.name, c.code, c.teacher, sem2, c.credit, c.schedule, c.location, c.course_type]);
   }
 
   // 选课：按年级分配
@@ -202,9 +355,31 @@ export function seedDatabase(): void {
   enroll("S20213082001", ["G003","G005"]);                       // 王明阳 四年级（博士）
   enroll("S20213082006", ["G002","G004"]);                       // 刘思远 四年级（博士）
 
-  console.log(`课程: ${allCourses.length} 门（本科 ${ugCourses.length}，研究生 ${gradCourses.length}）`);
+  // 10位内测学生春季选课（按个人课表 XLS 数据精确对应）
+  // 周同学 2024308250107（计算机241）
+  enroll("2024308250107", ["NB01","NB02","NB04","NB05","NB08","NB10","NB14","NB16","NB20"]);
+  // 张同学 2024307150818（计算机241）
+  enroll("2024307150818", ["NB01","NB02","NB04","NB06","NB08","NB11","NB14","NB17","NB18","NB19","NB21","NB31"]);
+  // 郭同学 2024308250121（计算机241）
+  enroll("2024308250121", ["NB01","NB02","NB04","NB06","NB08","NB10","NB15","NB17","NB22"]);
+  // 王同学 2024308250214（计算机241）
+  enroll("2024308250214", ["NB02","NB04","NB05","NB08","NB12","NB14","NB16","NB18","NB24"]);
+  // 张同学 2024308250127（计算机241）
+  enroll("2024308250127", ["NB02","NB04","NB05","NB08","NB10","NB14","NB17","NB18","NB23"]);
+  // 王同学 2024311320225（计算机241）
+  enroll("2024311320225", ["NB01","NB02","NB04","NB05","NB09","NB13","NB14","NB16","NB25","NB28"]);
+  // 吕同学 2024304010214（计算机241）
+  enroll("2024304010214", ["NB02","NB04","NB07","NB08","NB13","NB14","NB16","NB18"]);
+  // 成同学 2024308250106（计算机241）
+  enroll("2024308250106", ["NB01","NB02","NB04","NB05","NB08","NB10","NB14","NB16","NB18","NB27","NB31"]);
+  // 李同学 2024308250217（计算机242）
+  enroll("2024308250217", ["NB01","NB03","NB04","NB05","NB08","NB10","NB14","NB16","NB30"]);
+  // 熊同学 2024308250219（计算机242）
+  enroll("2024308250219", ["NB01","NB03","NB04","NB05","NB08","NB10","NB14","NB16","NB26","NB29"]);
 
-  // ── 作业 ──────────────────────────────────────────────────────────────────
+  console.log(`课程: ${allCourses.length + springUgCourses.length} 门（本科 ${ugCourses.length + springUgCourses.length}，研究生 ${gradCourses.length}）`);
+
+  // ── 作业（模拟数据：题目、截止日期均为演示用，非真实教务系统数据）──────────
   const assignmentTemplates: Record<string, { title: string; desc: string; offset: number }[]> = {
     "C001": [
       { title: "第一章习题", desc: "完成高等数学A第一章课后题1-20题，手写拍照提交", offset: -14 },
@@ -245,6 +420,41 @@ export function seedDatabase(): void {
       { title: "马尔可夫链习题", desc: "完成随机过程第二章马尔可夫链课后题1-8", offset: -6 },
       { title: "泊松过程分析", desc: "分析泊松过程在排队论中的应用，提交分析报告", offset: 4 },
     ],
+    // 春季本科课程作业
+    "NB01": [
+      { title: "渲染管线实现报告", desc: "用OpenGL实现基础光照渲染管线，包含漫反射、镜面反射和环境光，提交源码和截图", offset: 6 },
+      { title: "纹理映射实验", desc: "实现UV纹理映射和MipMap，分析不同滤波方式对渲染质量的影响", offset: 14 },
+    ],
+    "NB02": [
+      { title: "数字逻辑设计作业", desc: "完成组合逻辑与时序逻辑课后题1-20，要求画出逻辑图和时序图", offset: 3 },
+      { title: "流水线CPU设计报告", desc: "在实验平台上实现五级流水线RISC-V处理器，分析数据冒险与控制冒险处理策略", offset: 11 },
+      { title: "Cache性能分析", desc: "通过实验测量Cache缺失率，分析不同Cache策略对程序性能的影响，提交分析报告", offset: 18 },
+    ],
+    "NB04": [
+      { title: "SQL查询实验", desc: "完成图书管理数据库的ER图设计并建表，用SQL实现10条查询语句（含聚合、子查询、连接）", offset: 4 },
+      { title: "事务与并发控制实验", desc: "分析MVCC机制在不同隔离级别下的行为，提交实验报告和SQL脚本", offset: 12 },
+    ],
+    "NB05": [
+      { title: "图论证明题", desc: "完成离散数学第六章图论课后习题，重点证明欧拉路径存在性定理", offset: 5 },
+      { title: "组合计数作业", desc: "完成排列组合与生成函数课后题，要求给出完整推导过程", offset: 13 },
+    ],
+    "NB14": [
+      { title: "贪心算法设计", desc: "设计并实现最优装载问题的贪心算法，分析时间复杂度，提交代码和复杂度分析报告", offset: 5 },
+      { title: "动态规划作业", desc: "用动态规划求解最长公共子序列和背包问题，提交代码、状态转移方程推导和测试结果", offset: 9 },
+      { title: "NP完全性分析", desc: "选取一个NP完全问题，证明其属于NPC，并给出近似算法设计，提交LaTeX文档", offset: 16 },
+    ],
+    "NB16": [
+      { title: "NumPy数据分析作业", desc: "用NumPy对给定数据集进行统计分析和可视化，提交Jupyter Notebook（.ipynb格式）", offset: 4 },
+      { title: "Python爬虫小项目", desc: "爬取指定网站数据并存入SQLite，用Pandas分析并输出可视化图表，提交完整代码", offset: 8 },
+    ],
+    "NB18": [
+      { title: "线性分类器推导作业", desc: "手推感知机和Logistic回归的梯度更新公式，分析收敛条件，提交手写扫描件", offset: 5 },
+      { title: "SVM核函数实验", desc: "用scikit-learn实现线性SVM和RBF核SVM，比较不同数据集下的分类效果，提交Notebook", offset: 10 },
+    ],
+    "NB19": [
+      { title: "词法分析器实现", desc: "用Flex/手写实现C语言词法分析器，通过所有给定测试用例，提交源码和测试报告", offset: 7 },
+      { title: "语法分析器实现", desc: "用LL(1)或LR(1)方法实现语法分析器，能正确解析给定文法，提交源码和First/Follow集分析", offset: 14 },
+    ],
   };
 
   let aCount = 0;
@@ -256,9 +466,9 @@ export function seedDatabase(): void {
       aCount++;
     }
   }
-  // 其余课程生成通用作业
+  // 其余课程生成通用作业（含春季课程）
   const coveredCourses = new Set(Object.keys(assignmentTemplates));
-  for (const c of allCourses) {
+  for (const c of [...allCourses, ...springUgCourses]) {
     if (coveredCourses.has(c.id)) continue;
     const aId = id();
     db.run(`INSERT INTO assignments (id,course_id,title,description,deadline,max_score) VALUES (?,?,?,?,?,100)`,
@@ -568,12 +778,24 @@ export function seedDatabase(): void {
     "Y20241082002": [190.00, 35.00],
     "Y20231082003": [78.60,  15.00],
     "Y20221082004": [445.70, 78.00],
+    // 内测大二学生
+    "2024308250107": [342.50, 45.00],
+    "2024307150818": [218.30, 30.00],
+    "2024308250121": [476.80, 60.00],
+    "2024308250214": [155.20, 25.00],
+    "2024308250127": [388.90, 50.00],
+    "2024311320225": [261.40, 35.00],
+    "2024304010214": [94.70,  15.00],
+    "2024308250106": [512.00, 75.00],
+    "2024308250217": [183.60, 28.00],
+    "2024308250219": [427.30, 55.00],
   };
+  // 校园卡余额为模拟数据，非真实一卡通余额
   for (const s of students) {
     const [bal, net] = balances[s.id] ?? [200, 50];
     db.run(`INSERT INTO campus_cards (student_id,balance,net_balance) VALUES (?,?,?)`, [s.id, bal, net]);
   }
-  console.log(`校园卡: ${students.length} 张`);
+  console.log(`校园卡: ${students.length} 张（余额为模拟数据）`);
 
   // ── 报修工单 ──────────────────────────────────────────────────────────────
   const repairs = [

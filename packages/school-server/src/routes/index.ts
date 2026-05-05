@@ -10,6 +10,7 @@ import { campusCardRoutes } from "./campus-card";
 import { roomRoutes } from "./rooms";
 import { clinicRoutes } from "./clinic";
 import { teacherPortalRoutes } from "./teacher-portal";
+import { calendarRoutes } from "./calendar";
 
 export const setupRoutes = new Elysia({ prefix: "/api" })
   .use(teacherRoutes)
@@ -22,4 +23,5 @@ export const setupRoutes = new Elysia({ prefix: "/api" })
   .use(campusCardRoutes)
   .use(roomRoutes)
   .use(clinicRoutes)
-  .use(teacherPortalRoutes);
+  .use(teacherPortalRoutes)
+  .use(calendarRoutes);

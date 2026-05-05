@@ -8,6 +8,11 @@ import {
   deleteStudent,
   getCoursesByStudent,
 } from "../db";
+import {
+  getCurrentWeekInfo,
+  isScheduleActiveInWeek,
+  getActiveSessionsInWeek,
+} from "../lib/schedule-week";
 
 export const studentRoutes = new Elysia({ prefix: "/students" })
   // 获取所有学生（支持 ?limit=N&offset=M 分页，不传则返回全量）
@@ -51,13 +56,37 @@ export const studentRoutes = new Elysia({ prefix: "/students" })
     return { success: true, data: student };
   })
   // 获取学生的课程
-  .get("/:id/courses", ({ params: { id } }) => {
+  // ?all=true 返回全部已选课程；默认只返回当前周有效的课程
+  // 响应中每门课附加 active_sessions（本周有效时间段）和 current_week
+  .get("/:id/courses", ({ params: { id }, query }) => {
     const student = getStudentById(id);
     if (!student) {
       return { success: false, message: "学生不存在" };
     }
-    const courses = getCoursesByStudent(id);
-    return { success: true, data: courses };
+    const allCourses = getCoursesByStudent(id);
+    const weekInfo = getCurrentWeekInfo();
+    const returnAll = (query as Record<string, string>).all === "true";
+
+    if (!weekInfo || returnAll) {
+      // 学期外或明确要全部：附上 active_sessions 但不过滤
+      const data = allCourses.map((c) => ({
+        ...c,
+        active_sessions: c.schedule ?? "",
+        current_week: weekInfo?.week ?? null,
+      }));
+      return { success: true, data, current_week: weekInfo?.week ?? null };
+    }
+
+    const { week } = weekInfo;
+    const activeCourses = allCourses
+      .filter((c) => isScheduleActiveInWeek(c.schedule, week))
+      .map((c) => ({
+        ...c,
+        active_sessions: getActiveSessionsInWeek(c.schedule, week),
+        current_week: week,
+      }));
+
+    return { success: true, data: activeCourses, current_week: week };
   })
   // 删除学生
   .delete("/:id", ({ params: { id } }) => {
