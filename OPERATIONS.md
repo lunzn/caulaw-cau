@@ -300,7 +300,7 @@ docker compose logs work-server --tail=30
 # 重启单服务
 docker compose restart work-server
 
-# 进入容器
+# 进入容器（注意：服务名是 postgres，用户是 root，数据库是 postgres）
 docker compose exec postgres psql -U root postgres
 docker compose exec work-server sh
 
@@ -308,3 +308,31 @@ docker compose exec work-server sh
 docker system df
 docker image prune -f                   # 清理未使用镜像
 ```
+
+### 清理用户注册记录（手机号已注册无法重新注册）
+
+```bash
+docker compose exec postgres psql -U root -d postgres
+```
+
+进入 psql 后，将 `138XXXXXXXX` 替换为实际手机号执行：
+
+```sql
+-- 先确认是对的人
+SELECT id, name, username FROM "user" WHERE username = '138XXXXXXXX';
+
+-- 记下 id，替换下方 'USER_ID_HERE' 后执行删除
+BEGIN;
+DELETE FROM user_school_bindings WHERE user_id     = 'USER_ID_HERE';
+DELETE FROM wechat_bot_autostart   WHERE user_id     = 'USER_ID_HERE';
+DELETE FROM wechat_known_contacts  WHERE bot_user_id = 'USER_ID_HERE';
+DELETE FROM scheduled_tasks        WHERE user_id     = 'USER_ID_HERE';
+DELETE FROM reminders              WHERE user_id     = 'USER_ID_HERE';
+DELETE FROM session                WHERE user_id     = 'USER_ID_HERE';
+DELETE FROM account                WHERE user_id     = 'USER_ID_HERE';
+DELETE FROM verification           WHERE identifier  = '138XXXXXXXX';
+DELETE FROM "user"                 WHERE id          = 'USER_ID_HERE';
+COMMIT;
+```
+
+> **注意**：`wechat_known_contacts` 的关联字段是 `bot_user_id`，不是 `user_id`。
