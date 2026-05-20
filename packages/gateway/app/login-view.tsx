@@ -169,7 +169,7 @@ export function LoginView() {
     </Field>
   );
   const schoolIdLabel = role === "teacher" ? "教师ID" : "校园卡号";
-  const schoolIdPlaceholder = role === "teacher" ? "输入你的教师ID（如 T009）" : "输入你的校园卡号";
+  const schoolIdPlaceholder = role === "teacher" ? "输入你的教师ID（如 T001）" : "输入你的校园卡号";
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 sm:p-8">

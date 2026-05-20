@@ -2,6 +2,11 @@ import { Cron } from "croner";
 import { eq, and } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { reminders } from "@cau-claw/db/schema";
+import {
+  describeSendError,
+  queuePendingDelivery,
+  sendScheduledText,
+} from "@/lib/scheduled-delivery";
 
 export type ReminderHooks = {
   enqueue: (userId: string, task: () => Promise<void>) => void;
@@ -21,6 +26,7 @@ export type ReminderRow = {
   prompt: string;
   target_user_id: string;
   status: string;
+  last_error: string | null;
   created_at: string;
 };
 
@@ -33,6 +39,7 @@ function toReminderRow(r: typeof reminders.$inferSelect): ReminderRow {
     prompt: r.prompt,
     target_user_id: r.targetUserId,
     status: r.status,
+    last_error: r.lastError ?? null,
     created_at:
       r.createdAt instanceof Date
         ? r.createdAt.toISOString()
@@ -154,6 +161,22 @@ export class ReminderService {
     this.timers.set(row.id, job);
   }
 
+  /** 记录提醒的最终状态 */
+  private async markReminder(
+    id: number,
+    status: string,
+    error: string | null,
+  ): Promise<void> {
+    try {
+      await db
+        .update(reminders)
+        .set({ status, lastError: error })
+        .where(eq(reminders.id, id));
+    } catch (e) {
+      console.error(`[reminder:${id}] 记录状态失败`, e);
+    }
+  }
+
   private executeReminder(row: ReminderRow): void {
     const h = hooks;
     if (!h) {
@@ -165,27 +188,49 @@ export class ReminderService {
       const bot = botService.getBot(row.user_id);
       if (!bot || !botService.isOnline(row.user_id)) {
         console.warn(`[reminder:${row.id}] bot 不在线，标记过期`);
-        await db
-          .update(reminders)
-          .set({ status: "expired" })
-          .where(eq(reminders.id, row.id));
+        await this.markReminder(row.id, "expired", "微信 Bot 不在线");
         return;
       }
+
+      // 1. 生成内容
+      let textOut = "";
       try {
         const reply = await h.prompt(row.user_id, row.prompt);
-        const textOut = reply.trim();
-        if (textOut) {
-          await bot.send(row.target_user_id, textOut);
-        }
-        await db
-          .update(reminders)
-          .set({ status: "done" })
-          .where(eq(reminders.id, row.id));
-        console.log(
-          `[reminder:${row.id}] 已执行 → ${row.target_user_id}${textOut ? "（已发文本）" : "（无文本）"}`,
-        );
+        textOut = reply.trim();
       } catch (err) {
-        console.error(`[reminder:${row.id}] 执行失败:`, err);
+        const desc = describeSendError(err);
+        console.error(`[reminder:${row.id}] 生成内容失败:`, desc);
+        await this.markReminder(row.id, "failed", `生成内容失败：${desc}`);
+        return;
+      }
+
+      // 提醒为用户主动安排，即使无文本也视为已完成（可能仅做了别的动作）
+      if (!textOut) {
+        await this.markReminder(row.id, "done", null);
+        console.log(`[reminder:${row.id}] 已执行（无文本）`);
+        return;
+      }
+
+      // 2. 发送（带重试）
+      const result = await sendScheduledText(bot, row.target_user_id, textOut);
+      if (result.ok) {
+        await this.markReminder(row.id, "done", null);
+        console.log(
+          `[reminder:${row.id}] 已执行并发送 → ${row.target_user_id}`,
+        );
+      } else {
+        // 3. 推送失败 → 入队，等对方下次主动联系时补发
+        await queuePendingDelivery(
+          row.user_id,
+          row.target_user_id,
+          textOut,
+          "reminder",
+          row.id,
+        );
+        await this.markReminder(row.id, "queued", result.error);
+        console.warn(
+          `[reminder:${row.id}] 推送失败已入队补发：${result.error}`,
+        );
       }
     });
     this.timers.delete(row.id);

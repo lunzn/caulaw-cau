@@ -2,6 +2,14 @@ import { Cron, CronPattern } from "croner";
 import { eq, and } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { scheduledTasks } from "@cau-claw/db/schema";
+import {
+  describeSendError,
+  digestText,
+  isNoContentReply,
+  queuePendingDelivery,
+  sendScheduledText,
+  wrapCronPrompt,
+} from "@/lib/scheduled-delivery";
 
 /** 由入口注入，避免 cron 与 agent 模块循环依赖 */
 export type CronAgentHooks = {
@@ -26,7 +34,21 @@ export type CronTaskRow = {
   target_user_id: string;
   enabled: number;
   created_at: string;
+  /** 最近一次执行时间（ISO） */
+  last_run_at: string | null;
+  /** ok | skipped | queued | failed */
+  last_run_status: string | null;
+  /** 最近一次执行的错误信息（成功为 null） */
+  last_error: string | null;
+  /** 上次已推送内容的指纹（用于去重） */
+  last_digest: string | null;
 };
+
+function isoOrNull(v: unknown): string | null {
+  if (v instanceof Date) return v.toISOString();
+  if (typeof v === "string" && v) return v;
+  return null;
+}
 
 function toRow(
   r: typeof scheduledTasks.$inferSelect,
@@ -42,6 +64,10 @@ function toRow(
       r.createdAt instanceof Date
         ? r.createdAt.toISOString()
         : String(r.createdAt),
+    last_run_at: isoOrNull(r.lastRunAt),
+    last_run_status: r.lastRunStatus ?? null,
+    last_error: r.lastError ?? null,
+    last_digest: r.lastDigest ?? null,
   };
 }
 
@@ -167,6 +193,27 @@ export class CronService {
     return tr;
   }
 
+  /** 记录一次执行结果，供控制台展示与去重 */
+  private async recordRun(
+    taskId: number,
+    fields: { status: string; error?: string | null; digest?: string },
+  ): Promise<void> {
+    try {
+      const set: Partial<typeof scheduledTasks.$inferInsert> = {
+        lastRunAt: new Date(),
+        lastRunStatus: fields.status,
+        lastError: fields.error ?? null,
+      };
+      if (fields.digest !== undefined) set.lastDigest = fields.digest;
+      await db
+        .update(scheduledTasks)
+        .set(set)
+        .where(eq(scheduledTasks.id, taskId));
+    } catch (e) {
+      console.error(`[cron task:${taskId}] 记录执行状态失败`, e);
+    }
+  }
+
   private scheduleJob(task: CronTaskRow): void {
     this.jobs.get(task.id)?.stop();
 
@@ -191,20 +238,82 @@ export class CronService {
             console.warn(
               `[cron task:${task.id}] 用户 ${task.user_id} 的 bot 不在线，跳过`,
             );
+            await this.recordRun(task.id, {
+              status: "failed",
+              error: "微信 Bot 不在线",
+            });
             return;
           }
 
+          // 1. 生成内容（prompt 末尾注入「无新内容只回复哨兵」约束）
+          let textOut = "";
           try {
-            const reply = await hooks.prompt(task.user_id, task.prompt);
-            const textOut = reply.trim();
-            if (textOut) {
-              await bot.send(task.target_user_id, textOut);
-            }
-            console.log(
-              `[cron task:${task.id}] 已执行 → ${task.target_user_id}${textOut ? "（已发文本）" : "（无文本；可能仅用工具发图等）"}`,
+            const reply = await hooks.prompt(
+              task.user_id,
+              wrapCronPrompt(task.prompt),
             );
+            textOut = reply.trim();
           } catch (err) {
-            console.error(`[cron task:${task.id}] 执行失败:`, err);
+            const desc = describeSendError(err);
+            console.error(`[cron task:${task.id}] 生成内容失败:`, desc);
+            await this.recordRun(task.id, {
+              status: "failed",
+              error: `生成内容失败：${desc}`,
+            });
+            return;
+          }
+
+          // 2. 无新内容 → 不发送（直接解决"没有通知仍骚扰"）
+          if (!textOut || isNoContentReply(textOut)) {
+            console.log(`[cron task:${task.id}] 本次无新内容，跳过发送`);
+            await this.recordRun(task.id, { status: "skipped", error: null });
+            return;
+          }
+
+          // 3. 与上次推送内容相同 → 跳过（去重）
+          const digest = digestText(textOut);
+          if (digest === task.last_digest) {
+            console.log(
+              `[cron task:${task.id}] 内容与上次相同，跳过发送（去重）`,
+            );
+            await this.recordRun(task.id, { status: "skipped", error: null });
+            return;
+          }
+
+          // 4. 发送（带重试）
+          const result = await sendScheduledText(
+            bot,
+            task.target_user_id,
+            textOut,
+          );
+          if (result.ok) {
+            task.last_digest = digest;
+            await this.recordRun(task.id, {
+              status: "ok",
+              error: null,
+              digest,
+            });
+            console.log(
+              `[cron task:${task.id}] 已执行并发送 → ${task.target_user_id}`,
+            );
+          } else {
+            // 5. 推送失败 → 入队，等对方下次主动联系时补发
+            await queuePendingDelivery(
+              task.user_id,
+              task.target_user_id,
+              textOut,
+              "cron",
+              task.id,
+            );
+            task.last_digest = digest;
+            await this.recordRun(task.id, {
+              status: "queued",
+              error: result.error,
+              digest,
+            });
+            console.warn(
+              `[cron task:${task.id}] 推送失败已入队补发：${result.error}`,
+            );
           }
         });
       },

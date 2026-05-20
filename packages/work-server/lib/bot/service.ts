@@ -9,6 +9,7 @@ import { agentService, WECHAT_WELCOME } from "@/modules/agent/service";
 import { listContacts } from "@/lib/wechat-contacts";
 import { cronService } from "@/modules/cron/service";
 import { reminderService } from "@/modules/reminder/service";
+import { clearPendingDeliveries } from "@/lib/scheduled-delivery";
 import type { BotStatusPayload } from "@/lib/bot/types";
 
 export type BotStatus = "idle" | "waiting_scan" | "online" | "error";
@@ -367,8 +368,9 @@ export class BotService {
     removeUserWechatStorage(userId);
     await cronService.removeAllByUser(userId);
     await reminderService.removeAllByUser(userId);
+    await clearPendingDeliveries(userId);
     await agentService.remove(userId);
-    console.log(`[bot user:${userId}] 已停止并清除凭据、定时任务、提醒、对话`);
+    console.log(`[bot user:${userId}] 已停止并清除凭据、定时任务、提醒、补发队列、对话`);
   }
 }
 

@@ -31,10 +31,11 @@ export const assignmentRoutes = new Elysia({ prefix: "/assignments" })
     const assignments = getAllAssignments(limit, offset);
     return { success: true, data: assignments };
   })
-  // 获取即将截止的作业
+  // 获取即将截止的作业（默认仅当前学期，可用 ?semester= 覆盖）
   .get("/upcoming", ({ query }) => {
     const hours = query.hours ? parseInt(query.hours as string) : 24;
-    const assignments = getUpcomingAssignments(hours);
+    const semester = (query.semester as string | undefined)?.trim() || undefined;
+    const assignments = getUpcomingAssignments(hours, semester);
     return { success: true, data: assignments };
   })
   // 获取单个作业
@@ -82,9 +83,10 @@ export const assignmentRoutes = new Elysia({ prefix: "/assignments" })
     }
     return { success: true, message: "删除成功" };
   })
-  // 获取学生的未提交作业
-  .get("/unsubmitted/:studentId", ({ params: { studentId } }) => {
-    const assignments = getUnsubmittedAssignmentsByStudent(studentId);
+  // 获取学生的未提交作业（默认仅当前学期，可用 ?semester= 覆盖）
+  .get("/unsubmitted/:studentId", ({ params: { studentId }, query }) => {
+    const semester = (query.semester as string | undefined)?.trim() || undefined;
+    const assignments = getUnsubmittedAssignmentsByStudent(studentId, semester);
     return { success: true, data: assignments };
   })
   // 提交作业

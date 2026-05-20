@@ -11,7 +11,7 @@
 python3 $PI_SKILLS_ROOT/teacher-portal/fetch-papers.py <teacherId> [--region=港澳] [--year=2024] [--recent=5] [--top=10]
 ```
 - 输出：论文统计摘要（按年份、地区）+ 被引最高论文列表
-- teacherId 为系统上下文中的教师 ID（如 T001 / T005 / T009）
+- teacherId 为系统上下文中的教师 ID（如 T001 / T002 / T005）
 - 示例：`python3 $PI_SKILLS_ROOT/teacher-portal/fetch-papers.py <teacherId> --top=5`
 - 港澳筛选：`python3 $PI_SKILLS_ROOT/teacher-portal/fetch-papers.py <teacherId> --region=港澳`
 - 近5年：`python3 $PI_SKILLS_ROOT/teacher-portal/fetch-papers.py <teacherId> --recent=5`（自动计算year_from）
@@ -48,14 +48,14 @@ python3 $PI_SKILLS_ROOT/teacher-portal/export-summary.py <teacherId> [--type=all
 - 生成 Word 文档，最后一行打印 `FILE:/tmp/xxx.docx` 路径，供 wechat_send 发送
 - 默认导出全部（all）：教师简介 + 论文列表（Top 20）+ 知识产权列表 + 合作建议
 - `--region=港澳`：仅包含港澳地区论文和知识产权
-- teacherId 为系统上下文中的教师 ID（如 T001 / T005 / T009）
+- teacherId 为系统上下文中的教师 ID（如 T001 / T002 / T005）
 - 示例（全部）：`python3 $PI_SKILLS_ROOT/teacher-portal/export-summary.py <teacherId>`
 - 示例（仅港澳）：`python3 $PI_SKILLS_ROOT/teacher-portal/export-summary.py <teacherId> --region=港澳`
 - 示例（仅论文）：`python3 $PI_SKILLS_ROOT/teacher-portal/export-summary.py <teacherId> --type=papers`
 
 ## 调用规则
 
-- 当 teacher 用户询问自己的论文/知识产权时，先从系统缓存给出概要（teacher:T009 有完整缓存），再根据需要调用脚本获取完整数据
-- 其他 teacher 身份（T001-T008）直接调用脚本，teacherId 取系统上下文中 teacher: 后面的 ID
+- 当 teacher 用户询问自己的论文/知识产权时，先从系统缓存给出概要（林晓东老师 teacher:T001 / teacher:T005 有完整缓存），再根据需要调用脚本获取完整数据
+- 其他 teacher 身份直接调用脚本，teacherId 取系统上下文中 teacher: 后面的 ID
 - 用户要求导出 Word 时，调用 export-summary.py，获取文件路径后用 wechat_send 发送
 - find-collaborator.py 会同时查询学校服务器中的教师数据和 CIEE 信电学院抓取数据

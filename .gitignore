@@ -51,6 +51,13 @@ packages/work-server/.pi/skills/*/__pycache__/
 # 参观资料（爬取的原始 HTML，仅供本地参考，不提交）
 参观资料/
 
+# 用户数据 / 账号资料（含测试反馈、账号凭据等敏感内容，仅本地保留，不提交）
+用户数据/
+账号资料/
+
+# IDE
+.idea/
+
 # 临时 / 本地素材
 cauclaw.png
 

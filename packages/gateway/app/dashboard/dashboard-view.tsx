@@ -83,7 +83,25 @@ export type CronTaskRow = {
   target_user_id: string;
   enabled: number;
   created_at: string;
+  last_run_at: string | null;
+  last_run_status: string | null;
+  last_error: string | null;
 };
+
+/** 定时任务最近执行状态的中文标签 */
+const CRON_STATUS_LABEL: Record<string, string> = {
+  ok: "发送成功",
+  skipped: "无新内容，已跳过",
+  queued: "推送失败，待对方下次联系时补发",
+  failed: "执行失败",
+};
+
+function cronStatusClass(status: string | null): string {
+  if (status === "ok") return "text-emerald-600 dark:text-emerald-400";
+  if (status === "queued") return "text-amber-600 dark:text-amber-400";
+  if (status === "failed") return "text-destructive";
+  return "text-muted-foreground";
+}
 
 export function DashboardView({
   username,
@@ -620,6 +638,23 @@ export function DashboardView({
                     </p>
                     <p className="break-all font-mono text-xs leading-normal text-muted-foreground">
                       {t.target_user_id}
+                    </p>
+                    <p className="text-xs leading-normal">
+                      <span className={cronStatusClass(t.last_run_status)}>
+                        最近执行：
+                        {t.last_run_status
+                          ? (CRON_STATUS_LABEL[t.last_run_status] ??
+                            t.last_run_status)
+                          : "尚未执行"}
+                        {t.last_run_at
+                          ? ` · ${new Date(t.last_run_at).toLocaleString("zh-CN")}`
+                          : ""}
+                      </span>
+                      {t.last_error ? (
+                        <span className="mt-0.5 block break-all text-muted-foreground">
+                          原因：{t.last_error}
+                        </span>
+                      ) : null}
                     </p>
                     <div className="flex gap-2">
                       <Button

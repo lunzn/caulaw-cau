@@ -15,6 +15,13 @@
       "when": 1745200000000,
       "tag": "0001_wechat_known_contacts",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1779294300503,
+      "tag": "0002_gifted_kate_bishop",
+      "breakpoints": true
     }
   ]
 }

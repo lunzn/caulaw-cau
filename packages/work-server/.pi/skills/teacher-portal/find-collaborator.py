@@ -2,7 +2,7 @@
 """
 Find potential collaborators with overlapping research interests.
 Usage: python3 find-collaborator.py <keyword> [excludeTeacherId]
-Example: python3 find-collaborator.py 机器视觉 T009
+Example: python3 find-collaborator.py 机器视觉 T001
 """
 import json, sys, os
 from urllib.request import urlopen
@@ -105,4 +105,4 @@ else:
 
 print()
 print("如需进一步了解某位教师的详细信息，可告诉我姓名。")
-print("导出合作建议报告请使用：python3 export-summary.py T009 --type=collab")
+print("导出合作建议报告请使用：python3 export-summary.py <当前教师ID> --type=collab")

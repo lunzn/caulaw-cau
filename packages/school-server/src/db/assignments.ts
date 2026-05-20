@@ -232,8 +232,26 @@ export function getAssignmentsByTeacher(teacherId: string): { courseId: string; 
   return [...map.values()];
 }
 
-// 获取即将截止的作业（用于提醒）
-export function getUpcomingAssignments(hours: number = 24): AssignmentWithCourse[] {
+/**
+ * 当前学期。可用环境变量 CURRENT_SEMESTER 覆盖；默认按月份推算。
+ * 春季学期：2-7 月；秋季学期：8 月-次年 1 月。
+ * 返回格式与 seed 数据一致："2025-2026春季" / "2025-2026秋季"。
+ */
+export function getCurrentSemester(date: Date = new Date()): string {
+  const override = process.env.CURRENT_SEMESTER?.trim();
+  if (override) return override;
+  const y = date.getFullYear();
+  const m = date.getMonth() + 1;
+  if (m >= 2 && m <= 7) return `${y - 1}-${y}春季`;
+  if (m >= 8) return `${y}-${y + 1}秋季`;
+  return `${y - 1}-${y}秋季`; // 1 月仍属上一学年的秋季学期
+}
+
+// 获取即将截止的作业（用于提醒）——仅统计当前学期，避免混入往期作业
+export function getUpcomingAssignments(
+  hours: number = 24,
+  semester: string = getCurrentSemester(),
+): AssignmentWithCourse[] {
   const db = getDatabase();
   const now = Math.floor(Date.now() / 1000);
   const deadlineThreshold = now + hours * 3600;
@@ -245,11 +263,11 @@ export function getUpcomingAssignments(hours: number = 24): AssignmentWithCourse
            c.schedule as course_schedule, c.location as course_location, c.course_type as course_course_type, c.created_at as course_created_at
     FROM assignments a
     JOIN courses c ON a.course_id = c.id
-    WHERE a.deadline > ? AND a.deadline <= ?
+    WHERE a.deadline > ? AND a.deadline <= ? AND c.semester = ?
     ORDER BY a.deadline ASC
   `);
 
-  const rows = stmt.all(now, deadlineThreshold) as Record<string, unknown>[];
+  const rows = stmt.all(now, deadlineThreshold, semester) as Record<string, unknown>[];
 
   return rows.map(row => {
     const course: Course = {
@@ -279,8 +297,11 @@ export function getUpcomingAssignments(hours: number = 24): AssignmentWithCourse
   });
 }
 
-// 获取学生未提交的作业
-export function getUnsubmittedAssignmentsByStudent(studentId: string): AssignmentWithCourse[] {
+// 获取学生未提交的作业——仅统计当前学期，避免混入往期课程的作业
+export function getUnsubmittedAssignmentsByStudent(
+  studentId: string,
+  semester: string = getCurrentSemester(),
+): AssignmentWithCourse[] {
   const db = getDatabase();
   const now = Math.floor(Date.now() / 1000);
 
@@ -294,6 +315,7 @@ export function getUnsubmittedAssignmentsByStudent(studentId: string): Assignmen
     JOIN course_students cs ON c.id = cs.course_id
     WHERE cs.student_id = ?
       AND a.deadline > ?
+      AND c.semester = ?
       AND NOT EXISTS (
         SELECT 1 FROM submissions s
         WHERE s.assignment_id = a.id AND s.student_id = ?
@@ -301,7 +323,7 @@ export function getUnsubmittedAssignmentsByStudent(studentId: string): Assignmen
     ORDER BY a.deadline ASC
   `);
 
-  const rows = stmt.all(studentId, now, studentId) as Record<string, unknown>[];
+  const rows = stmt.all(studentId, now, semester, studentId) as Record<string, unknown>[];
 
   return rows.map(row => {
     const course: Course = {

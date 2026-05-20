@@ -56,6 +56,7 @@ import { recordContact } from "@/lib/wechat-contacts";
 import { quickImageReply } from "@/lib/agent/quick-image-reply";
 import { quickNewsReply } from "@/lib/agent/quick-news-reply";
 import { quickProfessorReply } from "@/lib/agent/quick-professor-reply";
+import { flushPendingDeliveries } from "@/lib/scheduled-delivery";
 
 const model = createOpenAICompatModel();
 
@@ -73,12 +74,17 @@ export const WECHAT_WELCOME = [
   "6. 校医院各科出诊安排",
   "7. 校园卡余额 · 消费明细",
   "8. 教师主页 · 联系方式",
-  "9. 农大新闻 · 学院公告",
+  "9. 农大新闻 · 校园头条",
   "",
   `📖 详细使用说明，请看使用手册.pdf${MANUAL_PDF_URL ? `：${MANUAL_PDF_URL}` : ""}`,
 ].join("\n");
 
-const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能助手。
+/**
+ * 系统提示按身份拆分：所有人共用 COMMON_SYSTEM，
+ * 学生再拼接 STUDENT_SYSTEM，教师再拼接 TEACHER_SYSTEM。
+ * 这样学生不再背着教师的论文/专利数据、教师也不背学生数据，降 token、提速。
+ */
+const COMMON_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能助手。
   回复简洁、口语化、有帮助。
   用户可能发送文字或图片；若收到图片，请根据画面内容回答。
   不要使用 Markdown 格式（用户客户端通常不渲染）。
@@ -123,9 +129,62 @@ const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能
   6 → 立即查询校医院各科室今日出诊安排
   7 → 立即查询用户校园卡余额和最近10条消费记录
   8 → 回复"请问您想查询哪位老师的信息？可以发姓名，或者告诉我院系名称。"
-  9 → 调用 cau-news-scraper（服务端每25分钟预热缓存，通常2-3秒即返回），展示农大新闻+信电学院公告各10条；列表用 --no-fetch-content，用户要读正文再加 --fetch-content
+  9 → 农大新闻 + 校园头条（系统已通过 quickNewsReply 从预热缓存秒级返回，正常不会走到这里）；若用户进一步要求"信电学院公告"或阅读某条正文，再调用 cau-news-scraper（--fetch-content 读正文）
 
-  【内测学生模拟数据提示 - 严格执行】
+  【预约类功能说明 - 严格执行】
+  图书馆座位预约、教室/会议室预约均为校园助手的演示功能，操作在本系统内完成，不会同步到学校真实的图书馆或教务预约系统。
+  每当为用户执行或确认这类预约（包括告知"已预约成功"）时，必须在回复末尾附注一行：
+  「⚠️ 此预约为校园助手演示功能，不会同步到学校官方系统，请以学校官网实际预约为准。」
+  查询空余座位/可用教室本身不需要附注，只有在"预约/确认预约"动作时才附注。
+
+  【主动数据分析模式 - 严格执行，不得跳过】
+  以下情况必须先调用对应 skill 的脚本获取真实数据，不允许凭经验或常识直接回答：
+
+  用户提到减肥/胖了/饮食/热量/吃太油/健康/控制体重
+  → 必须先运行 decision-assistant skill 中的 analyze-diet.py 分析近30天消费记录，再给建议
+
+  用户想安排就医时间/不想耽误课/什么时候去医院
+  → 必须先运行 decision-assistant skill 中的 schedule-check.py 交叉课表与出诊时间，再推荐具体时段和医生
+
+  用户想预约会议室/教室/订场地
+  → 必须先运行 decision-assistant skill 中的 find-rooms.py 查可用场地，确认后调 rooms/reserve API 预约
+
+  用户询问科研方向/想做研究/找导师/竞赛选题/如何入门某方向
+  → 必须先简介方向（2-3句），再运行 research-advisor skill 中的 research-find.py 查校内真实教师，推荐1-2位并附联系方式
+
+  【知名教授静态档案 - 全局可用，任何用户问到下列教授时直接从此处回答，无需调 API】
+
+  ▌林万龙（经济管理学院 农业经济系 教授 / 中国农业大学副校长）
+  · 性别：男   出生：1973年10月   籍贯：江西南康   学位：博士
+  · 职称：教授、博士生导师
+  · 所属院系：经济管理学院 · 农业经济系
+  · 现任职务：中国农业大学副校长（兼本科生院院长、研究生院院长，2020.10至今）/ 国家乡村振兴研究院副院长
+  · 曾任：国务院扶贫开发领导小组专家咨询委员会委员；中国农业大学教务处处长（2012-2018）；牛津大学访问学者（2010-2011）
+  · 办公电话：(010)-6273 6537   传真：(8610)-6273 7830
+  · 邮箱：linwanlong@vip.163.com
+  · 联系地址：北京市海淀区清华东路17号 中国农业大学经济管理学院
+  · 研究方向：发展经济学、农村公共财政与公共服务、农村贫困与减贫、投资项目管理与评估
+  · 科研项目：主持国家级及国际科研项目40余项，含国家社科重大1项、国家自科4项、国家社科2项、教育部人文社科1项、世界银行/亚行/联合国开发署等国际合作10余项、省部级20余项
+  · 学术论文：在《管理世界》《中国农村经济》The China Journal、Food Policy、World Development 等期刊发表40余篇；2018年入选"1978-2017年农业经济学科高被引论文核心作者群"；2019年入选《农业经济问题》创刊40年高被引作者前50名（第36位）
+  · 获奖荣誉：专著获"中国农村发展研究奖"；北京市第十五届哲学社会科学优秀成果奖二等奖；霍英东教育基金会优秀青年教师一等奖（社会科学类）；入选教育部"新世纪优秀人才支持计划"
+
+  ▌任金政（经济管理学院 会计系 教授 / 经济管理学院副院长）
+  · 性别：男   出生：1977年   学位：管理学博士（中国农业大学 2006）
+  · 职称：教授、博士生导师
+  · 所属院系：经济管理学院 · 会计系
+  · 现任职务：中国农业大学经济管理学院副院长（2015年至今）
+  · 曾任：美国普渡大学访问学者（2013-2014）；副教授（2010-2016）；讲师（2006-2009）
+  · 办公电话：010-62738506
+  · 邮箱：rjzheng1977@163.com
+  · 研究方向：项目分析与风险管理（农业保险定价、洪水保险、数字金融、扶贫资金绩效评价）
+  · 科研项目：主持国家自然科学基金2项（农业保险/洪水保险）、北京市社科基金2项（含重点1项）、国务院扶贫办委托项目10项、水利部/农业农村部等省部委项目20余项
+  · 学术论文：发表70余篇，其中SSCI/SCI/CSSCI收录30余篇；代表性期刊：Emerging Markets Finance and Trade、Sustainability、中国农业大学学报、保险研究、农业技术经济等
+  · 学术著作：3部（《北京市居民互联网理财行为研究》《扶贫案例编写指南》《基于风险管控的种植业保险绩效评价研究》）
+  · 教学课程：《财务管理学》《危机管理》《金融学》《经济管理学科发展专题》
+  · 获奖荣誉：北京市高等教育教学成果二等奖（2013）；山西省科技进步二等奖；北京高校优秀本科教学管理人员（2020）`;
+
+/** 学生身份附加提示（仅当用户绑定为 student 时拼接） */
+const STUDENT_SYSTEM = `  【内测学生模拟数据提示 - 严格执行】
   内测大二学生（学号格式 2024308XXXXXX 或 2024311XXXXXX 或 2024304XXXXXX）使用真实课程安排（课程名、上课时间、地点均来自真实教务系统），但以下数据为演示模拟，非真实教务/一卡通数据：
   · 作业：题目、截止日期均为演示用
   · 校园卡：余额和消费记录均为模拟数值
@@ -178,24 +237,11 @@ const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能
   西区校医院（西区社区卫生服务中心）— 西校区学生就诊
     门诊：上午 8:00-11:30 / 下午 13:30-17:00
     急诊：24小时  急诊电话：62732549  办公室：62732550
-    科室：同东区（含内科、外科、妇科、五官科、中医科、皮肤科、口腔科等）
+    科室：同东区（含内科、外科、妇科、五官科、中医科、皮肤科、口腔科等）`;
 
-  【主动数据分析模式 - 严格执行，不得跳过】
-  以下情况必须先调用对应 skill 的脚本获取真实数据，不允许凭经验或常识直接回答：
-
-  用户提到减肥/胖了/饮食/热量/吃太油/健康/控制体重
-  → 必须先运行 decision-assistant skill 中的 analyze-diet.py 分析近30天消费记录，再给建议
-
-  用户想安排就医时间/不想耽误课/什么时候去医院
-  → 必须先运行 decision-assistant skill 中的 schedule-check.py 交叉课表与出诊时间，再推荐具体时段和医生
-
-  用户想预约会议室/教室/订场地
-  → 必须先运行 decision-assistant skill 中的 find-rooms.py 查可用场地，确认后调 rooms/reserve API 预约
-
-  用户询问科研方向/想做研究/找导师/竞赛选题/如何入门某方向
-  → 必须先简介方向（2-3句），再运行 research-advisor skill 中的 research-find.py 查校内真实教师，推荐1-2位并附联系方式
-
-  【T009 静态缓存数据 - 仅当系统上下文标识 teacher:T009 时使用此数据块】
+/** 教师身份附加提示（仅当用户绑定为 teacher 时拼接） */
+const TEACHER_SYSTEM = `  【林晓东老师静态缓存数据 - 仅当系统上下文标识 teacher:T001 或 teacher:T005 时使用此数据块】
+  （T001 与 T005 均为林晓东本人的演示账号，共用以下同一套数据）
   以下数据已预加载（演示日期：2026-04-27 周一 / 2026-04-28 周二）。
 
   ▌林晓东老师基本信息
@@ -204,9 +250,9 @@ const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能
   · 研究方向：计算机视觉 / 智慧农业 / 具身智能 / 农业机器人
 
   ▌本学期授课课程（每周固定，重复至学期末）
-  · GT01 计算机视觉与图像识别  周一 10:00-12:00  信电楼201（3学分）
-  · GT02 智慧农业与机器感知    周二 08:00-10:00  信电楼201（3学分）
-  · GT03 具身智能与机器人系统  周三 14:00-16:00  信电楼201（3学分）
+  · 计算机视觉与图像识别  周一 10:00-12:00  信电楼201（3学分）
+  · 智慧农业与机器感知    周二 08:00-10:00  信电楼201（3学分）
+  · 具身智能与机器人系统  周三 14:00-16:00  信电楼201（3学分）
   · 周四、周五：每周固定无课（最适合跨校区活动、沙龙、讲座、外出开会）
 
   ▌演示日课程安排（4月27日周一 / 4月28日周二）
@@ -285,12 +331,12 @@ const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能
     要求：副高及以上，近五年高水平相关论文，课题组需有农学或生命科学背景成员
     联系：nsfc-agri@nsfc.gov.cn / 010-62317474
 
-  【教师模式功能 - 当系统上下文包含 teacher: 前缀时执行（T001-T009 均适用）】
-  teacherId = 系统上下文中 teacher: 后面的 ID（例如 T001 / T005 / T009）。
+  【教师模式功能 - 当系统上下文包含 teacher: 前缀时执行（T001-T005 等所有教师 ID 均适用）】
+  teacherId = 系统上下文中 teacher: 后面的 ID（例如 T001 / T002 / T005）。
   所有脚本和 API 调用均使用该 teacherId，不得替换为其他固定值。
 
   ▌本人课程表
-  teacher:T009 → 直接用上方 T009 缓存中的课表回答
+  teacher:T001 或 teacher:T005 → 直接用上方林晓东缓存中的课表回答
   其他 teacherId → 调用 school-http skill：
     curl "$SCHOOL_SERVER_URL/api/courses/by-teacher/{teacherId}"
     返回字段：name（课程名）、schedule（时间）、location（地点），整理后告知用户
@@ -301,14 +347,14 @@ const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能
   ▌论文查询（近5年 / 按地区 / 完整列表）
   → python3 $PI_SKILLS_ROOT/teacher-portal/fetch-papers.py {teacherId} [--recent=5] [--region=港澳] [--top=10]
   → 用户说"近5年论文"用 --recent=5，脚本自动算 year_from
-  teacher:T009 可先从上方静态缓存给出摘要，再按需调脚本拉完整列表
+  teacher:T001 / teacher:T005 可先从上方静态缓存给出摘要，再按需调脚本拉完整列表
 
   ▌知识产权查询
   → python3 $PI_SKILLS_ROOT/teacher-portal/fetch-patents.py {teacherId} [--type=发明专利|实用新型|软件著作权]
 
   ▌寻找合作者
   → python3 $PI_SKILLS_ROOT/teacher-portal/find-collaborator.py <关键词> {teacherId}
-  teacher:T009 常见课题（农学+具身智能）可优先从上方"校内相关方向同事"缓存直接给出推荐，合作老师第一条消息就要给出，不要让用户等待：
+  teacher:T001 / teacher:T005 常见课题（农学+具身智能）可优先从上方"校内相关方向同事"缓存直接给出推荐，合作老师第一条消息就要给出，不要让用户等待：
     · 首推：黄岚 教授（信息处理技术与农业物联网 / 信息应用技术与智能农业）— 农学信息化最契合
     · 次选：陶莎 副教授（农产品安全信息管理与智能处理技术 / 多源数据融合）— 数据侧互补
     · 若课题技术侧需多人：马钦 副教授（计算机视觉 / 人工智能）可作第三人选
@@ -319,45 +365,24 @@ const DEFAULT_SYSTEM = `你是CAU-CLAW，中国农业大学校园生活的智能
   → 从输出中找到 "FILE:/tmp/..." 路径，用 wechat_send 发送文件
 
   ▌班车 / 跨校区行程规划
-  → 班车时刻表参考 S20253082026 静态缓存（工作日双向对开：07:10 08:20 09:20 10:20 11:20 12:20 13:20 14:20 15:20 16:20 17:40 18:20，全程约10分钟）
+  → 班车时刻表（工作日双向对开：07:10 08:20 09:20 10:20 11:20 12:20 13:20 14:20 15:20 16:20 17:40 18:20，全程约10分钟）
   → 判断教师空闲时段：先查本人课表（见上方"本人课程表"步骤），找出无课的时段，推荐最近班次
 
   ▌会议室/教室预约
-  → 运行 decision-assistant skill 中的 find-rooms.py 查信电楼或教学楼会议室
+  → 运行 decision-assistant skill 中的 find-rooms.py 查信电楼或教学楼会议室`;
 
-  【知名教授静态档案 - 全局可用，任何用户问到下列教授时直接从此处回答，无需调 API】
+/** 用户身份类别，决定拼接哪一段身份专属系统提示 */
+type IdentityKind = "student" | "teacher" | "guest";
 
-  ▌林万龙（经济管理学院 农业经济系 教授 / 中国农业大学副校长）
-  · 性别：男   出生：1973年10月   籍贯：江西南康   学位：博士
-  · 职称：教授、博士生导师
-  · 所属院系：经济管理学院 · 农业经济系
-  · 现任职务：中国农业大学副校长（兼本科生院院长、研究生院院长，2020.10至今）/ 国家乡村振兴研究院副院长
-  · 曾任：国务院扶贫开发领导小组专家咨询委员会委员；中国农业大学教务处处长（2012-2018）；牛津大学访问学者（2010-2011）
-  · 办公电话：(010)-6273 6537   传真：(8610)-6273 7830
-  · 邮箱：linwanlong@vip.163.com
-  · 联系地址：北京市海淀区清华东路17号 中国农业大学经济管理学院
-  · 研究方向：发展经济学、农村公共财政与公共服务、农村贫困与减贫、投资项目管理与评估
-  · 科研项目：主持国家级及国际科研项目40余项，含国家社科重大1项、国家自科4项、国家社科2项、教育部人文社科1项、世界银行/亚行/联合国开发署等国际合作10余项、省部级20余项
-  · 学术论文：在《管理世界》《中国农村经济》The China Journal、Food Policy、World Development 等期刊发表40余篇；2018年入选"1978-2017年农业经济学科高被引论文核心作者群"；2019年入选《农业经济问题》创刊40年高被引作者前50名（第36位）
-  · 获奖荣誉：专著获"中国农村发展研究奖"；北京市第十五届哲学社会科学优秀成果奖二等奖；霍英东教育基金会优秀青年教师一等奖（社会科学类）；入选教育部"新世纪优秀人才支持计划"
-
-  ▌任金政（经济管理学院 会计系 教授 / 经济管理学院副院长）
-  · 性别：男   出生：1977年   学位：管理学博士（中国农业大学 2006）
-  · 职称：教授、博士生导师
-  · 所属院系：经济管理学院 · 会计系
-  · 现任职务：中国农业大学经济管理学院副院长（2015年至今）
-  · 曾任：美国普渡大学访问学者（2013-2014）；副教授（2010-2016）；讲师（2006-2009）
-  · 办公电话：010-62738506
-  · 邮箱：rjzheng1977@163.com
-  · 研究方向：项目分析与风险管理（农业保险定价、洪水保险、数字金融、扶贫资金绩效评价）
-  · 科研项目：主持国家自然科学基金2项（农业保险/洪水保险）、北京市社科基金2项（含重点1项）、国务院扶贫办委托项目10项、水利部/农业农村部等省部委项目20余项
-  · 学术论文：发表70余篇，其中SSCI/SCI/CSSCI收录30余篇；代表性期刊：Emerging Markets Finance and Trade、Sustainability、中国农业大学学报、保险研究、农业技术经济等
-  · 学术著作：3部（《北京市居民互联网理财行为研究》《扶贫案例编写指南》《基于风险管控的种植业保险绩效评价研究》）
-  · 教学课程：《财务管理学》《危机管理》《金融学》《经济管理学科发展专题》
-  · 获奖荣誉：北京市高等教育教学成果二等奖（2013）；山西省科技进步二等奖；北京高校优秀本科教学管理人员（2020）`;
-
-function systemPrompt(): string {
-  return process.env.OPENAI_SYSTEM_PROMPT?.trim() || DEFAULT_SYSTEM;
+/**
+ * 按身份组装系统提示。OPENAI_SYSTEM_PROMPT 环境变量仍可整体覆盖。
+ */
+function systemPrompt(kind: IdentityKind): string {
+  const override = process.env.OPENAI_SYSTEM_PROMPT?.trim();
+  if (override) return override;
+  if (kind === "student") return `${COMMON_SYSTEM}\n\n${STUDENT_SYSTEM}`;
+  if (kind === "teacher") return `${COMMON_SYSTEM}\n\n${TEACHER_SYSTEM}`;
+  return COMMON_SYSTEM;
 }
 
 function extractReply(messages: AgentMessage[]): string {
@@ -503,16 +528,20 @@ const settingsManager = SettingsManager.inMemory({
   retry: { enabled: true, maxRetries: 2 },
 });
 
-let _resourceLoader: DefaultResourceLoader | undefined;
-/** 上次成功 reload 的时间戳；生产环境 skills 不会热更新，60s TTL 即可 */
-let _resourceLoaderLastReload = 0;
+/** 按身份类别各持一个 ResourceLoader，使系统提示可按身份裁剪 */
+const _resourceLoaders = new Map<IdentityKind, DefaultResourceLoader>();
+/** 各 loader 上次成功 reload 的时间戳；生产环境 skills 不会热更新，60s TTL 即可 */
+const _resourceLoaderLastReload = new Map<IdentityKind, number>();
 const _RESOURCE_RELOAD_TTL_MS = 60_000;
 
-async function getResourceLoader(): Promise<DefaultResourceLoader> {
-  if (!_resourceLoader) {
+async function getResourceLoader(
+  kind: IdentityKind,
+): Promise<DefaultResourceLoader> {
+  let loader = _resourceLoaders.get(kind);
+  if (!loader) {
     const projectSkillRoot = path.resolve(process.cwd(), ".pi", "skills");
-    _resourceLoader = new DefaultResourceLoader({
-      systemPromptOverride: () => systemPrompt(),
+    loader = new DefaultResourceLoader({
+      systemPromptOverride: () => systemPrompt(kind),
       agentsFilesOverride: () => ({ agentsFiles: [] }),
       skillsOverride: (base) => ({
         skills: base.skills.filter((skill) => {
@@ -526,14 +555,16 @@ async function getResourceLoader(): Promise<DefaultResourceLoader> {
       }),
       promptsOverride: () => ({ prompts: [], diagnostics: [] }),
     });
+    _resourceLoaders.set(kind, loader);
   }
   // 仅首次或超过 TTL 时才重新扫描 skills 目录，避免每次建 Session 都做磁盘 I/O
   const now = Date.now();
-  if (now - _resourceLoaderLastReload > _RESOURCE_RELOAD_TTL_MS) {
-    await _resourceLoader.reload();
-    _resourceLoaderLastReload = now;
+  const last = _resourceLoaderLastReload.get(kind) ?? 0;
+  if (now - last > _RESOURCE_RELOAD_TTL_MS) {
+    await loader.reload();
+    _resourceLoaderLastReload.set(kind, now);
   }
-  return _resourceLoader;
+  return loader;
 }
 
 /**
@@ -543,9 +574,10 @@ async function getResourceLoader(): Promise<DefaultResourceLoader> {
  */
 async function createUserSession(
   userId: string,
+  kind: IdentityKind,
   messages?: AgentMessage[],
 ): Promise<AgentSession> {
-  const resourceLoader = await getResourceLoader();
+  const resourceLoader = await getResourceLoader(kind);
   const scopedRead = createUserScopedReadTool(userId);
   const scopedBash = createUserScopedBashTool(userId);
   const { session } = await createAgentSession({
@@ -601,6 +633,8 @@ export class AgentService {
   private lastActivity = new Map<string, number>();
   /** 当前内存 Session 与磁盘 jsonl 的增量同步（idle 回收后会清空，下次从最新文件重载） */
   private sessionFileState = new Map<string, SessionFileState>();
+  /** 当前内存 Session 创建时使用的身份类别（身份变化时需重建 Session 以换系统提示） */
+  private sessionKinds = new Map<string, IdentityKind>();
   /** school 业务单独封装，service 仅编排 */
   private schoolWorkflow = new SchoolWorkflowService();
   /** 已发送过欢迎语的联系人，key = `${botUserId}:${contactId}`，进程级去重 */
@@ -630,22 +664,40 @@ export class AgentService {
       this.sessions.delete(uid);
       this.lastActivity.delete(uid);
       this.sessionFileState.delete(uid);
+      this.sessionKinds.delete(uid);
       console.log(
         `[agent] 空闲回收 Session user ${uid}（>${Math.round(idleMs / 60_000)}min 无对话）`,
       );
     }
   }
 
-  async getOrCreate(userId: string): Promise<AgentSession> {
+  async getOrCreate(
+    userId: string,
+    kind: IdentityKind,
+  ): Promise<AgentSession> {
     const idleMin = agentSessionIdleMinutes();
     if (idleMin > 0) {
       await this.evictIdleSessionsIfStale(idleMin * 60_000);
     }
     let s = this.sessions.get(userId);
+    // 身份类别变化（如重新绑定 student↔teacher）→ 丢弃旧 Session，
+    // 用对应身份的系统提示重建；历史对话由 jsonl 重新装载，不丢失。
+    if (s && this.sessionKinds.get(userId) !== kind && !s.isStreaming) {
+      try {
+        s.dispose();
+      } catch {
+        /* ignore */
+      }
+      this.sessions.delete(userId);
+      this.sessionFileState.delete(userId);
+      this.sessionKinds.delete(userId);
+      s = undefined;
+    }
     if (!s) {
       const persisted = loadPersistedMessagesFromJsonl(userId);
-      s = await createUserSession(userId, persisted);
+      s = await createUserSession(userId, kind, persisted);
       this.sessions.set(userId, s);
+      this.sessionKinds.set(userId, kind);
       const latest = getLatestSessionJsonlPath(userId);
       if (latest) {
         this.sessionFileState.set(userId, {
@@ -664,7 +716,13 @@ export class AgentService {
     opts?: AgentPromptOptions,
   ): Promise<string> {
     const school = await this.schoolWorkflow.preparePromptInput(userId, text);
-    const session = await this.getOrCreate(userId);
+    const kind: IdentityKind =
+      school.identity?.role === "teacher"
+        ? "teacher"
+        : school.identity?.role === "student"
+          ? "student"
+          : "guest";
+    const session = await this.getOrCreate(userId, kind);
     this.touchActivity(userId);
 
     /** 勿整表覆盖：pi-mcp-adapter 等扩展会注册 `mcp`、内置 `read` 等 */
@@ -736,6 +794,7 @@ export class AgentService {
     this.sessions.delete(userId);
     this.lastActivity.delete(userId);
     this.sessionFileState.delete(userId);
+    this.sessionKinds.delete(userId);
     this.schoolWorkflow.clearPending(userId);
   }
 
@@ -773,6 +832,7 @@ export class AgentService {
     this.lastActivity.delete(userId);
     this.chains.delete(userId);
     this.sessionFileState.delete(userId);
+    this.sessionKinds.delete(userId);
     this.schoolWorkflow.clearAll(userId);
     removeAllSessionJsonlFiles(userId);
   }
@@ -819,6 +879,19 @@ export class AgentService {
 
     void recordContact(userId, msg.userId);
 
+    // 补发：此前定时任务/提醒因推送失败而积压的内容。
+    // 此刻收到对方消息，context_token 新鲜，可用 bot.reply 可靠送达。
+    try {
+      await flushPendingDeliveries(userId, msg.userId, async (content) => {
+        await bot.reply(
+          msg,
+          `⏰【定时消息补发】此前有一条定时内容未能及时送达，现补发给你：\n\n${content}`,
+        );
+      });
+    } catch (e) {
+      console.warn(`[agent] 补发积压消息失败 ${contactKey}`, e);
+    }
+
     // 快速模式匹配：食堂/校医院/班车 → 直接发图，2s 内完成，不走 AI
     // 课程表不在此处处理（个人数据，由 AI 查询 school-server 实时返回）
     const identity = await loadUserSchoolIdentity(userId);
@@ -826,8 +899,17 @@ export class AgentService {
       return;
     }
 
-    // 快速新闻回复：农大新闻/头条/就业 → 直接读缓存，不走 AI
-    if (msg.type === "text" && await quickNewsReply(bot, msg, raw)) {
+    // 快速新闻回复：农大新闻/头条/就业/数字「9」→ 直接读缓存，不走 AI
+    // 若用户有待提交/待发布文件且输入纯数字（如「9」），应交给作业流程而非新闻
+    const pendingNumeric =
+      /^\d+$/.test(raw) &&
+      (this.schoolWorkflow.hasPendingSubmission(userId) ||
+        this.schoolWorkflow.hasPendingPublish(userId));
+    if (
+      msg.type === "text" &&
+      !pendingNumeric &&
+      (await quickNewsReply(bot, msg, raw))
+    ) {
       return;
     }
 

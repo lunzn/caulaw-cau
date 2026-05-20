@@ -111,6 +111,7 @@
 用户发消息 → WeChatBot.onMessage
   → bot/service.ts: agentService.prompt(userId, text)
   → agent/service.ts: handleWechatMessage
+      ├── [0] flushPendingDeliveries → 补发此前定时任务推送失败的积压内容
       ├── [1] quickVipReply   → 姓名匹配（林万龙/任金政）→ 直接回复档案，return
       ├── [2] quickNewsReply  → 新闻/公告/就业关键词   → 读缓存文件，return
       ├── [3] 教师查课表指令注入（text 前插系统指令）
@@ -203,6 +204,7 @@ caulaw-cau/
 │       │   │   └── quick-image-reply.ts  # 图片快速回复（班车/食堂/校医院/课程表 PNG）
 │       │   ├── bot/service.ts / types.ts
 │       │   ├── news-warmer.ts            # 服务端新闻缓存预热（每25分钟）
+│       │   ├── scheduled-delivery.ts     # 定时任务/提醒：重试+去重+失败补发队列
 │       │   ├── db.ts / model.ts
 │       │   ├── wechat-jsonl-session.ts
 │       │   ├── wechatbot-workspace.ts
@@ -252,7 +254,11 @@ caulaw-cau/
 
 ```typescript
 scheduledTasks      // 周期性微信定时任务（cronExpr + prompt + targetUserId）
-reminders           // 一次性提醒（runAt + prompt，status: "pending"|"sent"）
+                    //   last_run_at/last_run_status/last_error：最近执行情况（控制台展示）
+                    //   last_digest：上次推送内容指纹（用于去重，避免重复骚扰）
+reminders           // 一次性提醒（runAt + prompt，status: pending/done/failed/queued/expired）
+                    //   last_error：最近一次执行的错误信息
+pendingDeliveries   // 定时任务/提醒推送失败时的补发队列；目标联系人下次发消息时补发
 wechatBotAutostart  // 进程重启后自动重连的 Bot（userId → user.id）
 wechatKnownContacts // Bot 曾联系过的用户（重连后发欢迎语）
 userSchoolBindings  // 用户 ↔ 教务身份绑定（role, schoolId，唯一约束）
@@ -342,9 +348,9 @@ repair_tickets
 GET  /health
 GET  /api/students/by-number/:studentNumber
 GET  /api/students/:id/courses
-GET  /api/assignments/unsubmitted/:studentId
+GET  /api/assignments/unsubmitted/:studentId?semester=   # 默认仅当前学期
 POST /api/assignments/:id/submit
-GET  /api/assignments/upcoming?hours=24
+GET  /api/assignments/upcoming?hours=24&semester=        # 默认仅当前学期
 GET  /api/teachers/:id/papers?year=N&year_from=N&region=港澳&limit=N
 GET  /api/teachers/:id/patents?type=发明专利&region=港澳
 GET  /api/projects/open?category=国家级&status=open
@@ -380,7 +386,7 @@ elysia.ts
 | 顺序 | 函数 | 触发条件 | 响应 |
 |------|------|---------|------|
 | 1 | `quickVipReply` | 消息含"林万龙"或"任金政" | 直接发送预缓存的完整档案文字 |
-| 2 | `quickNewsReply` | 含新闻/头条/公告/就业关键词 | 读 `news-snapshot.json`，格式化输出最新10条 |
+| 2 | `quickNewsReply` | 农大新闻/头条/就业公告关键词 或 数字「9」（已带否定词 + 机制类问法 + 院系通知过滤，避免误触） | 读 `news-snapshot.json`，格式化输出 |
 | 3 | `quickImageReply` | 班车/食堂/校医院/课程表简单查询 | 发 `assets/` 目录下对应 PNG |
 
 **quickImageReply 的两个例外**：
@@ -389,7 +395,9 @@ elysia.ts
 
 ### modules/agent/service.ts（最核心文件，1300+ 行）
 
-**DEFAULT_SYSTEM 分层缓存策略**：
+**系统提示按身份拆分**：原单一 `DEFAULT_SYSTEM` 已拆为 `COMMON_SYSTEM`（通用）+ `STUDENT_SYSTEM`（学生专属：内测提示、S20253082026 缓存）+ `TEACHER_SYSTEM`（教师专属：林晓东缓存、教师模式）。`systemPrompt(kind)` 按身份拼接；每种身份各持一个 `DefaultResourceLoader`。学生不再下发教师数据、教师不再下发学生数据，降 token 提速。身份重新绑定时自动重建 Session。
+
+**分层缓存策略**：
 
 | 数据类别 | 策略 | 原因 |
 |---------|------|------|
@@ -420,7 +428,7 @@ elysia.ts
 | 6 | 校医院今日出诊 |
 | 7 | 校园卡余额 + 最近10条消费 |
 | 8 | 询问查哪位老师 |
-| 9 | 农大新闻 + 信电学院公告（各5条，读缓存 < 3s） |
+| 9 | 农大新闻 + 校园头条（quickNewsReply 直接读缓存秒回，各5条；不再走 AI/爬虫） |
 
 ### lib/news-warmer.ts
 
@@ -430,6 +438,18 @@ elysia.ts
 - quick-news-reply.ts 读此文件，35分钟内有效；过期则回落到 AI 调 scraper
 
 **爬虫返回格式**：`{"success": true, "total": N, "items": [...]}`（不是裸数组，解析时需取 `.items`）
+
+### lib/scheduled-delivery.ts（定时任务/提醒的发送与兜底）
+
+CronService / ReminderService 到点执行时统一经过本模块，**它们是唯一发送方**（agent 在定时执行时不再持有 `wechat_send`，避免双发与谎报）：
+
+- `wrapCronPrompt` 给 cron prompt 追加「无新内容只回复 `[无新内容]` 哨兵」约束 → `isNoContentReply` 命中则不发送（解决"没通知仍骚扰"）
+- `digestText` 内容指纹去重：与 `scheduled_tasks.last_digest` 相同则跳过
+- `sendScheduledText` 发送失败退避重试 3 次；`describeSendError` 完整提取微信 `errcode/errmsg/payload` 用于诊断 ret=-2
+- 重试仍失败 → `queuePendingDelivery` 写入 `pending_deliveries`；目标联系人下次发消息时 `handleWechatMessage` 调 `flushPendingDeliveries` 用新鲜 token 补发
+- 每次执行结果经 `recordRun` / `markReminder` 写回 DB（last_run_status 等），控制台可见
+
+**微信 context_token 限制**：`bot.send` 用缓存 token，用户久未联系会失效报 `ret=-2`——这是个人号协议的反骚扰限制，无法 100% 保证主动推送，故有上述补发兜底。
 
 ### lib/agent/bash-tool.ts（安全沙箱）
 

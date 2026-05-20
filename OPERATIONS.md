@@ -80,6 +80,7 @@ OPENAI_API_KEY=sk-...
 | `WORKER_INTERNAL_TOKEN` | work-server, gateway | 空（不校验） | 内部 API Bearer token |
 | `SCHOOL_DB_PATH` | school-server | /data/school.db | SQLite 路径 |
 | `SEED` | school-server | false | `true` 时自动生成种子数据 |
+| `CURRENT_SEMESTER` | school-server | 按月份推算 | 覆盖"当前学期"（作业查询过滤用），格式如 `2025-2026春季` |
 | `NODE_TLS_REJECT_UNAUTHORIZED` | work-server | — | 设为 "0" 可绕过 TLS 验证（开发用） |
 
 ---
