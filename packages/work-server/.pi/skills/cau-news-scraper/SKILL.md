@@ -66,6 +66,15 @@ python $SKILL --sites cau_news --limit 20 --fetch-content --output cau_news.json
 
 ## ⚠️ 关键注意事项
 
+### 0. 「最新新闻 / 今天的新闻」必须指定频道
+**不要不带 `--channels` 调用 cau_news**，否则会拉到 rwgs（人物故事）/ mtndnew（媒体农大）等更新很慢的频道，常常返回 1 个月前的旧文章，让用户误以为"系统时间错乱"。
+
+查"最新新闻 / 今天的农大新闻"：必须用 `--channels ttgznew zhxwnew`（头条+综合，这两个频道每天更新）。
+
+查"科研动态"：用 `--channels kxyj`。
+查"基层 / 学院动态"：用 `--channels jcdt`。
+查"人物特稿"（用户明确要"人物故事 / 报道"）：才用 `--channels rwgs`。
+
 ### 1. 不传 `--fetch-content` 则无正文
 默认只返回标题、日期、URL，`content` 字段为 `null`。  
 需要读取文章内容必须加 `--fetch-content`：

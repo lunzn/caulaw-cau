@@ -79,7 +79,10 @@ function formatItems(items: NewsItem[], title: string, limit = 10): string {
   }
   const lines = items
     .slice(0, limit)
-    .map((item, i) => `${i + 1}. ${item.title}\n${item.url}`);
+    .map((item, i) => {
+      const date = item.date ? `[${item.date}] ` : "";
+      return `${i + 1}. ${date}${item.title}\n${item.url}`;
+    });
   const footer =
     items.length > limit ? `\n共 ${items.length} 条，回复「更多」查看更多` : "";
   return `${title}\n\n${lines.join("\n\n")}${footer}`;
