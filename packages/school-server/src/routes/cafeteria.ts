@@ -1,9 +1,10 @@
 import { Elysia } from "elysia";
 import { getAllCafeterias, getCafeteriaMenu, getCafeteriaMenuByDate } from "../db";
 import { getStudentTransactions, getStudentTransactionSummary } from "../db/transactions";
+import { beijingDateString } from "../lib/beijing-time";
 
 function today(): string {
-  return new Date().toISOString().slice(0, 10);
+  return beijingDateString();
 }
 
 export const cafeteriaRoutes = new Elysia({ prefix: "/cafeteria" })

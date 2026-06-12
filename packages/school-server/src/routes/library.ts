@@ -9,9 +9,10 @@ import {
   cancelReservation,
   LIBRARY_TIME_SLOTS,
 } from "../db";
+import { beijingDateString } from "../lib/beijing-time";
 
 function today(): string {
-  return new Date().toISOString().slice(0, 10);
+  return beijingDateString();
 }
 
 export const libraryRoutes = new Elysia({ prefix: "/library" })

@@ -444,6 +444,7 @@ elysia.ts
 CronService / ReminderService 到点执行时统一经过本模块，**它们是唯一发送方**（agent 在定时执行时不再持有 `wechat_send`，避免双发与谎报）：
 
 - `wrapCronPrompt` 给 cron prompt 追加「无新内容只回复 `[无新内容]` 哨兵」约束 → `isNoContentReply` 命中则不发送（解决"没通知仍骚扰"）
+- `wrapReminderPrompt` 给一次性提醒到点注入的 prompt 加「系统提醒触发」包装：要求 agent 直接输出以「⏰提醒」开头、第二人称的提醒正文，禁止误判为"新建提醒请求"或调用工具（曾出现到点后回复"提醒已设置好"的事故）
 - `digestText` 内容指纹去重：与 `scheduled_tasks.last_digest` 相同则跳过
 - `sendScheduledText` 发送失败退避重试 3 次；`describeSendError` 完整提取微信 `errcode/errmsg/payload` 用于诊断 ret=-2
 - 重试仍失败 → `queuePendingDelivery` 写入 `pending_deliveries`；目标联系人下次发消息时 `handleWechatMessage` 调 `flushPendingDeliveries` 用新鲜 token 补发
@@ -587,6 +588,16 @@ Dockerfile gateway-builder stage 设置 `ENV DATABASE_URL=placeholder`，Next.js
 ### 11. quickImageReply 与 schedule-check.py 的冲突防护
 
 COMPLEX_RE 检测（消息 >20 字且含决策词）让复杂就医/沙龙查询跳过图片拦截，进入 AI + `schedule-check.py` 流程。新增课表/医院/食堂/班车的图片规则时，务必检查是否会和决策类问题冲突。
+
+### 12. 时间一律按北京时间，且不依赖进程 TZ
+
+曾发生 P0：容器跑 UTC，提醒"早上8点"被 `new Date("…T08:00:00")` 按 UTC 解析（北京 16:00，偏 8 小时）；学生看到的作业截止时间全是"凌晨 01:09"（UTC 渲染）。现状约定：
+
+- **解析**：`schedule_reminder` 的 `run_at` 必须是北京墙上时钟、不带时区后缀（带 Z/偏移会被工具层拒绝重试）；服务层 `parseWallClockInTZ`（`work-server/lib/time.ts`）显式按 Asia/Shanghai 解析，与进程 TZ 无关
+- **展示**：所有时间用 `formatInTZ`（北京时间 + 周X）；school-server 内部用 `src/lib/beijing-time.ts`（固定 +8，包间解耦不共享代码）
+- **模型感知**：每条消息的系统上下文注入「当前北京时间」（school-workflow），工具描述给出今天/明天的具体日期；COMMON_SYSTEM 有【时间感知】规则，凌晨 00:00–05:00 说"今天/明天"要先和用户确认日期
+- **环境**：docker-compose 所有服务设 `TZ=Asia/Shanghai`，postgres 以 `-c timezone=Asia/Shanghai` 启动（`timestamp` 列不带时区，`defaultNow()` 必须与应用同时区）；bash-tool spawnHook 给 agent 子进程注入 TZ（子进程不继承父 env）
+- **隐患**：`toISOString()` 永远是 UTC，给"取今天日期/给用户看"的场景使用前必须过北京时间工具
 
 ---
 

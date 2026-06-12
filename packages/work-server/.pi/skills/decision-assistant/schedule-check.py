@@ -4,10 +4,14 @@ Cross-reference student's course schedule with clinic schedules to suggest visit
 Usage: python3 schedule-check.py <studentId> [department]
 Example: python3 schedule-check.py S20253082026 内科
 """
-import json, sys, os, re
+import json, sys, os, re, time
 from datetime import datetime, timedelta
 from urllib.request import urlopen
 from urllib.error import URLError
+
+# "今天/明天"决策必须基于北京时间；容器/调用方未设 TZ 时兜底
+os.environ.setdefault("TZ", "Asia/Shanghai")
+time.tzset()
 
 def fetch(url):
     with urlopen(url) as r:

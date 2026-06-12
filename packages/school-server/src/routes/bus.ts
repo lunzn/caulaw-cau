@@ -1,10 +1,10 @@
 import { Elysia } from "elysia";
 import { getAllBusRoutes, getBusRouteById, getBusStops, getBusSchedules } from "../db";
+import { beijingWeekday } from "../lib/beijing-time";
 
-/** 今天是周几（1=周一…7=周日） */
+/** 今天是周几（1=周一…7=周日，按北京时间） */
 function todayWeekday(): number {
-  const d = new Date().getDay(); // 0=Sunday
-  return d === 0 ? 7 : d;
+  return beijingWeekday();
 }
 
 export const busRoutes = new Elysia({ prefix: "/bus" })

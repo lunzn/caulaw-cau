@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { userSchoolBindings } from "@cau-claw/db";
 import { and, eq, inArray } from "drizzle-orm";
 import type { SchoolIdentityContext } from "@/lib/agent/bash-tool";
+import { formatInTZ } from "@/lib/time";
 
 type UnsubmittedAssignment = {
   id: string;
@@ -103,15 +104,18 @@ export function injectSchoolIdentityContext(
   identity: SchoolIdentityContext,
 ): string {
   const base = text.trim();
+  // 每条消息都注入当前北京时间：模型对"今天/明天/周X"的换算一律以此为准，
+  // 不受会话历史时间跨度或系统提示中"演示日期"等静态文案干扰
+  const nowLine = `当前北京时间：${formatInTZ(new Date(), { seconds: false })}`;
   if (!identity) {
     return (
-      "系统约束：当前用户未绑定 student/teacher 身份。你必须拒绝任何教务系统数据查询、列举、下载、统计请求，并提示先在 dashboard 绑定身份。\n\n" +
+      `系统上下文：${nowLine}。当前用户未绑定 student/teacher 身份。你必须拒绝任何教务系统数据查询、列举、下载、统计请求，并提示先在 dashboard 绑定身份。\n\n` +
       base
     );
   }
 
   return (
-    `系统上下文：当前用户已绑定身份 ${identity.role}:${identity.schoolId}，可使用全部校园服务功能。\n\n` +
+    `系统上下文：${nowLine}。当前用户已绑定身份 ${identity.role}:${identity.schoolId}，可使用全部校园服务功能。\n\n` +
     base
   );
 }
@@ -177,7 +181,7 @@ export class SchoolWorkflowService {
       .map((a, i) => {
         const deadlineText =
           Number.isFinite(a.deadline) && a.deadline > 0
-            ? new Date(a.deadline * 1000).toLocaleString()
+            ? formatInTZ(a.deadline * 1000)
             : "未知";
         const courseText = a.course?.name || a.course?.code || "未命名课程";
         return `${i + 1}. ${courseText} | ${a.title} | 截止 ${deadlineText}`;
@@ -385,7 +389,7 @@ export class SchoolWorkflowService {
     if (studentUserIds.length === 0) return { delivered: 0, skipped: students.length };
 
     const { botService } = await import("@/lib/bot/service");
-    const deadlineText = new Date(input.deadlineUnix * 1000).toLocaleString();
+    const deadlineText = formatInTZ(input.deadlineUnix * 1000);
     const text =
       `你有新的课程作业：${input.assignmentTitle}\n` +
       `课程：${input.courseName}\n` +

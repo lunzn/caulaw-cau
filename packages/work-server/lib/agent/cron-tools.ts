@@ -2,20 +2,19 @@ import { Type } from "@sinclair/typebox";
 import type { AgentTool } from "@mariozechner/pi-agent-core";
 import { cronService } from "../../modules/cron/service";
 import { reminderService } from "../../modules/reminder/service";
+import {
+  APP_TIMEZONE,
+  dateStringInTZ,
+  formatInTZ,
+  hasExplicitOffset,
+  weekdayInTZ,
+} from "@/lib/time";
 
-const CRON_TZ = process.env.CRON_TIMEZONE?.trim() || "Asia/Shanghai";
+const CRON_TZ = APP_TIMEZONE;
 
+/** "2026-06-01 00:19:19（周一）"，北京时间，含星期 */
 function nowInTZ(): string {
-  return new Date().toLocaleString("zh-CN", {
-    timeZone: CRON_TZ,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  });
+  return formatInTZ(new Date(), { seconds: true });
 }
 
 /**
@@ -241,7 +240,7 @@ export function buildCronTools(
       const lines = rows.map((r) => {
         const promptShort =
           r.prompt.length > 80 ? `${r.prompt.slice(0, 80)}…` : r.prompt;
-        return `#${r.id} 时间=${r.run_at} → ${r.target_user_id}\n  说明：${promptShort}`;
+        return `#${r.id} 时间=${formatInTZ(new Date(r.run_at))}（北京时间） → ${r.target_user_id}\n  说明：${promptShort}`;
       });
       return {
         content: [
@@ -294,20 +293,25 @@ export function buildCronTools(
     name: "schedule_reminder",
     label: "一次性定时提醒",
     description:
-      `安排一次性提醒：到指定时间后，助手根据 prompt 生成回复并发送给用户，只执行一次。` +
-      ` 当前时间：${nowInTZ()}（${CRON_TZ}）。` +
-      ` run_at 用 ISO 8601 格式，如 "2026-04-11T15:30:00"（按 ${CRON_TZ} 解析）。` +
-      ` 用户说"3小时后"/"明天上午10点"之类，请自行换算为绝对时间。` +
+      `安排一次性提醒：到指定时间后，助手根据 prompt 生成提醒消息并发送给用户，只执行一次。\n` +
+      `当前北京时间：${nowInTZ()}；今天是 ${dateStringInTZ()}（${weekdayInTZ()}），明天是 ${dateStringInTZ(Date.now(), 1)}（${weekdayInTZ(Date.now() + 86_400_000)}）。\n` +
+      `【run_at 规则】填北京时间（${CRON_TZ}）的墙上时钟，格式 "YYYY-MM-DDTHH:mm:ss"，` +
+      `如 "2026-06-02T08:00:00"。严禁带 Z 或 +08:00 等时区后缀，严禁自行换算成 UTC——直接写用户口中的钟点。\n` +
+      `【相对日期换算】以上面给出的"今天/明天"日期为准："明天"=今天+1天，"后天"=今天+2天，"3小时后"用当前北京时间加3小时。` +
+      `注意：凌晨 00:00–05:00 用户说"今天/明天"时有歧义（很多人把睡前的深夜仍当作"今天"），此时必须先反问用户确认具体日期（如"你是指今天6月1日早上8点，还是明天6月2日早上8点？"），确认后再创建。\n` +
+      `【prompt 规则】到点后接收提醒的是设置提醒的用户本人（除非明确指定他人），prompt 必须用第二人称"你"书写（如"提醒你：8点有会议，请提前准备"），` +
+      `严禁用第三人称称呼用户本人（如"提醒某某老师"）；prompt 中应包含事件的绝对日期时间，便于到点时表述准确。\n` +
+      `【创建后】向用户确认时必须念出绝对日期+星期+时间（如"已设好，6月2日（周二）早上8点提醒你开会"），不要只说"明天"。` +
       (opts?.defaultWechatTarget
         ? " 若用户未说明发给谁，可省略 target_user_id。"
         : " 必须提供 target_user_id。"),
     parameters: Type.Object({
       run_at: Type.String({
-        description: `执行时间 ISO 8601，如 "2026-04-11T15:30:00"`,
+        description: `执行时间，北京时间墙上时钟，格式 "YYYY-MM-DDTHH:mm:ss"（不带任何时区后缀），如 "2026-06-02T08:00:00"`,
       }),
       prompt: Type.String({
         description:
-          "到时间后交给助手的提示词，用于生成要发送的消息内容",
+          "到时间后交给助手的提示词，用于生成要发送的提醒消息；用第二人称'你'称呼接收者，并写明事件的绝对日期时间",
       }),
       target_user_id: Type.Optional(
         Type.String({
@@ -328,6 +332,13 @@ export function buildCronTools(
       if (!runAt || !prompt) {
         throw new Error("run_at 与 prompt 不能为空");
       }
+      // 带 Z/偏移后缀通常意味着模型把北京时间错换算成了 UTC（会差 8 小时），拒绝并让其重试
+      if (hasExplicitOffset(runAt)) {
+        throw new Error(
+          `run_at 不能带时区后缀（收到 "${runAt}"）。请直接填北京时间墙上时钟，` +
+            `如 "2026-06-02T08:00:00"。当前北京时间：${nowInTZ()}。`,
+        );
+      }
 
       const result = await reminderService.addReminder(
         ownerUserId,
@@ -337,11 +348,12 @@ export function buildCronTools(
       );
       if (result instanceof Error) throw result;
 
+      const runAtText = formatInTZ(new Date(result.run_at));
       return {
         content: [
           {
             type: "text",
-            text: `已安排提醒 #${result.id}：将于 ${result.run_at} 发送给 ${result.target_user_id}。`,
+            text: `已安排提醒 #${result.id}：将于 ${runAtText}（北京时间）发送给 ${result.target_user_id}。请按此时间向用户确认。`,
           },
         ],
         details: { reminderId: result.id },

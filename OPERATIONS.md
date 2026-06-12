@@ -113,6 +113,7 @@ OPENAI_API_KEY=sk-...
 ### 关键注意事项
 
 1. **`~/.wechatbot` volume 绝对不能删**：WeChat 登录凭据在宿主机，删后需重新扫码登录
+1. **所有容器统一 `TZ=Asia/Shanghai`**（compose 已写死，postgres 另以 `-c timezone=Asia/Shanghai` 启动）：提醒/作业截止/「今天」类逻辑都按北京时间。新增服务时必须带上 TZ，否则会复发"提醒偏 8 小时 / 截止时间显示凌晨"一类 bug
 2. **`.pi/` volume 挂载**：Skills 改动约 60s 内自动生效，无需重建镜像
 3. **`work-server` 是编译二进制**：修改 TypeScript 必须重新编译
 4. **`assets/` 打入镜像**：修改 PNG 图片需重新编译 work-server

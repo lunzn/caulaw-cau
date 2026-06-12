@@ -71,6 +71,9 @@ curl -sS "${BASE}/api/assignments/by-course/<courseId>"
 curl -sS "${BASE}/api/assignments/upcoming?hours=24"
 ```
 
+**deadline 字段格式化（重要）**：作业的 `deadline` 是 Unix epoch 秒，展示给用户前必须转成北京时间，用
+`date -d @<deadline> '+%Y-%m-%d %H:%M'`（环境 TZ 已是 Asia/Shanghai）。禁止直接展示 epoch 数字或用 UTC 时间。
+
 ---
 
 ## 2) 图书馆

@@ -109,6 +109,22 @@ export function isNoContentReply(text: string): boolean {
   return text.includes(NO_CONTENT_SENTINEL);
 }
 
+/**
+ * 包装一次性提醒到点执行时注入 agent 的 prompt。
+ * 不包装时，agent 会把"提醒内容"误读成用户的新请求（曾把正在触发的提醒
+ * 误判为"新建提醒"，回复"已设置好，明天会提醒你"），且容易用第三人称称呼用户。
+ */
+export function wrapReminderPrompt(prompt: string): string {
+  return (
+    `[系统提醒触发] 用户之前设置的一次性提醒现在到点了，请立即执行提醒。\n` +
+    `提醒内容：${prompt.trim()}\n\n` +
+    `[系统要求]\n` +
+    `· 你的任务是把上述提醒转达给用户本人：直接输出发给用户的提醒消息正文，以「⏰提醒」开头，用第二人称"你"称呼对方；\n` +
+    `· 这不是创建新提醒的请求，也不是测试。禁止创建/修改/查询提醒或定时任务，禁止回复"提醒已设置好"之类的确认语；\n` +
+    `· 无需调用任何工具，不要解释系统机制，只输出提醒消息本身。`
+  );
+}
+
 /** 计算内容指纹：与上次推送相同则可跳过，避免重复骚扰 */
 export function digestText(text: string): string {
   const normalized = text.replace(/\s+/g, " ").trim();

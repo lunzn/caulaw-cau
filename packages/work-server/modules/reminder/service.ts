@@ -6,7 +6,9 @@ import {
   describeSendError,
   queuePendingDelivery,
   sendScheduledText,
+  wrapReminderPrompt,
 } from "@/lib/scheduled-delivery";
+import { parseWallClockInTZ } from "@/lib/time";
 
 export type ReminderHooks = {
   enqueue: (userId: string, task: () => Promise<void>) => void;
@@ -47,8 +49,12 @@ function toReminderRow(r: typeof reminders.$inferSelect): ReminderRow {
   };
 }
 
+/**
+ * 解析提醒时间：无时区后缀的字符串（如 "2026-06-02T08:00:00"）按北京时间解析，
+ * 与容器本地时区无关；带后缀（DB 回读的 ISO Z 串）按标注解析。
+ */
 function parseRunAt(runAtStr: string): Date {
-  const d = new Date(runAtStr);
+  const d = parseWallClockInTZ(runAtStr);
   if (Number.isNaN(d.getTime())) throw new Error(`无效的时间: ${runAtStr}`);
   return d;
 }
@@ -97,7 +103,7 @@ export class ReminderService {
       .insert(reminders)
       .values({
         userId,
-        runAt: new Date(runAt),
+        runAt: runDate,
         prompt,
         targetUserId,
       })
@@ -192,10 +198,10 @@ export class ReminderService {
         return;
       }
 
-      // 1. 生成内容
+      // 1. 生成内容（包装为"提醒触发"指令，避免 agent 误读为新建提醒请求）
       let textOut = "";
       try {
-        const reply = await h.prompt(row.user_id, row.prompt);
+        const reply = await h.prompt(row.user_id, wrapReminderPrompt(row.prompt));
         textOut = reply.trim();
       } catch (err) {
         const desc = describeSendError(err);

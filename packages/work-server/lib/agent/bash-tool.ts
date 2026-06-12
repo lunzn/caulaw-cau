@@ -173,6 +173,8 @@ export function createUserScopedBashTool(
           SCHOOL_SERVER_URL: process.env.SCHOOL_SERVER_URL ?? "http://school-server:3002",
           // 与服务端 news-warmer 使用同一缓存目录，agent 调用 scraper 时命中预热缓存
           SKILLS_CACHE_DIR: path.resolve(PROJECT_ROOT, ".cache", "skills"),
+          // bash 子进程不继承父进程 env；显式注入 TZ，使 date / python datetime 按北京时间工作
+          TZ: process.env.TZ?.trim() || "Asia/Shanghai",
         },
       };
     },

@@ -1,5 +1,6 @@
 import { initDatabase, getDatabase } from "../db/database";
 import { insertTransaction } from "../db/transactions";
+import { beijingDateString, beijingEndOfDay } from "../lib/beijing-time";
 
 function id(): string {
   return crypto.randomUUID();
@@ -7,12 +8,6 @@ function id(): string {
 
 function daysAgo(n: number): number {
   return Math.floor(Date.now() / 1000) - n * 86400;
-}
-function daysFromNow(n: number): number {
-  return Math.floor(Date.now() / 1000) + n * 86400;
-}
-function hoursFromNow(n: number): number {
-  return Math.floor(Date.now() / 1000) + n * 3600;
 }
 
 export function seedDatabase(): void {
@@ -462,7 +457,7 @@ export function seedDatabase(): void {
     for (const t of tmps) {
       const aId = id();
       db.run(`INSERT INTO assignments (id,course_id,title,description,deadline,max_score) VALUES (?,?,?,?,?,100)`,
-        [aId, courseId, t.title, t.desc, t.offset < 0 ? daysAgo(-t.offset) : daysFromNow(t.offset)]);
+        [aId, courseId, t.title, t.desc, beijingEndOfDay(t.offset)]);
       aCount++;
     }
   }
@@ -472,7 +467,7 @@ export function seedDatabase(): void {
     if (coveredCourses.has(c.id)) continue;
     const aId = id();
     db.run(`INSERT INTO assignments (id,course_id,title,description,deadline,max_score) VALUES (?,?,?,?,?,100)`,
-      [aId, c.id, `${c.name} 第一次作业`, `完成${c.name}教材第一章课后习题`, daysFromNow(5)]);
+      [aId, c.id, `${c.name} 第一次作业`, `完成${c.name}教材第一章课后习题`, beijingEndOfDay(5)]);
     aCount++;
   }
   console.log(`作业: ${aCount} 个`);
@@ -552,7 +547,7 @@ export function seedDatabase(): void {
   ];
   let menuCount = 0;
   for (let d = 0; d < 4; d++) {
-    const date = new Date(Date.now() + d * 86400000).toISOString().slice(0, 10);
+    const date = beijingDateString(d);
     for (const cf of cafeterias) {
       const shuffled = [...menuItems].sort(() => Math.random() - 0.5).slice(0, 15);
       for (const item of shuffled) {
@@ -691,8 +686,8 @@ export function seedDatabase(): void {
   }
 
   // 示例预约
-  const today = new Date().toISOString().slice(0, 10);
-  const tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+  const today = beijingDateString();
+  const tomorrow = beijingDateString(1);
   const reservations = [
     { sid: "S20213082001", rid: "R501", date: today,     start: "14:00", end: "16:00", purpose: "毕业设计讨论" },
     { sid: "S20223082002", rid: "R302", date: tomorrow,  start: "10:10", end: "12:00", purpose: "小组作业" },
