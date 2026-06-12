@@ -454,13 +454,14 @@ CronService / ReminderService 到点执行时统一经过本模块，**它们是
 
 ### lib/agent/bash-tool.ts（安全沙箱）
 
-**路径权限**：
+**路径权限**（bash-tool 与 read-tool 策略对齐）：
 
 | 路径 | 权限 |
 |------|------|
 | `.data/wechatbot/{当前用户Id}/` | 读写 |
-| `.pi/skills/` | 只读 |
-| `/etc`, `/root`, `/sys` 等系统路径 | 封锁 |
+| `.pi/skills/` | 只读（bash 和 read 均可；read 接受相对路径或真实绝对路径 `/app/.pi/skills/...`） |
+| `/dev/null`、`/dev/zero`、`/dev/urandom` 等无害字符设备 | 放行（`2>/dev/null` 不再触发拦截，也不再被误判为对 `.pi/skills` 的写操作） |
+| `/etc`, `/root`, `/sys` 及 `/dev` 其余路径（如 `/dev/tcp/*`） | 封锁 |
 | 其他用户的 `.data/wechatbot/` | 封锁（跨用户隔离） |
 
 **spawnHook 注入的环境变量**：

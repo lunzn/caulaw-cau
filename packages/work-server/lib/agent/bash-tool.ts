@@ -27,6 +27,20 @@ const BLOCKED_PREFIXES = [
   "/private/etc", // macOS
 ];
 
+/**
+ * /dev 下放行的无害字符设备：常见 shell 写法依赖（2>/dev/null、dd if=/dev/zero 等）。
+ * 精确匹配整路径，/dev 其余路径（如 /dev/tcp/* 网络伪设备）仍走 BLOCKED_PREFIXES 封锁。
+ */
+const ALLOWED_DEV_PATHS = new Set([
+  "/dev/null",
+  "/dev/zero",
+  "/dev/random",
+  "/dev/urandom",
+  "/dev/stdin",
+  "/dev/stdout",
+  "/dev/stderr",
+]);
+
 const DEFAULT_SCHOOL_SERVER_URL = "http://127.0.0.1:3002";
 
 function escapeRegExp(input: string): string {
@@ -71,6 +85,9 @@ function isUnder(parent: string, candidate: string): boolean {
 /** 提取绝对路径 token：以 / 开头、由合法路径字符组成（模块级缓存，避免每次调用重新编译） */
 const _ABS_PATH_RE = /(?:^|[\s"'`|;&><(])(\/([\w.@%+\-]+(?:\/[\w.@%+\-]*)*)\/?)/g;
 
+/** 指向无害设备的输出重定向（2>/dev/null、&>/dev/null 等），写检查前先剔除以免误判 */
+const _DEV_REDIRECT_RE = /\d*>{1,2}\s*\/dev\/(?:null|zero|random|urandom|stdout|stderr)\b/g;
+
 /**
  * 从 shell 命令字符串中提取所有看起来像绝对路径的 token，
  * 并对每个路径执行访问策略检查：
@@ -78,6 +95,7 @@ const _ABS_PATH_RE = /(?:^|[\s"'`|;&><(])(\/([\w.@%+\-]+(?:\/[\w.@%+\-]*)*)\/?)/
  *   - userRoot（.data/wechatbot/{userId}/）：读写均可
  *   - PI_SKILLS_ROOT（.pi/skills）：仅读；若命令含写操作则阻止
  *   - 其他路径：
+ *       - ALLOWED_DEV_PATHS（/dev/null 等无害设备）→ 放行
  *       - BLOCKED_PREFIXES → 绝对封锁
  *       - 属于其他用户目录 → 封锁
  *       - 属于项目目录内其他位置 → 封锁
@@ -94,14 +112,19 @@ function validatePaths(
   let match: RegExpExecArray | null;
 
   // 检测是否有写操作（用于 .pi/skills 只读约束）
-  // 先去掉 2>&1、1>&2 等 fd 重定向，避免误判；两个标志只算一次
-  const commandForWriteCheck = command.replace(/\d+>&\d+/g, "");
+  // 先去掉 2>&1 等 fd 重定向、指向无害设备的重定向（2>/dev/null），避免误判；两个标志只算一次
+  const commandForWriteCheck = command
+    .replace(/\d+>&\d+/g, "")
+    .replace(_DEV_REDIRECT_RE, "");
   const hasOutputRedirect = />{1,2}/.test(commandForWriteCheck);
   const hasWriteCommand = /\b(rm|rmdir|mv|cp|chmod|chown|touch|truncate|dd|tee|install)\b/.test(command);
 
   while ((match = absPathRegex.exec(command)) !== null) {
     const rawPath = match[1];
     const resolved = path.resolve(rawPath);
+
+    // 无害字符设备：放行（2>/dev/null 等常见写法依赖）
+    if (ALLOWED_DEV_PATHS.has(resolved)) continue;
 
     // 系统封锁路径
     if (
@@ -152,6 +175,7 @@ function validatePaths(
  *   - cwd 固定为 .data/wechatbot/{userId}/
  *   - .data/wechatbot/{userId}/ 读写均可（相对路径天然安全）
  *   - .pi/skills/ 可读，不可写（skill 脚本通过 $PI_SKILLS_ROOT 访问）
+ *   - /dev/null 等无害字符设备放行，/dev 其余路径仍封锁
  *   - 其他用户目录及项目目录其他位置均被阻止
  */
 export function createUserScopedBashTool(
