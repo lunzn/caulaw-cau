@@ -232,6 +232,11 @@ docker compose restart work-server
 
 ## 8. 网络受限时的构建方法
 
+**基础镜像已钉死 digest**（见 Dockerfile 头部注释）：服务器配置的国内镜像源（1ms.run 等）出现过
+① 522 拉取失败（瞬时，重试或换源即可）；② **同一 tag 返回错误内容**（oven/bun:1.3.8 被挂成别的 bun 版本，
+导致 `--frozen-lockfile` 校验失败）。digest 内容寻址使镜像源无法再返回错的东西。
+若构建时报 `failed to resolve source metadata`，先手动 `docker pull <image>@<digest>` 再重新 build。
+
 ```bash
 # 绕过 TLS 超时
 docker buildx build --network=host -f Dockerfile --target gateway .

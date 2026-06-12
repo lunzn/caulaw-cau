@@ -1,5 +1,8 @@
 # ────────────── base ──────────────
-FROM oven/bun:1.3.8 AS base
+# 基础镜像一律钉死 docker.io 官方 digest：生产服务器走国内镜像源，
+# 曾出现某镜像源给 oven/bun:1.3.8 tag 挂错内容（bun 版本不对，frozen lockfile 校验失败）。
+# digest 内容寻址不可伪造；升级版本时用 hub.docker.com/v2/repositories/<repo>/tags/<tag> 的顶层 digest 同步更新。
+FROM oven/bun:1.3.8@sha256:371d30538b69303ced927bb5915697ac7e2fa8cb409ee332c66009de64de5aa3 AS base
 WORKDIR /app
 
 # ────────────── deps ──────────────
@@ -28,7 +31,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 DATABASE_URL=placeholder SCHOOL_SERVER_URL=placeho
 RUN bun run --cwd packages/gateway build
 
 # ────────────── gateway ──────────────
-FROM oven/bun:1.3.8-slim AS gateway
+FROM oven/bun:1.3.8-slim@sha256:68fc2eac7f5dcfc2f69a81d1db02786ab08772eda2e4404eae785c038f8d2e41 AS gateway
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3000 HOSTNAME=0.0.0.0 
 WORKDIR /app
 COPY --from=gateway-builder /app/packages/gateway/.next/standalone ./
@@ -57,7 +60,7 @@ RUN bun build \
     packages/work-server/elysia.ts
 
 # ────────────── work-server ──────────────
-FROM python:3.13-slim AS work-server
+FROM python:3.13-slim@sha256:f82c96458eedc847b233e582eb31336f4954b39cae020b6dcf5b3ed0e5cbcd74 AS work-server
 WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl && rm -rf /var/lib/apt/lists/*
 COPY packages/work-server/.pi/skills/requirements.txt ./requirements.txt
